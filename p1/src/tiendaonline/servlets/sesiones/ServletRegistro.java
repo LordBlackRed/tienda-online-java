@@ -33,7 +33,7 @@ public class ServletRegistro extends HttpServlet {
 			admin = true;
 		}
 		usuario.setPass(pass);
-		usuario.setNombre(usuarioString);
+		usuario.setNick(usuarioString);
 		usuario.setAdmin(admin);
 		
 		transaction.begin();
@@ -44,7 +44,7 @@ public class ServletRegistro extends HttpServlet {
 		HttpSession sesion = request.getSession();
 		sesion.setAttribute("usuario", usuario);
 		
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("Index");
 		}
 
 }

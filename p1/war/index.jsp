@@ -23,25 +23,53 @@
 						<div class="top_prod_box"></div>
 						<div class="center_prod_box">
 							<div class="product_title">
-								<a href="details.html">${producto.nombre }</a>
+								<a href="details.html">${producto.nombre}</a>
 							</div>
 							<div class="product_img">
-								<a href="details.html"><img src="${producto.urlImagen}" width = "120" height="150" alt=""
-									title="" border="0" /></a>
+								<a href="details.html"><img src="${producto.urlImagen}"
+									width="120" height="150" alt="" title="" border="0" /></a>
 							</div>
 							<div class="prod_price">
-								 <span class="price">${producto.precio}</span>
+								<span class="price">${producto.precio}</span>
 							</div>
 						</div>
 						<div class="bottom_prod_box"></div>
 						<div class="prod_details_tab">
-							<a href="AddCarrito?id=${producto.id.id}" title="header=[Add to cart] body=[&nbsp;] fade=[on]"><img
-								src="images/cart.gif" alt="" title="" border="0" class="left_bt" /></a>
-							<a href="#" title="header=[Specials] body=[&nbsp;] fade=[on]"><img
-								src="images/favs.gif" alt="" title="" border="0" class="left_bt" /></a>
-							<a href="#" title="header=[Gifts] body=[&nbsp;] fade=[on]"><img
-								src="images/favorites.gif" alt="" title="" border="0"
-								class="left_bt" /></a> <a href="details.html" class="prod_details">details</a>
+							<c:choose>
+								<c:when test="${sessionScope.usuario.nick != 'admin'}">
+
+									<a href="AddCarrito?id=${producto.id.id}"
+										title="header=[Add to cart] body=[&nbsp;] fade=[on]"><img
+										src="images/cart.gif" alt="" title="" border="0"
+										class="left_bt" /></a>
+									<a href="AddPuntuacion?id=${producto.id.id}&megusta=t" title="header=[Specials] body=[&nbsp;] fade=[on]"><img
+										src="images/me_gusta.png" alt="" title="" border="0"
+										class="left_bt" /></a>
+									<a href="AddPuntuacion?id=${producto.id.id}&megusta=f" title="header=[Specials] body=[&nbsp;] fade=[on]"><img
+										src="images/no_me_gusta.png" alt="" title="" border="0"
+										class="left_bt" /></a>
+									<a href="VerPuntuaciones?id=${producto.id.id}" title="header=[Gifts] body=[&nbsp;] fade=[on]"><img
+										src="images/favorites.gif" alt="" title="" border="0"
+										class="left_bt" /></a>
+									<a href="Detalles?id=${producto.id.id}" class="prod_details">details</a>
+
+								</c:when>
+
+								<c:otherwise>
+									<a href="EliminarProducto?id=${producto.id.id}"
+										title="header=[Add to cart] body=[&nbsp;] fade=[on]"><img
+										src="images/icono_eliminar.gif" alt="Eliminar Producto"
+										title="" border="0" class="left_bt" /></a>
+									<a href="#" title="header=[Specials] body=[&nbsp;] fade=[on]"><img
+										src="images/favs.gif" alt="" title="" border="0"
+										class="left_bt" /></a>
+									<a href="#" title="header=[Gifts] body=[&nbsp;] fade=[on]"><img
+										src="images/favorites.gif" alt="" title="" border="0"
+										class="left_bt" /></a>
+									<a href="Detalles?id=${producto.id.id}" class="prod_details">details</a>
+
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 				</c:forEach>

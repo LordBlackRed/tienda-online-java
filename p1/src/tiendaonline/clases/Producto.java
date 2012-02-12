@@ -1,6 +1,9 @@
 package tiendaonline.clases;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.google.appengine.api.datastore.Key;
 
@@ -23,11 +27,9 @@ public class Producto {
 	private String urlImagen;
 	private Categoria categoria;
 	private String categoriaString;
-	private Fabricante fabricante;
 
 	public Producto(double precio, String fecha, String nombre, int cantidad,
-			String urlImagen, Categoria categoria, String categoriaString,
-			Fabricante fabricante) {
+			String urlImagen, Categoria categoria, String categoriaString) {
 		super();
 		this.precio = precio;
 		this.fecha = fecha;
@@ -36,16 +38,6 @@ public class Producto {
 		this.urlImagen = urlImagen;
 		this.categoria = categoria;
 		this.categoriaString = categoriaString;
-		this.fabricante = fabricante;
-	}
-
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-	public Fabricante getFabricante() {
-		return fabricante;
-	}
-
-	public void setFabricante(Fabricante fabricante) {
-		this.fabricante = fabricante;
 	}
 
 	public String getCategoriaString() {
@@ -74,7 +66,6 @@ public class Producto {
 	}
 
 	public Producto() {
-
 	}
 
 	public double getPrecio() {

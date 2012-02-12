@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import tiendaonline.clases.Envio;
 import tiendaonline.clases.Producto;
 import tiendaonline.enumerados.MisAtributos;
+import tiendaonline.metodos.MisMetodos;
 
 public class ServletActualizarCarrito extends HttpServlet{
 
@@ -29,6 +31,13 @@ public class ServletActualizarCarrito extends HttpServlet{
 			producto.setCantidad(Integer.parseInt(cantidad));
 			contador++;
 		}
+		Long idEnvio = Long.parseLong(request.getParameter("empresaEnvio"));
+		
+		List<Envio> empresasEnvio = MisMetodos.obtenerEmpresasEnvio(request);
+		
+		Envio empresaEnvio = MisMetodos.obtenerEmpresaEnvio(empresasEnvio, idEnvio.longValue());
+		
+		request.getSession().setAttribute(MisAtributos.empresaEnvio.toString(), empresaEnvio);
 		
 		response.sendRedirect("Carrito");
 	}

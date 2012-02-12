@@ -14,35 +14,91 @@
 
 			<div class="center_content">
 				<div class="center_title_bar">Añadir Producto</div>
-				<form action="ProductoNuevo" method="post">
-					<label for="nombre">Nombre: </label><input type="text"
-						name="nombre" /><br></br> <label for="fecha">Fecha: </label><input
-						type="text" name="fecha" /><br></br> <label for="precio">Precio:
-					</label><input type="text" name="precio" /><br></br> <label for="cantidad">Cantidad:
-					</label><input type="text" name="cantidad" /> <br></br> <label for="url">URL:
-					</label><input type="text" name="url" /> <br></br> <label for="categoria">Categoria:
-					</label><select name="categoria" id="categoria">
-						<c:forEach items="${requestScope.categorias}" var="categoria">
-							<option value="${categoria.titulo}">${categoria.titulo}</option>
-						</c:forEach>
 
-					</select> <br></br> <input type="submit" value="enviar" />
-				</form>
+				<div id="stylized" class="for_producto_nuevo">
+					<form action="ProductoNuevo" method="post">
 
-				<div class="center_title_bar">Añadir Categoría</div>
-				<form action="CategoriaNueva" method="post">
-					<label for="titulo">Titulo: </label><input type="text"
-						name="titulo" /><br></br> <input type="submit" value="enviar" />
-				</form>
+						<label for="nombre">Nombre: </label> <input type="text"
+							name="nombre" /> <label for="fecha">Fecha: </label> <input
+							type="text" name="fecha" /> <label for="precio">Precio:
+						</label> <input type="text" name="precio" /> <label for="cantidad">Cantidad:
+						</label> <input type="text" name="cantidad" /> <label for="url">URL:
+						</label> <input type="text" name="url" /> <label for="categoria">Categoria:
+							<span class="small">Elige su categoría</span>
+						</label> <select name="categoria" id="categoria">
+							<option value="defecto">Seleccione una opción</option>
+							<c:forEach items="${requestScope.categorias}" var="categoria">
+								<option value="${categoria.titulo}">${categoria.titulo}</option>
+							</c:forEach>
 
-				<div class="center_title_bar">Añadir Fabricante</div>
-				<form action="FabricanteNuevo" method="post">
-					<label for="nombreFabricante">Nombre: </label><input type="text"
-						name="nombreFabricante" /><br></br> <input type="submit" value="enviar" />
-				</form>
+						</select>
+						<div class="spacer"></div>
+						<button type="submit" value="enviar">Enviar</button>
 
+					</form>
+				</div>
+				<div class="center_title_bar">Añadir Categoría o Fabricante</div>
+				<div id="estilos_categoria">
+					<div class="form_categoria">
+
+						<form action="CategoriaNueva" method="post">
+							<label for="titulo">Categoría: </label><input type="text"
+								name="titulo" />
+							<button type="submit" value="enviar">Enviar</button>
+						</form>
+					</div>
+
+					<div class="form_fabricante">
+
+						<form action="FabricanteNuevo" method="post">
+							<label for="nombreFabricante">Fabricante: </label><input
+								type="text" name="nombreFabricante" />
+							<button type="submit" value="enviar">Enviar</button>
+						</form>
+					</div>
+				</div>
+				<div class="center_title_bar">Eliminar Categoría o Fabricante</div>
+				<div id="estilos_categoria">
+					<div class="form_categoria">
+
+						<form action="EliminarCategoria" method="post">
+							<label for="titulo">Categoría: </label> <select
+								name="eliminarCategoria" id="eliminarCategoria">
+								<c:forEach items="${requestScope.categorias}" var="categoria">
+									<option value="${categoria.titulo}">${categoria.titulo}</option>
+								</c:forEach>
+							</select>
+							<button type="submit" value="enviarEliminarCategoria">Eliminar</button>
+						</form>
+					</div>
+
+					<div class="form_fabricante">
+
+						<form action="EliminarFabricante" method="post">
+							<label for="eliminarFabricante">Fabricante: </label> <select
+								name="eliminarFabricante" id="eliminarFabricante">
+								<c:forEach items="${requestScope.fabricantes}" var="fabricante">
+									<option value="${fabricante.nombre}">${fabricante.nombre}</option>
+								</c:forEach>
+							</select>
+							<button type="submit" value="enviarEliminarFabricante">Eliminar</button>
+						</form>
+					</div>
+				</div>
+				<div class="center_title_bar">Añadir Envío</div>
+				<div id="estilos_categoria">
+					<div class="form_categoria">
+
+						<form action="NuevoEnvio" method="post">
+							<label for="empresa">Nombre Empresa: </label><input
+								type="text" name="empresa" id="empresa" /> <label
+								for="precioEnvio">Gastos de Envío: </label><input tyoe="text"
+								name="precioEnvio" id="precioEnvio" />
+							<button type="submit" value="enviarNuevoEnvio">Enviar</button>
+						</form>
+					</div>
+				</div>
 			</div>
-
 			<!-- end of center content -->
 
 			<jsp:include page="right-content.jsp" />

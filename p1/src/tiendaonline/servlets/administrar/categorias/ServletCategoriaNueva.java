@@ -1,4 +1,4 @@
-package tiendaonline.servlets.administrar;
+package tiendaonline.servlets.administrar.categorias;
 
 import java.io.IOException;
 
@@ -10,19 +10,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tiendaonline.clases.Fabricante;
+import tiendaonline.clases.Categoria;
 
-public class ServletFabricanteNuevo extends HttpServlet{
-
-	private static final long serialVersionUID = -4158352439888813425L;
-
+public class ServletCategoriaNueva extends HttpServlet{
+	
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String nombre = request.getParameter("nombreFabricante");
 		
-		Fabricante fabricante = new Fabricante();
-		fabricante.setNombre(nombre);
+		String tituloCategoria = request.getParameter("titulo");
 		
+		Categoria categoria = new Categoria();
+		categoria.setTitulo(tituloCategoria);
+
 		EntityManagerFactory entityManagerFactory = (EntityManagerFactory) request
 				.getSession().getServletContext().getAttribute("emf");
 		EntityManager entityManager = entityManagerFactory
@@ -30,10 +29,13 @@ public class ServletFabricanteNuevo extends HttpServlet{
 		EntityTransaction transaction = entityManager.getTransaction();
 	
 		transaction.begin();
-		entityManager.persist(fabricante);
+		entityManager.persist(categoria);
 		transaction.commit();
+		entityManager.close();
 		
 		response.sendRedirect("Index");
+		
 	}
+	
 
 }

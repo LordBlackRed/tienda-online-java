@@ -22,7 +22,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>ProductoNuevo</servlet-name>
-		<servlet-class>tiendaonline.servlets.administrar.ServletProductoNuevo</servlet-class>
+		<servlet-class>tiendaonline.servlets.administrar.productos.ServletProductoNuevo</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ProductoNuevo</servlet-name>
@@ -46,7 +46,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>CategoriaNueva</servlet-name>
-		<servlet-class>tiendaonline.servlets.administrar.ServletCategoriaNueva</servlet-class>
+		<servlet-class>tiendaonline.servlets.administrar.categorias.ServletCategoriaNueva</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>CategoriaNueva</servlet-name>
@@ -110,11 +110,99 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>FabricanteNuevo</servlet-name>
-		<servlet-class>tiendaonline.servlets.administrar.ServletFabricanteNuevo</servlet-class>
+		<servlet-class>tiendaonline.servlets.administrar.fabricantes.ServletFabricanteNuevo</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>FabricanteNuevo</servlet-name>
 		<url-pattern>/FabricanteNuevo</url-pattern>
+	</servlet-mapping>	
+	<servlet>
+		<servlet-name>EliminarProducto</servlet-name>
+		<servlet-class>tiendaonline.servlets.administrar.productos.ServletEliminarProducto</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EliminarProducto</servlet-name>
+		<url-pattern>/EliminarProducto</url-pattern>
+	</servlet-mapping>	
+	<servlet>
+		<servlet-name>Detalles</servlet-name>
+		<servlet-class>tiendaonline.servlets.productos.ServletDetalles</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Detalles</servlet-name>
+		<url-pattern>/Detalles</url-pattern>
+	</servlet-mapping>	
+	<servlet>
+		<servlet-name>AddPuntuacion</servlet-name>
+		<servlet-class>tiendaonline.servlets.productos.ServletAddPuntuacion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddPuntuacion</servlet-name>
+		<url-pattern>/AddPuntuacion</url-pattern>
+	</servlet-mapping>	
+	<servlet>
+		<servlet-name>Categoria</servlet-name>
+		<servlet-class>tiendaonline.ServletCategoria</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Categoria</servlet-name>
+		<url-pattern>/Categoria</url-pattern>
+	</servlet-mapping>	
+	<servlet>
+		<servlet-name>EliminarCategoria</servlet-name>
+		<servlet-class>tiendaonline.servlets.administrar.categorias.ServletEliminarCategoria</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EliminarCategoria</servlet-name>
+		<url-pattern>/EliminarCategoria</url-pattern>
+	</servlet-mapping>	
+	<servlet>
+		<servlet-name>EliminarFabricante</servlet-name>
+		<servlet-class>tiendaonline.servlets.administrar.fabricantes.ServletEliminarFabricante</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EliminarFabricante</servlet-name>
+		<url-pattern>/EliminarFabricante</url-pattern>
+	</servlet-mapping>	
+	<servlet>
+		<servlet-name>VerPuntuaciones</servlet-name>
+		<servlet-class>tiendaonline.servlets.productos.ServletVerPuntuaciones</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>VerPuntuaciones</servlet-name>
+		<url-pattern>/VerPuntuaciones</url-pattern>
+	</servlet-mapping>	
+	<servlet>
+		<servlet-name>NuevoEnvio</servlet-name>
+		<servlet-class>tiendaonline.servlets.administrar.envios.ServletNuevoEnvio</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NuevoEnvio</servlet-name>
+		<url-pattern>/NuevoEnvio</url-pattern>
+	</servlet-mapping>	
+	<servlet>
+		<servlet-name>MiCuenta</servlet-name>
+		<servlet-class>tiendaonline.servlets.perfil.ServletMiCuenta</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MiCuenta</servlet-name>
+		<url-pattern>/MiCuenta</url-pattern>
+	</servlet-mapping>	
+	<servlet>
+		<servlet-name>ActualizarUsuario</servlet-name>
+		<servlet-class>tiendaonline.servlets.perfil.ServletActualizarUsuario</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ActualizarUsuario</servlet-name>
+		<url-pattern>/ActualizarUsuario</url-pattern>
+	</servlet-mapping>	
+	<servlet>
+		<servlet-name>RealizarCompra</servlet-name>
+		<servlet-class>tiendaonline.servlets.carrito.ServletRealizarCompra</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RealizarCompra</servlet-name>
+		<url-pattern>/RealizarCompra</url-pattern>
 	</servlet-mapping>	
 	
 	<listener> 
