@@ -25,7 +25,7 @@
 				<div class="shopping_cart_sesion">
 					<br>
 					<p>
-						Sesion: <strong>${sessionScope.usuario.nombre}</strong> <a
+						Sesion: <strong>${sessionScope.usuario.nick}</strong> <a
 							href="CerrarSesion">Salir</a>
 					</p>
 					</br>

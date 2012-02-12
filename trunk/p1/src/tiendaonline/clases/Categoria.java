@@ -41,6 +41,7 @@ public class Categoria {
 
 	public Categoria() {
 		this.productos = new ArrayList<Producto>();
+		this.fabricante = new Fabricante();
 	}
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

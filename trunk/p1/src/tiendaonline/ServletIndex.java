@@ -36,4 +36,18 @@ public class ServletIndex extends HttpServlet{
 		
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		List<Producto> productos = MisMetodos.obtenerProductos(request);
+		List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
+		List<Fabricante> fabricantes = MisMetodos.obtenerFabricantes(request);
+		
+		request.setAttribute(MisAtributos.productos.toString(), productos);
+		request.setAttribute(MisAtributos.categorias.toString(), categorias);
+		request.setAttribute(MisAtributos.fabricantes.toString(), fabricantes);
+		
+		request.getRequestDispatcher("index.jsp").forward(request, response);
+		
+		System.out.println("nombre: " + request.getParameter("first_name"));
+	}
 }

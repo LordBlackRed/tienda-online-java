@@ -16,10 +16,10 @@
 
 			<c:choose>
 				<c:when test="${noOfRows % 2 == 0}">
-					<li class="odd"><a href="services.html">${categoria.titulo}</a></li>
+					<li class="odd"><a href="Categoria?categoria=${categoria.titulo}">${categoria.titulo}</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="even"><a href="services.html">${categoria.titulo}</a></li>
+					<li class="even"><a href="Categoria?categoria=${categoria.titulo}">${categoria.titulo}</a></li>
 				</c:otherwise>
 			</c:choose>
 

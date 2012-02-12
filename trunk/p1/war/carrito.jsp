@@ -27,11 +27,13 @@
 
 						<c:forEach items="${sessionScope.carrito}" var="producto">
 							<c:set var="contador" value="${contador+1}" />
+							<c:set var="totalFactura"
+								value="${totalFactura + (producto.precio * producto.cantidad)}" />
 							<tr>
 								<td>${producto.id.id}</td>
 								<td>${producto.nombre}</td>
 								<td>${producto.precio}</td>
-								
+
 								<td><input type="text" name="cantidad${contador}"
 									value="${producto.cantidad}" /></td>
 								<td>${producto.precio * producto.cantidad}</td>
@@ -41,8 +43,27 @@
 						</c:forEach>
 
 					</table>
-					<input type="submit" value="Actualizar" />
+					Envío: <select name="empresaEnvio">
+						<option>Elige una Opción</option>
+						<c:forEach items="${requestScope.empresasEnvio}" var="envio">
+							<option value="${envio.id}"  <c:if test="${sessionScope.empresaEnvio.id == envio.id}">selected=selected</c:if>
+							 >${envio.empresa}</option>
+
+						</c:forEach>
+
+					</select> <input type="submit" value="Actualizar" />
 				</form>
+				<c:set var="totalFacturaConEnvio"
+					value="${totalFactura + sessionScope.empresaEnvio.precio}" />
+				Total: ${totalFacturaConEnvio} <br></br>
+				<a href="RealizarCompra?precio=${totalFacturaConEnvio}">Realizar Compra</a>
+				
+				
+			
+				
+				
+				
+				
 			</div>
 
 			<jsp:include page="right-content.jsp" />

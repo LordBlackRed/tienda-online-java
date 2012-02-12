@@ -7,7 +7,7 @@
 		<li class="divider"></li>
 		<li><a href="#" class="nav3">Specials</a></li>
 		<li class="divider"></li>
-		<li><a href="#" class="nav4">My account</a></li>
+		<li><a href="MiCuenta" class="nav4">Mi Cuenta</a></li>
 		<li class="divider"></li>
 		<li><a href="Registrarse" class="nav4">Registrarse</a></li>
 		<li class="divider"></li>

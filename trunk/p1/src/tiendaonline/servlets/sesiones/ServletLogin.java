@@ -13,12 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import tiendaonline.clases.Usuario;
 import tiendaonline.enumerados.MisAtributos;
+import tiendaonline.metodos.MisMetodos;
 
 
 public class ServletLogin extends HttpServlet{
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nombre = request.getParameter("nombre");
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+	String nombre = request.getParameter("nombre");
 		String pass = request.getParameter("pass");
 		
 		EntityManagerFactory entityManagerFactory = (EntityManagerFactory) request.getSession().getServletContext().getAttribute("emf");
@@ -30,7 +32,7 @@ public class ServletLogin extends HttpServlet{
 		boolean login = false;
 		
 		for (Usuario usuario: usuarios){
-			if (usuario.getNombre().equals(nombre) && usuario.getPass().equals(pass)){
+			if (usuario.getNick().equals(nombre) && usuario.getPass().equals(pass)){
 				login = true;
 			}
 		}
@@ -41,13 +43,22 @@ public class ServletLogin extends HttpServlet{
 				admin = true;
 			}
 			
-			Usuario usuario = new Usuario(nombre, pass, admin);
+			Long idUsuario = MisMetodos
+					.obtenerUsuario(nombre, request).getId();
+			
+			Usuario usuario = new Usuario();
+			usuario.setId(idUsuario);
+			usuario.setNick(nombre);
+			usuario.setPass(pass);
+			usuario.setAdmin(admin);
 			request.getSession().setAttribute(MisAtributos.usuario.toString(), usuario);
+			
+			entityManager.close();
 			
 			response.sendRedirect("Index");
 		}
 		
-		entityManager.close();
+		
 		
 	}
 		
