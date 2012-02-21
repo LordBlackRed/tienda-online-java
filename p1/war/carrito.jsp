@@ -58,12 +58,6 @@
 				Total: ${totalFacturaConEnvio} <br></br>
 				<a href="RealizarCompra?precio=${totalFacturaConEnvio}">Realizar Compra</a>
 				
-				
-			
-				
-				
-				
-				
 			</div>
 
 			<jsp:include page="right-content.jsp" />

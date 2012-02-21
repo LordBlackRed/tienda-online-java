@@ -1,5 +1,6 @@
 package tiendaonline.clases;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Puntuacion implements Comparable<Puntuacion> {
+public class Puntuacion implements Comparable<Puntuacion>, Serializable {
+
 
 	private Long id;
 	private Long idUsuario;

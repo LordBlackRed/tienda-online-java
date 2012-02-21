@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type"
@@ -9,9 +12,9 @@
 <![endif]-->
 <script type="text/javascript" src="js/boxOver.js"></script>
 <script type='text/javascript'>
-function enviarPaypal(){
-	document.formTpv.submit();
-}
+	function enviarPaypal() {
+		document.formTpv.submit();
+	}
 </script>
 </head>
 <body>
@@ -33,49 +36,73 @@ function enviarPaypal(){
 
 				<div class="redireccion">
 					<span class="imagen"><img src="images/loading.gif"
-						alt="Redireccionando a Paypal" width="32" height="32" /></span> <span class="redireccionar">
-						Redireccionando al sistema de pago Paypal, por favor espere. </span>
-						
+						alt="Redireccionando a Paypal" width="32" height="32" /></span> <span
+						class="redireccionar"> Redireccionando al sistema de pago
+						Paypal, por favor espere. </span>
+
 				</div>
-		
+
 
 			</div>
-					<form name='formTpv' method='post'
-					action='https://www.sandbox.paypal.com/cgi-bin/webscr'>
+			<jsp:useBean id="today" class="java.util.Date" />
+			<c:set var="string" value="${today}" />
+			<c:set var="start" value="24" />
+			<c:set var="end" value="28" />
 
-					<input type='hidden' name='cmd' value='_xclick'> <input
-						type='hidden' name='business'
-						value='rafabl_1329012870_biz@hotmail.com'> <input
-						type='hidden' name='item_name' value='Nueva compra en mi web'>
-					<input type='hidden' name='item_number' value='VENTA-X2561'>
-					<input type='hidden' name='amount'
-						value='${requestScope.totalFactura}'> <input type='hidden'
-						name='page_style' value='primary'> <input type='hidden'
-						name='no_shipping' value='1'> <input type='hidden'
-						name='return' value='http://localhost:8888/Index'> <input
-						type='hidden' name='rm' value='2'> <input type='hidden'
-						name='cancel_return' value='http://mi_pagina/cancelada.html'>
-					<input type='hidden' name='no_note' value='1'> <input
-						type='hidden' name='currency_code' value='EUR'> <input
-						type='hidden' name='cn' value='PP-BuyNowBF'> <input
-						type='hidden' name='custom' value=''> <input type='hidden'
-						name='first_name' value='${sessionScope.usuario.nombre}'>
-					<input type='hidden' name='last_name'
-						value='${sessionScope.usuario.apellidos}'> <input
-						type='hidden' name='address1'
-						value='${sessionScope.usuario.direccion}'> <input
-						type='hidden' name='city'
-						value='${sessionScope.usuario.localidad}'> <input
-						type='hidden' name='zip' value='${sessionScope.usuario.cp}'>
-					<input type='hidden' name='night_phone_a'
-						value='${sessionScope.usuario.telefonoFijo}'> <input
-						type='hidden' name='night_phone_b'
-						value='${sessionScope.usuario.telefonoMovil}'> <input
-						type='hidden' name='lc' value='es'> <input type='hidden'
-						name='country' value='ES'>
+			<c:set var="annio" value="${fn:substring(string,start,end)}" />
 
-				</form>
-				<script>enviarPaypal()</script>
+			<form name='formTpv' method='post'
+				action='https://www.sandbox.paypal.com/cgi-bin/webscr'>
+
+				<input type='hidden' name='cmd' value='_cart'> <input
+					type='hidden' name='business'
+					value='rafabl_1329012870_biz@hotmail.com'>
+				<c:set var="contador" value="1" />
+				<c:forEach items="${sessionScope.carrito}" var="producto">
+
+					<input type='hidden' name='item_name_${contador}'
+						value='${producto.nombre}'>
+					<input type='hidden' name='item_number_${contador}'
+						value='${producto.id.id}'>
+					<input type='hidden' name='amount_${contador}'
+						value='${producto.precio}'>
+					<input type='hidden' name='quantity_${contador}'
+						value='${producto.cantidad}'>
+					<c:set var="contador" value="${contador+1}" />
+				</c:forEach>
+				<input type='hidden' name='item_name_${contador}'
+					value='Gastos Envio: ${sessionScope.empresaEnvio.empresa}'> <input
+					type='hidden' name='item_number_${contador}'
+					value='${sessionScope.empresaEnvio.id}'> <input
+					type='hidden' name='amount_${contador}'
+					value='${sessionScope.empresaEnvio.precio}'> <input
+					type='hidden' name='page_style' value='primary'> <input
+					type='hidden' name='return'
+					value='http://tiendaonlinejava.appspot.com/'> <input
+					type='hidden' name='rm' value='2'> <input type='hidden'
+					name='cancel_return' value='http://tiendaonlinejava.appspot.com/'>
+				<input type='hidden' name='no_note' value='1'> <input
+					type='hidden' name='currency_code' value='EUR'> <input
+					type='hidden' name='cn' value='PP-BuyNowBF'> <input
+					type='hidden' name='custom' value=''> <input type='hidden'
+					name='first_name' value='${sessionScope.usuario.nombre}'> <input
+					type='hidden' name='last_name'
+					value='${sessionScope.usuario.apellidos}'> <input
+					type='hidden' name='address1'
+					value='${sessionScope.usuario.direccion}'> <input
+					type='hidden' name='city' value='${sessionScope.usuario.localidad}'>
+				<input type='hidden' name='zip' value='${sessionScope.usuario.cp}'>
+				<input type='hidden' name='night_phone_a'
+					value='${sessionScope.usuario.telefonoFijo}'> <input
+					type='hidden' name='night_phone_b'
+					value='${sessionScope.usuario.telefonoMovil}'> <input
+					type='hidden' name='lc' value='es'> <input type='hidden'
+					name='country' value='ES'> <input type="hidden"
+					name="upload" value="1">
+			</form>
+			<script>
+				enviarPaypal()
+			</script>
 
 			<!-- end of center content -->
 
@@ -88,6 +115,6 @@ function enviarPaypal(){
 
 	</div>
 	<!-- end of main_container -->
-	
+
 </body>
 </html>

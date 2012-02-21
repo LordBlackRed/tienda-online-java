@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+
 <jsp:include page="head.jsp" />
 <body>
 
@@ -15,7 +16,7 @@
 			<div class="center_content">
 
 
-				<div class="center_title_bar">Latest Products</div>
+				<div class="center_title_bar">Status: ${sessionScope.status}Latest Products</div>
 
 				<c:forEach items="${requestScope.productos}" var="producto">
 
@@ -42,13 +43,16 @@
 										title="header=[Add to cart] body=[&nbsp;] fade=[on]"><img
 										src="images/cart.gif" alt="" title="" border="0"
 										class="left_bt" /></a>
-									<a href="AddPuntuacion?id=${producto.id.id}&megusta=t" title="header=[Specials] body=[&nbsp;] fade=[on]"><img
+									<a href="AddPuntuacion?id=${producto.id.id}&megusta=t"
+										title="header=[Specials] body=[&nbsp;] fade=[on]"><img
 										src="images/me_gusta.png" alt="" title="" border="0"
 										class="left_bt" /></a>
-									<a href="AddPuntuacion?id=${producto.id.id}&megusta=f" title="header=[Specials] body=[&nbsp;] fade=[on]"><img
+									<a href="AddPuntuacion?id=${producto.id.id}&megusta=f"
+										title="header=[Specials] body=[&nbsp;] fade=[on]"><img
 										src="images/no_me_gusta.png" alt="" title="" border="0"
 										class="left_bt" /></a>
-									<a href="VerPuntuaciones?id=${producto.id.id}" title="header=[Gifts] body=[&nbsp;] fade=[on]"><img
+									<a href="VerPuntuaciones?id=${producto.id.id}"
+										title="header=[Gifts] body=[&nbsp;] fade=[on]"><img
 										src="images/favorites.gif" alt="" title="" border="0"
 										class="left_bt" /></a>
 									<a href="Detalles?id=${producto.id.id}" class="prod_details">details</a>

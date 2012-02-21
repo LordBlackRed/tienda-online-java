@@ -1,26 +1,25 @@
 package tiendaonline.clases;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Usuario {
+public class Usuario implements Serializable{
+	private static final long serialVersionUID = 3895972343640291772L;
 
 	private Long id;
 	private String nick;
-
-	public String getNick() {
-		return nick;
-	}
-
-	public void setNick(String nick) {
-		this.nick = nick;
-	}
-
 	private String nombre;
 	private String pass;
 	private boolean admin;
@@ -33,11 +32,13 @@ public class Usuario {
 	private Date fechaNacimiento;
 	private int telefonoFijo;
 	private int telefonoMovil;
+	private List<Factura> facturas;
 
 	public Usuario(Long id, String nick, String nombre, String pass,
 			boolean admin, String apellidos, String direccion, int cp,
 			String localidad, String provincia, String dni,
-			Date fechaNacimiento, int telefonoFijo, int telefonoMovil) {
+			Date fechaNacimiento, int telefonoFijo, int telefonoMovil,
+			List<Factura> facturas) {
 		super();
 		this.id = id;
 		this.nick = nick;
@@ -53,6 +54,15 @@ public class Usuario {
 		this.fechaNacimiento = fechaNacimiento;
 		this.telefonoFijo = telefonoFijo;
 		this.telefonoMovil = telefonoMovil;
+		this.facturas = facturas;
+	}
+
+	public String getNick() {
+		return nick;
+	}
+
+	public void setNick(String nick) {
+		this.nick = nick;
 	}
 
 	public int getTelefonoFijo() {
@@ -116,11 +126,6 @@ public class Usuario {
 		return nombre;
 	}
 
-	@Override
-	public String toString() {
-		return "Usuario: " + nombre;
-	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -134,7 +139,18 @@ public class Usuario {
 	}
 
 	public Usuario() {
+	//	this.facturas = new ArrayList<Factura>();
+	}
 
+	
+	
+	@OneToMany(mappedBy = "usuario")
+	public List<Factura> getFacturas() {
+		return facturas;
+	}
+
+	public void setFacturas(List<Factura> facturas) {
+		this.facturas = facturas;
 	}
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -193,13 +209,6 @@ public class Usuario {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Usuario(String usuario, String pass, boolean admin) {
-		super();
-		this.nombre = usuario;
-		this.pass = pass;
-		this.admin = admin;
 	}
 
 }

@@ -1,5 +1,6 @@
 package tiendaonline.clases;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Fabricante {
+public class Fabricante implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5387915157937011455L;
 	private String nombre;
 	private Long id;
 	private List<Categoria> categorias;

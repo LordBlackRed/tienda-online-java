@@ -63,7 +63,7 @@ public class ServletActualizarUsuario extends HttpServlet {
 		EntityTransaction transaction = entityManager.getTransaction();
 
 		transaction.begin();
-		entityManager.persist(usuario);
+		entityManager.merge(usuario);
 		transaction.commit();
 		entityManager.close();
 

@@ -2,6 +2,7 @@ package tiendaonline.servlets.sesiones;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import tiendaonline.clases.Factura;
 import tiendaonline.clases.Usuario;
+import tiendaonline.metodos.MisMetodos;
 
 public class ServletRegistro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -35,14 +38,14 @@ public class ServletRegistro extends HttpServlet {
 		usuario.setPass(pass);
 		usuario.setNick(usuarioString);
 		usuario.setAdmin(admin);
+		//usuario.setFacturas(new ArrayList<Factura>());
 		
 		transaction.begin();
 		entityManager.persist(usuario);
 		transaction.commit();
 		
 		//Se introduce el usuario en la sesi—n
-		HttpSession sesion = request.getSession();
-		sesion.setAttribute("usuario", usuario);
+		MisMetodos.introducirUsuarioSesion(request, usuarioString, pass, admin);
 		
 		response.sendRedirect("Index");
 		}

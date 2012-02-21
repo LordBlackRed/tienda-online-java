@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns="http://java.sun.com/xml/ns/javaee"
-xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
 	<servlet>
 		<servlet-name>Registro</servlet-name>
 		<servlet-class>tiendaonline.servlets.sesiones.ServletRegistro</servlet-class>
@@ -91,7 +91,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>Carrito</servlet-name>
 		<url-pattern>/Carrito</url-pattern>
-	</servlet-mapping>		
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>ActualizarCarrito</servlet-name>
 		<servlet-class>tiendaonline.servlets.carrito.ServletActualizarCarrito</servlet-class>
@@ -115,7 +115,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>FabricanteNuevo</servlet-name>
 		<url-pattern>/FabricanteNuevo</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>EliminarProducto</servlet-name>
 		<servlet-class>tiendaonline.servlets.administrar.productos.ServletEliminarProducto</servlet-class>
@@ -123,7 +123,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>EliminarProducto</servlet-name>
 		<url-pattern>/EliminarProducto</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>Detalles</servlet-name>
 		<servlet-class>tiendaonline.servlets.productos.ServletDetalles</servlet-class>
@@ -131,7 +131,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>Detalles</servlet-name>
 		<url-pattern>/Detalles</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>AddPuntuacion</servlet-name>
 		<servlet-class>tiendaonline.servlets.productos.ServletAddPuntuacion</servlet-class>
@@ -139,7 +139,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>AddPuntuacion</servlet-name>
 		<url-pattern>/AddPuntuacion</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>Categoria</servlet-name>
 		<servlet-class>tiendaonline.ServletCategoria</servlet-class>
@@ -147,7 +147,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>Categoria</servlet-name>
 		<url-pattern>/Categoria</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>EliminarCategoria</servlet-name>
 		<servlet-class>tiendaonline.servlets.administrar.categorias.ServletEliminarCategoria</servlet-class>
@@ -155,7 +155,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>EliminarCategoria</servlet-name>
 		<url-pattern>/EliminarCategoria</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>EliminarFabricante</servlet-name>
 		<servlet-class>tiendaonline.servlets.administrar.fabricantes.ServletEliminarFabricante</servlet-class>
@@ -163,7 +163,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>EliminarFabricante</servlet-name>
 		<url-pattern>/EliminarFabricante</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>VerPuntuaciones</servlet-name>
 		<servlet-class>tiendaonline.servlets.productos.ServletVerPuntuaciones</servlet-class>
@@ -171,7 +171,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>VerPuntuaciones</servlet-name>
 		<url-pattern>/VerPuntuaciones</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>NuevoEnvio</servlet-name>
 		<servlet-class>tiendaonline.servlets.administrar.envios.ServletNuevoEnvio</servlet-class>
@@ -179,7 +179,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>NuevoEnvio</servlet-name>
 		<url-pattern>/NuevoEnvio</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>MiCuenta</servlet-name>
 		<servlet-class>tiendaonline.servlets.perfil.ServletMiCuenta</servlet-class>
@@ -187,7 +187,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>MiCuenta</servlet-name>
 		<url-pattern>/MiCuenta</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>ActualizarUsuario</servlet-name>
 		<servlet-class>tiendaonline.servlets.perfil.ServletActualizarUsuario</servlet-class>
@@ -195,7 +195,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>ActualizarUsuario</servlet-name>
 		<url-pattern>/ActualizarUsuario</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>RealizarCompra</servlet-name>
 		<servlet-class>tiendaonline.servlets.carrito.ServletRealizarCompra</servlet-class>
@@ -203,16 +203,76 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>RealizarCompra</servlet-name>
 		<url-pattern>/RealizarCompra</url-pattern>
-	</servlet-mapping>	
-	
-	<listener> 
-	<listener-class>tiendaonline.listeners.ContextoListener</listener-class>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Paypal</servlet-name>
+		<servlet-class>tiendaonline.Paypal</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Paypal</servlet-name>
+		<url-pattern>/Paypal</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Facturacion</servlet-name>
+		<servlet-class>tiendaonline.servlets.facturas.ServletFacturacion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Facturacion</servlet-name>
+		<url-pattern>/Facturacion</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>DetalleFactura</servlet-name>
+		<servlet-class>tiendaonline.servlets.facturas.ServletDetalleFactura</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DetalleFactura</servlet-name>
+		<url-pattern>/DetalleFactura</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Envio</servlet-name>
+		<servlet-class>tiendaonline.ServletEnvio</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Envio</servlet-name>
+		<url-pattern>/Envio</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Contacto</servlet-name>
+		<servlet-class>tiendaonline.servlets.contacto.ServletContacto</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Contacto</servlet-name>
+		<url-pattern>/Contacto</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>EnviarMail</servlet-name>
+		<servlet-class>tiendaonline.servlets.contacto.ServletEnviarMail</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EnviarMail</servlet-name>
+		<url-pattern>/EnviarMail</url-pattern>
+	</servlet-mapping>
+	<filter>
+		<filter-name>filtroSes</filter-name>
+		<filter-class>tiendaonline.filtros.FiltroSes</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>filtroSes</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>tiendaonline.listeners.ContextoListener</listener-class>
 	</listener>
-	
-	<listener> 
-	<listener-class>tiendaonline.listeners.SessionListener</listener-class>
+
+	<listener>
+		<listener-class>tiendaonline.listeners.SessionListener</listener-class>
 	</listener>
-	
+
 	<welcome-file-list>
 		<welcome-file>Index</welcome-file>
 	</welcome-file-list>
