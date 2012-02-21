@@ -992,3 +992,61 @@ span.redireccionar {
 	float: left;
 	margin-top: 65px;
 }
+
+/* Tablas */
+.lista{
+	width:90%;
+	border:3px double #f2f2f2;
+	margin:15px 30px;
+	margin-top: 45px;
+	text-align: center;
+}
+.lista a:hover{
+	color: red;
+}
+
+.lista tr{
+	height:20px;
+}
+
+.lista tr.estatico{
+	background:#f2f2f2;
+}
+
+.lista th,
+.lista td,
+.lista td a{
+	padding:2px;
+	font-size:13px;	
+	vertical-align:top;
+}
+
+.lista td a{
+	color: gray;	
+}
+
+.lista td a:hover{
+	text-decoration:none;
+}
+
+.lista th{
+	background:url(./images/text-bg.gif) #ffffff repeat-x;
+	border-bottom:3px double #f2f2f2;
+	line-height:20px;
+	border-right:3px double #f2f2f2;
+}
+
+.lista td{
+	border-right:1px solid #f2f2f2;	
+	border-bottom:1px solid #f2f2f2;
+	line-height:20px;	
+}
+
+/* Envio */
+.envio{
+	margin-top: 50px;
+	margin-left: 50px;
+	margin-right: 50px;
+	margin-bottom: 10px;
+	font-size: 12px;
+}

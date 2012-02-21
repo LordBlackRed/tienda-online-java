@@ -1,5 +1,6 @@
 package tiendaonline.clases;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,10 @@ import javax.persistence.OneToMany;
 import com.google.appengine.api.datastore.Key;
 
 @Entity
-public class Categoria {
+public class Categoria implements Serializable{
 
+	
+	private static final long serialVersionUID = 4298918625832569326L;
 	private Key id;
 	private String titulo;
 	private List<Producto> productos;
@@ -40,8 +43,6 @@ public class Categoria {
 	}
 
 	public Categoria() {
-		this.productos = new ArrayList<Producto>();
-		this.fabricante = new Fabricante();
 	}
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,13 +1,19 @@
 package tiendaonline.clases;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Envio {
+public class Envio implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9207941553571369065L;
 	private Long id;
 	private String empresa;
 	private double precio;

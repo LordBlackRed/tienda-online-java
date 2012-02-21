@@ -11,9 +11,9 @@
 		<li class="divider"></li>
 		<li><a href="Registrarse" class="nav4">Registrarse</a></li>
 		<li class="divider"></li>
-		<li><a href="#" class="nav5">Shipping </a></li>
+		<li><a href="Envio" class="nav5">Envío </a></li>
 		<li class="divider"></li>
-		<li><a href="contact.html" class="nav6">Contact Us</a></li>
+		<li><a href="Contacto" class="nav6">Contacta</a></li>
 		<li class="divider"></li>
 
 		<c:choose>
@@ -21,11 +21,7 @@
 
 				<li><a href="Administrar" class="nav2">Administrar</a></li>
 				<li class="divider"></li>
-				<li class="currencies">Currencies <select>
-						<option>US Dollar</option>
-						<option>Euro</option>
-				</select>
-				</li>
+				<li><a href="Facturacion" class="nav2">Facturación </a></li>
 
 			</c:when>
 			<c:otherwise>

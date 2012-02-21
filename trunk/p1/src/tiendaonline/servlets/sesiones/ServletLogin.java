@@ -15,51 +15,44 @@ import tiendaonline.clases.Usuario;
 import tiendaonline.enumerados.MisAtributos;
 import tiendaonline.metodos.MisMetodos;
 
-
-public class ServletLogin extends HttpServlet{
+public class ServletLogin extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-	String nombre = request.getParameter("nombre");
+		String nick = request.getParameter("nombre");
 		String pass = request.getParameter("pass");
-		
-		EntityManagerFactory entityManagerFactory = (EntityManagerFactory) request.getSession().getServletContext().getAttribute("emf");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		//EntityTransaction transaction = entityManager.getTransaction();
-		
-		List<Usuario> usuarios = (List<Usuario>) entityManager.createQuery("select usuario from Usuario usuario").getResultList();
-		
+
+		EntityManagerFactory entityManagerFactory = (EntityManagerFactory) request
+				.getSession().getServletContext().getAttribute("emf");
+		EntityManager entityManager = entityManagerFactory
+				.createEntityManager();
+		// EntityTransaction transaction = entityManager.getTransaction();
+
+		List<Usuario> usuarios = (List<Usuario>) entityManager.createQuery(
+				"select usuario from Usuario usuario").getResultList();
+
 		boolean login = false;
-		
-		for (Usuario usuario: usuarios){
-			if (usuario.getNick().equals(nombre) && usuario.getPass().equals(pass)){
+
+		for (Usuario usuario : usuarios) {
+			if (usuario.getNick().equals(nick)
+					&& usuario.getPass().equals(pass)) {
 				login = true;
 			}
 		}
-		
-		if (login){
+
+		if (login) {
 			boolean admin = false;
-			if (nombre.equals("admin") && pass.equals("admin")){
+			if (nick.equals("admin") && pass.equals("admin")) {
 				admin = true;
 			}
-			
-			Long idUsuario = MisMetodos
-					.obtenerUsuario(nombre, request).getId();
-			
-			Usuario usuario = new Usuario();
-			usuario.setId(idUsuario);
-			usuario.setNick(nombre);
-			usuario.setPass(pass);
-			usuario.setAdmin(admin);
-			request.getSession().setAttribute(MisAtributos.usuario.toString(), usuario);
-			
+
+			MisMetodos.introducirUsuarioSesion(request, nick, pass, admin);
+
 			entityManager.close();
-			
+
 			response.sendRedirect("Index");
 		}
-		
-		
-		
+
 	}
-		
+
 }

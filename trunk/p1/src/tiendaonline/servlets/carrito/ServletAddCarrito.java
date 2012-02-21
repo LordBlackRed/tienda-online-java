@@ -47,7 +47,6 @@ public class ServletAddCarrito extends HttpServlet {
 		
 		boolean productoEnCarrito = false;
 		for(Producto productoCarrito: carrito){
-			System.out.println(productoCarrito);
 			if (productoCarrito.equals(productoCarro)){
 				//Actualizamos la cantidad que existe dentro del carrito
 				productoEnCarrito = true;

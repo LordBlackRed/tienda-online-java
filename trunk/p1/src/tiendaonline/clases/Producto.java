@@ -1,5 +1,6 @@
 package tiendaonline.clases;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,8 +18,12 @@ import javax.persistence.OneToMany;
 import com.google.appengine.api.datastore.Key;
 
 @Entity
-public class Producto {
+public class Producto implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5945135721837447454L;
 	private Key id;
 	private double precio;
 	private String fecha;
