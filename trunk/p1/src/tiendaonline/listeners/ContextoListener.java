@@ -1,5 +1,6 @@
 package tiendaonline.listeners;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +13,9 @@ import javax.persistence.Query;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import tiendaonline.ServletIndex;
 import tiendaonline.clases.Factura;
+import tiendaonline.clases.Producto;
 import tiendaonline.clases.Usuario;
 import tiendaonline.enumerados.MisAtributos;
 import tiendaonline.metodos.MisMetodos;
@@ -24,14 +27,27 @@ public class ContextoListener implements ServletContextListener {
 
 	}
 
+	public static List<Producto> productosCabecera;
+	public static Producto productoEspecial;
+	public static List<String> sponsor;
+
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
-		System.out.println("iniciando usuarios");
 		arg0.getServletContext().setAttribute("usuarios", new HashMap());
-		
-		EntityManagerFactory emfInstance = Persistence.createEntityManagerFactory("transactions-optional");
+
+		EntityManagerFactory emfInstance = Persistence
+				.createEntityManagerFactory("transactions-optional");
 		arg0.getServletContext().setAttribute("emf", emfInstance);
-		
-		
+
+		productosCabecera = new ArrayList<Producto>();
+		productosCabecera.add(new Producto());
+		productosCabecera.add(new Producto());
+		productosCabecera.add(new Producto());
+		productosCabecera.add(new Producto());
+		productosCabecera.add(new Producto());
+
+		sponsor = new ArrayList<String>();
+		sponsor.add(new String());
+		sponsor.add(new String());
 	}
 }

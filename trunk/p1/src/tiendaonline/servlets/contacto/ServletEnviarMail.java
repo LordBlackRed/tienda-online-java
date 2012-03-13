@@ -27,13 +27,16 @@ public class ServletEnviarMail extends HttpServlet{
         Session session = Session.getDefaultInstance(props, null);
 
         String msgBody = request.getParameter("mensaje");
+        String asunto = request.getParameter("asunto");
+        String mail = request.getParameter("mail");
+        String nombre = request.getParameter("nombre");
 
         try {
             Message msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress("LordBlackRed@gmail.com", "Example.com Admin"));
+            msg.setFrom(new InternetAddress(mail, nombre));
             msg.addRecipient(Message.RecipientType.TO,
-                             new InternetAddress("LordBlackRed@gmail.com", "Mr. User"));
-            msg.setSubject("Your Example.com account has been activated");
+                             new InternetAddress("LordBlackRed@gmail.com"));
+            msg.setSubject(asunto);
             msg.setText(msgBody);
             Transport.send(msg);
 

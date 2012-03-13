@@ -31,77 +31,85 @@ public class ServletRealizarCompra extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		String totalFactura = request.getParameter("precio");
-		request.getSession().setAttribute(MisAtributos.totalFactura.toString(),
-				totalFactura);
-
-		List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
-		List<Fabricante> fabricantes = MisMetodos.obtenerFabricantes(request);
-		long numeroFactura = MisMetodos.obtenerNumeroFactura(request);
-
-		request.setAttribute(MisAtributos.categorias.toString(), categorias);
-		request.setAttribute(MisAtributos.fabricantes.toString(), fabricantes);
-		request.setAttribute(MisAtributos.numeroFactura.toString(),
-				numeroFactura);
-
-		//lo inicializamos de nuevo
-		ServletIndex.usuarioSesion = new Usuario();
-		ServletIndex.carritoSesion = new ArrayList<Producto>();
-		ServletIndex.usuarioSesion = (Usuario) request.getSession().getAttribute(MisAtributos.usuario.toString());
-		ServletIndex.carritoSesion = (List<Producto>) request.getSession().getAttribute(MisAtributos.carrito.toString());
-
 		
-		
-		List<Producto> carrito = ServletIndex.carritoSesion;
-		List<Long> idProductos = MisMetodos.obtenerIdProductosCarrito(request);
-
-		Long numero = MisMetodos.obtenerIdFactura(request);
-
-		Usuario usuario = ServletIndex.usuarioSesion;
-		Factura factura = new Factura();
-
-		factura.setUsuario(usuario);
-		factura.setFecha(new Date());
-		factura.setIdProductos(idProductos);
-		factura.setNumero(numero);
-		//factura.setPrecio(Double.parseDouble(request.getParameter("mc_gross")));
-
-		for (Producto producto : carrito) {
-
-			LineaFactura lineaFactura = new LineaFactura();
+			String totalFactura = request.getParameter("precio");
 			
-			lineaFactura.setCantidad(producto.getCantidad());
-			lineaFactura.setIdFactura(factura.getNumero());
-			lineaFactura.setPrecio(producto.getPrecio());
-			lineaFactura.setIdProducto(producto.getId().getId());
+			
+			request.getSession().setAttribute(
+					MisAtributos.totalFactura.toString(), totalFactura);
 
-			EntityManagerFactory entityManagerFactory = (EntityManagerFactory) request
-					.getSession().getServletContext().getAttribute("emf");
-			EntityManager entityManager = entityManagerFactory
-					.createEntityManager();
-			EntityTransaction transaction = entityManager.getTransaction();
+			List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
+			List<Fabricante> fabricantes = MisMetodos
+					.obtenerFabricantes(request);
+			long numeroFactura = MisMetodos.obtenerNumeroFactura(request);
 
-			transaction.begin();
-			entityManager.persist(lineaFactura);
-			transaction.commit();
-			entityManager.close();
+			MisMetodos.asignarRequest(request, categorias, fabricantes);
+			request.setAttribute(MisAtributos.numeroFactura.toString(),
+					numeroFactura);
 
-		}
+			// lo inicializamos de nuevo
+			ServletIndex.usuarioSesion = new Usuario();
+			ServletIndex.carritoSesion = new ArrayList<Producto>();
+			ServletIndex.usuarioSesion = (Usuario) request.getSession()
+					.getAttribute(MisAtributos.usuario.toString());
+			ServletIndex.carritoSesion = (List<Producto>) request.getSession()
+					.getAttribute(MisAtributos.carrito.toString());
+			//
+			//
+			//
+			// List<Producto> carrito = ServletIndex.carritoSesion;
+			// List<Long> idProductos =
+			// MisMetodos.obtenerIdProductosCarrito(request);
+			//
+			// Long numero = MisMetodos.obtenerIdFactura(request);
+			//
+			// Usuario usuario = ServletIndex.usuarioSesion;
+			// Factura factura = new Factura();
+			//
+			// factura.setUsuario(usuario);
+			// factura.setFecha(new Date());
+			// factura.setIdProductos(idProductos);
+			// factura.setNumero(numero);
+			// //factura.setPrecio(Double.parseDouble(request.getParameter("mc_gross")));
+			//
+			// for (Producto producto : carrito) {
+			//
+			// LineaFactura lineaFactura = new LineaFactura();
+			//
+			// lineaFactura.setCantidad(producto.getCantidad());
+			// lineaFactura.setIdFactura(factura.getNumero());
+			// lineaFactura.setPrecio(producto.getPrecio());
+			// lineaFactura.setIdProducto(producto.getId().getId());
+			//
+			// EntityManagerFactory entityManagerFactory =
+			// (EntityManagerFactory) request
+			// .getSession().getServletContext().getAttribute("emf");
+			// EntityManager entityManager = entityManagerFactory
+			// .createEntityManager();
+			// EntityTransaction transaction = entityManager.getTransaction();
+			//
+			// transaction.begin();
+			// entityManager.persist(lineaFactura);
+			// transaction.commit();
+			// entityManager.close();
+			//
+			// }
+			//
+			// EntityManagerFactory entityManagerFactory =
+			// (EntityManagerFactory) request
+			// .getSession().getServletContext().getAttribute("emf");
+			// EntityManager entityManager = entityManagerFactory
+			// .createEntityManager();
+			// EntityTransaction transaction = entityManager.getTransaction();
+			//
+			// transaction.begin();
+			// entityManager.persist(factura);
+			// transaction.commit();
+			// entityManager.close();
+
+			request.getRequestDispatcher("realizar-compra.jsp").forward(
+					request, response);
 		
-		EntityManagerFactory entityManagerFactory = (EntityManagerFactory) request
-				.getSession().getServletContext().getAttribute("emf");
-		EntityManager entityManager = entityManagerFactory
-				.createEntityManager();
-		EntityTransaction transaction = entityManager.getTransaction();
-		
-		transaction.begin();
-		entityManager.persist(factura);
-		transaction.commit();
-		entityManager.close();
-		
-		request.getRequestDispatcher("realizar-compra.jsp").forward(request,
-				response);
-
 	}
 
 }

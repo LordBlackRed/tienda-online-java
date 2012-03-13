@@ -44,6 +44,15 @@
 
 
 			</div>
+			<jsp:include page="right-content.jsp" />
+				</div>
+		<!-- end of main content -->
+
+		<jsp:include page="footer-content.jsp" />
+
+	</div>
+	<!-- end of main_container -->
+	
 			<jsp:useBean id="today" class="java.util.Date" />
 			<c:set var="string" value="${today}" />
 			<c:set var="start" value="24" />
@@ -106,15 +115,9 @@
 
 			<!-- end of center content -->
 
-			<jsp:include page="right-content.jsp" />
+			
 
-		</div>
-		<!-- end of main content -->
-
-		<jsp:include page="footer-content.jsp" />
-
-	</div>
-	<!-- end of main_container -->
+	
 
 </body>
 </html>

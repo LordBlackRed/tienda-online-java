@@ -12,6 +12,7 @@ import tiendaonline.clases.Categoria;
 import tiendaonline.clases.Fabricante;
 import tiendaonline.clases.Usuario;
 import tiendaonline.enumerados.MisAtributos;
+import tiendaonline.listeners.ContextoListener;
 import tiendaonline.metodos.MisMetodos;
 
 public class ServletMiCuenta extends HttpServlet{
@@ -22,8 +23,7 @@ public class ServletMiCuenta extends HttpServlet{
 		List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
 		List<Fabricante> fabricantes = MisMetodos.obtenerFabricantes(request);
 		
-		request.setAttribute(MisAtributos.categorias.toString(), categorias);
-		request.setAttribute(MisAtributos.fabricantes.toString(), fabricantes);
+		MisMetodos.asignarRequest(request, categorias, fabricantes);
 		
 		request.getRequestDispatcher("perfil.jsp").forward(request, response);
 

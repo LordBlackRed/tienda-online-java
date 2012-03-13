@@ -44,9 +44,10 @@ public class ServletProductoNuevo extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		double precio = Double.parseDouble(request.getParameter("precio"));
 		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
-		String fecha = request.getParameter("fecha");
 		String urlImagen = request.getParameter("url");
 		String tituloCategoria = request.getParameter("categoria");
+		Long idFabricante = Long.parseLong(request.getParameter("fabricanteProducto"));
+		String descripcion = request.getParameter("descripcion");
 		
 		Producto producto = new Producto();
 		Categoria categoria = new Categoria();
@@ -59,11 +60,13 @@ public class ServletProductoNuevo extends HttpServlet {
 		
 		categoria.setTitulo(tituloCategoria);
 		producto.setCantidad(cantidad);
-		producto.setFecha(fecha);
+		producto.setFecha(new Date());
 		producto.setNombre(nombre);
 		producto.setPrecio(precio);
 		producto.setUrlImagen(urlImagen);
 		producto.setCategoriaString(tituloCategoria);
+		producto.setIdFabricante(idFabricante);
+		producto.setDescripcion(descripcion);
 		//producto.setCategoria(categoria);
 		
 		transaction.begin();

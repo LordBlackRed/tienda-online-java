@@ -3,7 +3,9 @@ package tiendaonline.clases;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,7 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
 	private static final long serialVersionUID = 3895972343640291772L;
 
 	private Long id;
@@ -33,12 +35,13 @@ public class Usuario implements Serializable{
 	private int telefonoFijo;
 	private int telefonoMovil;
 	private List<Factura> facturas;
+	private Set<Long> prodFavoritos;
 
 	public Usuario(Long id, String nick, String nombre, String pass,
 			boolean admin, String apellidos, String direccion, int cp,
 			String localidad, String provincia, String dni,
 			Date fechaNacimiento, int telefonoFijo, int telefonoMovil,
-			List<Factura> facturas) {
+			List<Factura> facturas, Set<Long> prodFavoritos) {
 		super();
 		this.id = id;
 		this.nick = nick;
@@ -55,6 +58,7 @@ public class Usuario implements Serializable{
 		this.telefonoFijo = telefonoFijo;
 		this.telefonoMovil = telefonoMovil;
 		this.facturas = facturas;
+		this.prodFavoritos = prodFavoritos;
 	}
 
 	public String getNick() {
@@ -96,32 +100,7 @@ public class Usuario implements Serializable{
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Usuario other = (Usuario) obj;
-		if (nombre == null) {
-			if (other.nombre != null)
-				return false;
-		} else if (!nombre.equals(other.nombre))
-			return false;
-		return true;
-	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -139,11 +118,10 @@ public class Usuario implements Serializable{
 	}
 
 	public Usuario() {
-	//	this.facturas = new ArrayList<Factura>();
+		// this.facturas = new ArrayList<Factura>();
+
 	}
 
-	
-	
 	@OneToMany(mappedBy = "usuario")
 	public List<Factura> getFacturas() {
 		return facturas;
@@ -209,6 +187,14 @@ public class Usuario implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Set<Long> getProdFavoritos() {
+		return prodFavoritos;
+	}
+
+	public void setProdFavoritos(Set<Long> prodFavoritos) {
+		this.prodFavoritos = prodFavoritos;
 	}
 
 }
