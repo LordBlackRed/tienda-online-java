@@ -1,6 +1,19 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-
-<jsp:include page="head.jsp" />
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
+<title>Registrar Usuario</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<!--[if IE 6]>
+<link rel="stylesheet" type="text/css" href="iecss.css" />
+<![endif]-->
+<script type="text/javascript" src="js/boxOver.js"></script>
+<script>
+	var error = ${requestScope.error};
+	if (error == true) {
+		alert("Usuario o password incorrecto");
+	}
+</script>
+</head>
 <body>
 
 	<div id="main_container">
@@ -16,7 +29,7 @@
 			<div class="center_content">
 
 
-				<div class="center_title_bar">Status: ${sessionScope.status}Latest Products</div>
+				<div class="center_title_bar">Últimos Productos</div>
 
 				<c:forEach items="${requestScope.productos}" var="producto">
 
@@ -55,7 +68,7 @@
 										title="header=[Gifts] body=[&nbsp;] fade=[on]"><img
 										src="images/favorites.gif" alt="" title="" border="0"
 										class="left_bt" /></a>
-									<a href="Detalles?id=${producto.id.id}" class="prod_details">details</a>
+									<a href="Detalles?id=${producto.id.id}" class="prod_details">Más</a>
 
 								</c:when>
 
@@ -70,7 +83,7 @@
 									<a href="#" title="header=[Gifts] body=[&nbsp;] fade=[on]"><img
 										src="images/favorites.gif" alt="" title="" border="0"
 										class="left_bt" /></a>
-									<a href="Detalles?id=${producto.id.id}" class="prod_details">details</a>
+									<a href="Detalles?id=${producto.id.id}" class="prod_details">Más</a>
 
 								</c:otherwise>
 							</c:choose>

@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import tiendaonline.clases.Categoria;
 import tiendaonline.clases.Fabricante;
+import tiendaonline.clases.Producto;
 import tiendaonline.enumerados.MisAtributos;
+import tiendaonline.listeners.ContextoListener;
 import tiendaonline.metodos.MisMetodos;
 
 public class ServletEnvio extends HttpServlet {
@@ -21,9 +23,10 @@ public class ServletEnvio extends HttpServlet {
 
 		List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
 		List<Fabricante> fabricantes = MisMetodos.obtenerFabricantes(request);
+		List<Producto> productos = MisMetodos.obtenerProductos(request);
 		
-		request.setAttribute(MisAtributos.categorias.toString(), categorias);
-		request.setAttribute(MisAtributos.fabricantes.toString(), fabricantes);
+		MisMetodos.asignarRequest(request, categorias, fabricantes);
+		request.setAttribute(MisAtributos.productos.toString(), productos);
 		
 		request.getRequestDispatcher("envio.jsp").forward(request, response);
 	

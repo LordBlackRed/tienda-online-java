@@ -22,14 +22,12 @@ public class Categoria implements Serializable{
 	private static final long serialVersionUID = 4298918625832569326L;
 	private Key id;
 	private String titulo;
-	private List<Producto> productos;
 	private Fabricante fabricante;
 
-	public Categoria(String titulo, List<Producto> productos,
+	public Categoria(String titulo,
 			Fabricante fabricante) {
 		super();
 		this.titulo = titulo;
-		this.productos = productos;
 		this.fabricante = fabricante;
 	}
 
@@ -63,12 +61,4 @@ public class Categoria implements Serializable{
 		this.titulo = titulo;
 	}
 
-	@OneToMany(mappedBy = "categoria")
-	public List<Producto> getProductos() {
-		return productos;
-	}
-
-	public void setProductos(List<Producto> productos) {
-		this.productos = productos;
-	}
 }

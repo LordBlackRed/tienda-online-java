@@ -21,8 +21,7 @@ public class ServletAdministrar extends HttpServlet{
 		List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
 		List<Fabricante> fabricantes = MisMetodos.obtenerFabricantes(request);
 		
-		request.setAttribute(MisAtributos.categorias.toString(), categorias);
-		request.setAttribute(MisAtributos.fabricantes.toString(), fabricantes);
+		MisMetodos.asignarRequest(request, categorias, fabricantes);
 		
 		request.getRequestDispatcher("administrar.jsp").forward(request, response);
 		

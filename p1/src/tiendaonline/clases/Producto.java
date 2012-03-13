@@ -18,31 +18,40 @@ import javax.persistence.OneToMany;
 import com.google.appengine.api.datastore.Key;
 
 @Entity
-public class Producto implements Serializable{
+public class Producto implements Serializable, Comparable<Producto> {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5945135721837447454L;
 	private Key id;
 	private double precio;
-	private String fecha;
+	private Date fecha;
 	private String nombre;
 	private int cantidad;
 	private String urlImagen;
-	private Categoria categoria;
 	private String categoriaString;
+	private Long idFabricante;
+	private String descripcion;
 
-	public Producto(double precio, String fecha, String nombre, int cantidad,
-			String urlImagen, Categoria categoria, String categoriaString) {
+	public Producto(Key id, double precio, Date fecha, String nombre,
+			int cantidad, String urlImagen,
+			String categoriaString, Long idFabricante, String descripcion) {
 		super();
+		this.id = id;
 		this.precio = precio;
 		this.fecha = fecha;
 		this.nombre = nombre;
 		this.cantidad = cantidad;
 		this.urlImagen = urlImagen;
-		this.categoria = categoria;
 		this.categoriaString = categoriaString;
+		this.idFabricante = idFabricante;
+		this.descripcion = descripcion;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public String getCategoriaString() {
@@ -51,15 +60,6 @@ public class Producto implements Serializable{
 
 	public void setCategoriaString(String categoriaString) {
 		this.categoriaString = categoriaString;
-	}
-
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
 	}
 
 	public String getUrlImagen() {
@@ -81,11 +81,11 @@ public class Producto implements Serializable{
 		this.precio = precio;
 	}
 
-	public String getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(String fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 
@@ -119,7 +119,7 @@ public class Producto implements Serializable{
 	public String toString() {
 		return "Producto [id=" + id + ", precio=" + precio + ", fecha=" + fecha
 				+ ", nombre=" + nombre + ", cantidad=" + cantidad
-				+ ", urlImagen=" + urlImagen + ", categoria=" + categoria
+				+ ", urlImagen=" + urlImagen
 				+ ", categoriaString=" + categoriaString + "]";
 	}
 
@@ -146,6 +146,27 @@ public class Producto implements Serializable{
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public Long getIdFabricante() {
+		return idFabricante;
+	}
+
+	public void setIdFabricante(Long idFabricante) {
+		this.idFabricante = idFabricante;
+	}
+
+	@Override
+	public int compareTo(Producto p) {
+
+		if (this.fecha.before(p.getFecha())) {
+			return 1;
+		} else if (this.fecha.after(p.getFecha())) {
+			return -1;
+		} else {
+			return 0;
+		}
+
 	}
 
 }

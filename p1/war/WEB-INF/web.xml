@@ -141,12 +141,20 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<url-pattern>/AddPuntuacion</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>Categoria</servlet-name>
-		<servlet-class>tiendaonline.ServletCategoria</servlet-class>
+		<servlet-name>NuevoFavorito</servlet-name>
+		<servlet-class>tiendaonline.servlets.favoritos.ServletNuevoFavorito</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Categoria</servlet-name>
-		<url-pattern>/Categoria</url-pattern>
+		<servlet-name>NuevoFavorito</servlet-name>
+		<url-pattern>/NuevoFavorito</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>EliminarFavorito</servlet-name>
+		<servlet-class>tiendaonline.servlets.favoritos.ServletEliminarFavorito</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EliminarFavorito</servlet-name>
+		<url-pattern>/EliminarFavorito</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>EliminarCategoria</servlet-name>
@@ -251,6 +259,62 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	<servlet-mapping>
 		<servlet-name>EnviarMail</servlet-name>
 		<url-pattern>/EnviarMail</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Suscribir</servlet-name>
+		<servlet-class>tiendaonline.servlets.suscribir.ServletSuscribir</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Suscribir</servlet-name>
+		<url-pattern>/Suscribir</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AddProductoCabecera</servlet-name>
+		<servlet-class>tiendaonline.ServletAddProductoCabecera</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddProductoCabecera</servlet-name>
+		<url-pattern>/AddProductoCabecera</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ElegirProductoEspecial</servlet-name>
+		<servlet-class>tiendaonline.servlets.administrar.productos.ServletElegirProductoEspecial</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ElegirProductoEspecial</servlet-name>
+		<url-pattern>/ElegirProductoEspecial</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AddSponsor</servlet-name>
+		<servlet-class>tiendaonline.servlets.administrar.sponsors.ServletAddSponsor</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddSponsor</servlet-name>
+		<url-pattern>/AddSponsor</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ModificarProducto</servlet-name>
+		<servlet-class>tiendaonline.servlets.administrar.productos.ServletModificarProducto</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ModificarProducto</servlet-name>
+		<url-pattern>/ModificarProducto</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Privacidad</servlet-name>
+		<servlet-class>tiendaonline.servlets.footers.ServletPrivacidad</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Privacidad</servlet-name>
+		<url-pattern>/Privacidad</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Pago</servlet-name>
+		<servlet-class>tiendaonline.servlets.footers.ServletPago</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Pago</servlet-name>
+		<url-pattern>/Pago</url-pattern>
 	</servlet-mapping>
 	<filter>
 		<filter-name>filtroSes</filter-name>

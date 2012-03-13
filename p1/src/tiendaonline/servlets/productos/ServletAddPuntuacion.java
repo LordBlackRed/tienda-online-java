@@ -26,70 +26,82 @@ public class ServletAddPuntuacion extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		Long idProducto = Long.parseLong(request.getParameter("id"));
-		String gusta = request.getParameter("megusta");
-
-		List<Producto> productos = MisMetodos.obtenerProductos(request);
-		Producto productoVoto = MisMetodos.obtenerProducto(productos,
-				idProducto.toString());
-		Producto producto = null;
-
-		for (Producto p : productos) {
-			if (p.getId().getId() == idProducto) {
-				producto = p;
-				break;
-			}
+		boolean correcto = true;
+		Long idUsuario = 0L;
+		try {
+			Usuario usuario = (Usuario) request.getSession().getAttribute(
+					MisAtributos.usuario.toString());
+			idUsuario = usuario.getId();
+		} catch (NullPointerException e) {
+			correcto = false;
 		}
-		EntityManagerFactory entityManagerFactory = (EntityManagerFactory) request
-				.getSession().getServletContext().getAttribute("emf");
-		EntityManager entityManager = entityManagerFactory
-				.createEntityManager();
-		EntityTransaction transaction = entityManager.getTransaction();
+		if (correcto) {
+			Long idProducto = Long.parseLong(request.getParameter("id"));
+			String gusta = request.getParameter("megusta");
 
-		Usuario usuario = (Usuario) request.getSession().getAttribute(
-				MisAtributos.usuario.toString());
-		Long idUsuario = usuario.getId();
+			List<Producto> productos = MisMetodos.obtenerProductos(request);
+			// Producto productoVoto = MisMetodos.obtenerProducto(productos,
+			// idProducto.toString());
+			Producto producto = null;
 
-		List<Puntuacion> puntuaciones = MisMetodos.obtenerPuntuaciones(request);
-
-		boolean encontrado = false;
-		// Buscamos en la lista de usuarios votados el usuario de la sesi—n y si
-		// est‡ NO se incluye el voto, y si no est‡ SI se incluye
-		for (Puntuacion puntuacion : puntuaciones) {
-			if ((puntuacion.getIdUsuario().longValue() == idUsuario.longValue())
-					&& (idProducto.longValue() == puntuacion.getIdProducto()
-							.longValue())) {
-				encontrado = true;
-				break;
+			for (Producto p : productos) {
+				if (p.getId().getId() == idProducto) {
+					producto = p;
+					break;
+				}
 			}
-		}
+			EntityManagerFactory entityManagerFactory = (EntityManagerFactory) request
+					.getSession().getServletContext().getAttribute("emf");
+			EntityManager entityManager = entityManagerFactory
+					.createEntityManager();
+			EntityTransaction transaction = entityManager.getTransaction();
 
-		if (!encontrado) {
-			Puntuacion puntuacionNueva = new Puntuacion();
-			puntuacionNueva.setIdUsuario(idUsuario);
-			puntuacionNueva.setIdProducto(idProducto);
-			puntuacionNueva.setFecha(new Date());
+			List<Puntuacion> puntuaciones = MisMetodos
+					.obtenerPuntuaciones(request);
 
-			// Obtenemos la puntuaci—n dle producto en concreto apra sumarle o
-			// restarle uno
-			int puntos = 0;
-			
-			if (gusta.equals("t")) {
-				puntos++;
-			} else {
-				puntos--;
+			boolean encontrado = false;
+			// Buscamos en la lista de usuarios votados el usuario de la sesi—n
+			// y si
+			// est‡ NO se incluye el voto, y si no est‡ SI se incluye
+			for (Puntuacion puntuacion : puntuaciones) {
+				if ((puntuacion.getIdUsuario().longValue() == idUsuario
+						.longValue())
+						&& (idProducto.longValue() == puntuacion
+								.getIdProducto().longValue())) {
+					encontrado = true;
+					break;
+				}
 			}
-			puntuacionNueva.setPuntos(puntos);
-			
-			transaction.begin();
-			entityManager.persist(puntuacionNueva);
-			transaction.commit();
-			entityManager.close();
 
+			if (!encontrado) {
+				Puntuacion puntuacionNueva = new Puntuacion();
+				puntuacionNueva.setIdUsuario(idUsuario);
+				puntuacionNueva.setIdProducto(idProducto);
+				puntuacionNueva.setFecha(new Date());
+
+				// Obtenemos la puntuaci—n dle producto en concreto apra sumarle
+				// o
+				// restarle uno
+				int puntos = 0;
+
+				if (gusta.equals("t")) {
+					puntos++;
+				} else {
+					puntos--;
+				}
+				puntuacionNueva.setPuntos(puntos);
+
+				transaction.begin();
+				entityManager.persist(puntuacionNueva);
+				transaction.commit();
+				entityManager.close();
+
+			}
+
+			response.sendRedirect("Index");
+		} else {
+			response.sendRedirect("Index");
 		}
-
-		response.sendRedirect("Index");
-
 	}
 
 }

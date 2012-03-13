@@ -15,26 +15,34 @@
 			<div class="center_content">
 				<div class="center_title_bar">Añadir Producto</div>
 
-				<div id="stylized" class="for_producto_nuevo">
+				<div id="stylized">
 					<form action="ProductoNuevo" method="post">
 
 						<label for="nombre">Nombre: </label> <input type="text"
-							name="nombre" /> <label for="fecha">Fecha: </label> <input
-							type="text" name="fecha" /> <label for="precio">Precio:
-						</label> <input type="text" name="precio" /> <label for="cantidad">Cantidad:
+							name="nombre" /> <label for="precio">Precio: </label> <input
+							type="text" name="precio" /> <label for="cantidad">Cantidad:
 						</label> <input type="text" name="cantidad" /> <label for="url">URL:
-						</label> <input type="text" name="url" /> <label for="categoria">Categoria:
-							<span class="small">Elige su categoría</span>
-						</label> <select name="categoria" id="categoria">
+						</label> <input type="text" name="url" /> <label for="descripcion">Descripción:
+						</label>
+						<textarea name="descripcion" cols="20" rows="4"></textarea>
+						<label for="categoria">Categoria: <span class="small">Elige
+								su categoría</span>
+						</label><select name="categoria" id="categoria">
 							<option value="defecto">Seleccione una opción</option>
 							<c:forEach items="${requestScope.categorias}" var="categoria">
 								<option value="${categoria.titulo}">${categoria.titulo}</option>
 							</c:forEach>
+						</select> <br></br> <label for="fabricanteProducto">Fabricante: <span
+							class="small">Elige su Fabricante</span>
+						</label> <select name="fabricanteProducto" id="fabricanteProducto">
+							<option value="defecto">Seleccione una opción</option>
+							<c:forEach items="${requestScope.fabricantes}" var="fabricante">
+								<option value="${fabricante.id}">${fabricante.nombre}</option>
+							</c:forEach>
 
 						</select>
-						<div class="spacer"></div>
+						
 						<button type="submit" value="enviar">Enviar</button>
-
 					</form>
 				</div>
 				<div class="center_title_bar">Añadir Categoría o Fabricante</div>
@@ -90,10 +98,9 @@
 					<div class="form_categoria">
 
 						<form action="NuevoEnvio" method="post">
-							<label for="empresa">Nombre Empresa: </label><input
-								type="text" name="empresa" id="empresa" /> <label
-								for="precioEnvio">Gastos de Envío: </label><input tyoe="text"
-								name="precioEnvio" id="precioEnvio" />
+							<label for="empresa">Nombre Empresa: </label><input type="text"
+								name="empresa" id="empresa" /> <label for="precioEnvio">Gastos
+								de Envío: </label><input tyoe="text" name="precioEnvio" id="precioEnvio" />
 							<button type="submit" value="enviarNuevoEnvio">Enviar</button>
 						</form>
 					</div>

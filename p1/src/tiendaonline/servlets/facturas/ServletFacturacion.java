@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import tiendaonline.clases.Categoria;
 import tiendaonline.clases.Fabricante;
 import tiendaonline.clases.Factura;
+import tiendaonline.clases.Producto;
 import tiendaonline.clases.Usuario;
 import tiendaonline.enumerados.MisAtributos;
 import tiendaonline.metodos.MisMetodos;
@@ -32,11 +33,12 @@ public class ServletFacturacion extends HttpServlet {
 
 		List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
 		List<Fabricante> fabricantes = MisMetodos.obtenerFabricantes(request);
-
-		request.setAttribute(MisAtributos.categorias.toString(), categorias);
-		request.setAttribute(MisAtributos.fabricantes.toString(), fabricantes);
+		List<Producto> productos = MisMetodos.obtenerProductos(request);
+		
+		MisMetodos.asignarRequest(request, categorias, fabricantes);
 		request.setAttribute(MisAtributos.facturas.toString(), facturas);
-
+		request.setAttribute(MisAtributos.productos.toString(), productos);
+		
 		request.getRequestDispatcher("facturacion.jsp").forward(request,
 				response);
 	}

@@ -12,6 +12,7 @@ import tiendaonline.clases.Categoria;
 import tiendaonline.clases.Fabricante;
 import tiendaonline.clases.Factura;
 import tiendaonline.clases.LineaFactura;
+import tiendaonline.clases.Producto;
 import tiendaonline.clases.Usuario;
 import tiendaonline.enumerados.MisAtributos;
 import tiendaonline.metodos.MisMetodos;
@@ -27,12 +28,13 @@ public class ServletDetalleFactura extends HttpServlet{
 		List<LineaFactura> lineasFacturas = MisMetodos.obtenerLineasFacturas(request, idFactura);
 		List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
 		List<Fabricante> fabricantes = MisMetodos.obtenerFabricantes(request);
-
-		request.setAttribute(MisAtributos.categorias.toString(), categorias);
-		request.setAttribute(MisAtributos.fabricantes.toString(), fabricantes);
+		List<Producto> productos = MisMetodos.obtenerProductos(request);
+		
+		MisMetodos.asignarRequest(request, categorias, fabricantes);
 		request.setAttribute(MisAtributos.lineasFactura.toString(), lineasFacturas);
 		request.setAttribute(MisAtributos.idFactura.toString(), idFactura);
-	
+		request.setAttribute(MisAtributos.productos.toString(), productos);
+		
 		request.getRequestDispatcher("detallesFactura.jsp").forward(request,
 				response);
 	}
