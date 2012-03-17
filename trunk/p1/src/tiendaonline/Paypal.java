@@ -46,6 +46,7 @@ public class Paypal extends HttpServlet {
 			factura.setFecha(new Date());
 			factura.setIdProductos(idProductos);
 			factura.setNumero(numero);
+			factura.setIdEnvio(ServletIndex.idEnvioCompra);
 			factura.setPrecio(Double.parseDouble(request.getParameter("mc_gross")));
 
 			for (Producto producto : carrito) {
@@ -69,6 +70,7 @@ public class Paypal extends HttpServlet {
 				entityManager.close();
 
 			}
+			
 			
 			EntityManagerFactory entityManagerFactory = (EntityManagerFactory) request
 					.getSession().getServletContext().getAttribute("emf");

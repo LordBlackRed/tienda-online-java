@@ -1,19 +1,13 @@
 package tiendaonline.clases;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -31,7 +25,7 @@ public class Usuario implements Serializable {
 	private String localidad;
 	private String provincia;
 	private String dni;
-	private Date fechaNacimiento;
+	private String fechaNacimiento;
 	private int telefonoFijo;
 	private int telefonoMovil;
 	private List<Factura> facturas;
@@ -40,7 +34,7 @@ public class Usuario implements Serializable {
 	public Usuario(Long id, String nick, String nombre, String pass,
 			boolean admin, String apellidos, String direccion, int cp,
 			String localidad, String provincia, String dni,
-			Date fechaNacimiento, int telefonoFijo, int telefonoMovil,
+			String fechaNacimiento, int telefonoFijo, int telefonoMovil,
 			List<Factura> facturas, Set<Long> prodFavoritos) {
 		super();
 		this.id = id;
@@ -85,11 +79,11 @@ public class Usuario implements Serializable {
 		this.telefonoMovil = telefonoMovil;
 	}
 
-	public Date getFechaNacimiento() {
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 

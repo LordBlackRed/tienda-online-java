@@ -16,10 +16,10 @@
 
 			<div class="center_content">
 
-				<div class="center_title_bar">Facturación</div>
+				<div class="center_title_bar">Facturaci&#243;n</div>
 				<table class="lista">
 					<tr>
-						<th width="1%">Nº</th>
+						<th width="1%">N&#186;</th>
 						<th>Fecha</th>
 						<th>DNI Cliente</th>
 						<th>Total</th>
@@ -29,8 +29,18 @@
 						<tr id="pro-3">
 							<td><a href="DetalleFactura?id=${factura.numero}">${factura.numero}</a></td>
 							<td><fmt:formatDate pattern="dd/MM/yyyy - HH:ss" value="${factura.fecha}" /></td>
-							<td><a href="Facturacion?dni=${factura.usuario.dni}">${factura.usuario.dni}</a></td>
-							<td>${factura.precio}€</td>
+							<td>
+							
+							<c:choose>
+							<c:when test="${requestScope.isFacturaUsuarioDni == false}">
+							<a href="Facturacion?dni=${factura.usuario.dni}">${factura.usuario.dni}</a>
+							</c:when>
+							<c:otherwise>
+							<a href="Facturacion?dni=${requestScope.facturaUsuarioDni}">${requestScope.facturaUsuarioDni}</a>							
+							</c:otherwise>
+							</c:choose>
+							</td>
+							<td>${factura.precio}&#8364;</td>
 						</tr>
 					</c:forEach>
 				</table>

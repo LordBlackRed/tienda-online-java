@@ -25,9 +25,13 @@ public class ServletFacturacion extends HttpServlet {
 		List<Factura> facturas;
 
 		if (request.getParameter("dni") != null) {
-			Usuario usuario = MisMetodos.obtenerUsuario("usuario", request);
+			Usuario usuario = MisMetodos.obtenerUsuarioPorDni(request.getParameter("dni"), request);
+			System.out.println("nick usuario: " + usuario.getNick());
 			facturas = MisMetodos.obtenerFacturasUsuario(request, usuario);
+			request.setAttribute(MisAtributos.isFacturaUsuarioDni.toString(), true);
+			request.setAttribute(MisAtributos.facturaUsuarioDni.toString(), usuario.getDni());
 		} else {
+			request.setAttribute(MisAtributos.isFacturaUsuarioDni.toString(), false);
 			facturas = MisMetodos.obtenerFacturas(request);
 		}
 

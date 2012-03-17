@@ -26,6 +26,8 @@ public class ServletAddPuntuacion extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		String pagina = request.getParameter("pag");
+
 		boolean correcto = true;
 		Long idUsuario = 0L;
 		try {
@@ -98,9 +100,9 @@ public class ServletAddPuntuacion extends HttpServlet {
 
 			}
 
-			response.sendRedirect("Index");
+			response.sendRedirect("Index?pag=" + pagina);
 		} else {
-			response.sendRedirect("Index");
+			response.sendRedirect("Index?pag=" + pagina);
 		}
 	}
 

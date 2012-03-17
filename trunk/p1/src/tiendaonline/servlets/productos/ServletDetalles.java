@@ -57,14 +57,22 @@ public class ServletDetalles extends HttpServlet {
 				MisAtributos.usuario.toString());
 		boolean error = false;
 		boolean favorito = false;
-		try{
-		//Averiguamos si el producto es favorito del usuario en concreto
-		favorito = MisMetodos.isProductoFavorito(request, Long.parseLong(idProducto), usuario);
-		}catch (NullPointerException e){
+
+		try {
+			usuario.getNick();
+
+		} catch (NullPointerException e) {
+
 			error = true;
+
+		}
+		if (!error) {
+			// Averiguamos si el producto es favorito del usuario en concreto
+			favorito = MisMetodos.isProductoFavorito(request,
+					Long.parseLong(idProducto), usuario);
 		}
 		MisMetodos.asignarRequest(request, categorias, fabricantes);
-		
+
 		request.setAttribute(MisAtributos.error.toString(), error);
 		request.setAttribute(MisAtributos.fav.toString(), favorito);
 		request.setAttribute(MisAtributos.productosSimilares.toString(),

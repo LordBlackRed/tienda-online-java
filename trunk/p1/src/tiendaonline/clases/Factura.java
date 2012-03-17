@@ -26,6 +26,7 @@ public class Factura implements Comparable<Factura>, Serializable{
 	private Date fecha;
 	private double precio;
 	private List<Long> idProductos;
+	private Long idEnvio;
 
 	public List<Long> getIdProductos() {
 		return idProductos;
@@ -36,13 +37,14 @@ public class Factura implements Comparable<Factura>, Serializable{
 	}
 
 	public Factura(Key id, Long numero, Usuario usuario, Date fecha,
-			double precio) {
+			double precio, Long idEnvio) {
 		super();
 		this.id = id;
 		this.numero = numero;
 		this.usuario = usuario;
 		this.fecha = fecha;
 		this.precio = precio;
+		this.idEnvio = idEnvio;
 	}
 
 	public Date getFecha() {
@@ -130,6 +132,14 @@ public class Factura implements Comparable<Factura>, Serializable{
 		} else if (!numero.equals(other.numero))
 			return false;
 		return true;
+	}
+
+	public Long getIdEnvio() {
+		return idEnvio;
+	}
+
+	public void setIdEnvio(Long idEnvio) {
+		this.idEnvio = idEnvio;
 	}
 
 }

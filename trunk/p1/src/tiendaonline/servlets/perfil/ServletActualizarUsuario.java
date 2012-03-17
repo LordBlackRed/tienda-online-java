@@ -33,15 +33,7 @@ public class ServletActualizarUsuario extends HttpServlet {
 		String fechaNacimiento = request.getParameter("fechaN");
 		int telefonoFijo = Integer.parseInt(request.getParameter("telFijo"));
 		int telefonoMovil = Integer.parseInt(request.getParameter("telMovil"));
-
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		Date fechaN = null;
-		try {
-			fechaN = dateFormat.parse(fechaNacimiento);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 
 		Usuario usuario = (Usuario) request.getSession().getAttribute(
 				MisAtributos.usuario.toString());
@@ -50,7 +42,7 @@ public class ServletActualizarUsuario extends HttpServlet {
 		usuario.setCp(cp);
 		usuario.setDireccion(direccion);
 		usuario.setDni(dni);
-		usuario.setFechaNacimiento(fechaN);
+		usuario.setFechaNacimiento(fechaNacimiento);
 		usuario.setLocalidad(localidad);
 		usuario.setProvincia(provincia);
 		usuario.setTelefonoFijo(telefonoFijo);
@@ -61,7 +53,7 @@ public class ServletActualizarUsuario extends HttpServlet {
 		EntityManager entityManager = entityManagerFactory
 				.createEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
-
+				
 		transaction.begin();
 		entityManager.merge(usuario);
 		transaction.commit();

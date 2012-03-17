@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import tiendaonline.ServletIndex;
 import tiendaonline.clases.Envio;
 import tiendaonline.clases.Producto;
 import tiendaonline.enumerados.MisAtributos;
@@ -45,6 +46,8 @@ public class ServletActualizarCarrito extends HttpServlet {
 
 			request.getSession().setAttribute(
 					MisAtributos.empresaEnvio.toString(), empresaEnvio);
+			//Lo metemos en una variable st‡tica para que la clase Paypal pueda acceder a ella sin problemas
+			ServletIndex.idEnvioCompra = idEnvio;
 
 		}
 

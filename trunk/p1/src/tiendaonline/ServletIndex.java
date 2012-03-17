@@ -32,6 +32,10 @@ public class ServletIndex extends HttpServlet {
 	private static final long serialVersionUID = 3797767980886873521L;
 	public static Usuario usuarioSesion;
 	public static List<Producto> carritoSesion;
+	public static Long idEnvioCompra;
+	public static String categoria;
+	public static String fabricante;
+	public static String busquedaPer;
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -39,50 +43,111 @@ public class ServletIndex extends HttpServlet {
 		List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
 		List<Fabricante> fabricantes = MisMetodos.obtenerFabricantes(request);
 		List<Producto> productos = null;
+
+		int productosPorPagina = 6;
+		int numPaginas = 1;
+		// Lo metemos dentro de un try catch ya que, (aún no sé porqué) la
+		// página se recarga varias veces, y a veces el párametro que se le pasa
+		// es null
+		// Además que puede darse el caso de que el usuario escriba Index en el
+		// navegador sin pasarle ningún parámetro
+		int paginaActual = 1;
+		try {
+			paginaActual = Integer.parseInt(request.getParameter("pag"));
+		} catch (NumberFormatException e) {
+
+		}
+		int start = productosPorPagina * (paginaActual - 1);
+
+		// TODOS LOS PRODUCTOS
 		if ((request.getParameter(MisAtributos.categoria.toString()) == null)
 				&& (request.getParameter(MisAtributos.fabricante.toString()) == null)
 				&& (request.getParameter(MisAtributos.fav.toString()) == null)
-				&& (request.getParameter("search") == null)) {
-			productos = MisMetodos.obtenerProductos(request);
+				&& (request.getParameter(MisAtributos.search.toString()) == null)) {
+			categoria = null;
+			fabricante = null;
+			busquedaPer = null;
+			numPaginas = MisMetodos.numPaginas(request, productosPorPagina);
+			productos = MisMetodos.paginacion(request, start,
+					productosPorPagina);
+			request.setAttribute(MisAtributos.fav.toString(), null);
+			System.out.println("NUM PAGINAS TODOS: " + numPaginas);
+			// productos = MisMetodos.obtenerProductos(request);
+			// PRODUCTOS DE UNA CATEGORÍA
 		} else if ((request.getParameter(MisAtributos.categoria.toString()) != null)
 				&& (request.getParameter(MisAtributos.fabricante.toString()) == null)
 				&& (request.getParameter(MisAtributos.fav.toString()) == null)
-				&& (request.getParameter("search") == null)) {
-			productos = MisMetodos.obtenerProductosCategoria(request,
-					request.getParameter(MisAtributos.categoria.toString()));
+				&& (request.getParameter(MisAtributos.search.toString()) == null)) {
+			fabricante = null;
+			categoria = request.getParameter(MisAtributos.categoria.toString());
+			busquedaPer = null;
+			numPaginas = MisMetodos.numPaginasCategoria(request,
+					productosPorPagina, categoria);
+			request.setAttribute(MisAtributos.fav.toString(), false);
+			productos = MisMetodos.obtenerProductosCategoriaPaginados(request,
+					request.getParameter(MisAtributos.categoria.toString()),
+					start, productosPorPagina);
+			// PRODUCTOS DE UN FABRICANTE
 		} else if ((request.getParameter(MisAtributos.categoria.toString()) == null)
 				&& (request.getParameter(MisAtributos.fabricante.toString()) != null)
 				&& (request.getParameter(MisAtributos.fav.toString()) == null)
-				&& (request.getParameter("search") == null)) {
+				&& (request.getParameter(MisAtributos.search.toString()) == null)) {
+			categoria = null;
+			fabricante = request.getParameter(MisAtributos.fabricante
+					.toString());
+			busquedaPer = null;
+			request.setAttribute(MisAtributos.fav.toString(), false);
+			String idFabricante = request.getParameter(MisAtributos.fabricante
+					.toString());
+			numPaginas = MisMetodos.numPaginasFabricante(request,
+					productosPorPagina, fabricante);
+			System.out.println("NUM PAGINAS: " + numPaginas);
 			productos = MisMetodos.obtenerProductosFabricante(request,
-					request.getParameter(MisAtributos.fabricante.toString()));
+					idFabricante, start, productosPorPagina);
+			// PRODUCTOS FAVORITOS DE UN USUARIO
 		} else if ((request.getParameter(MisAtributos.categoria.toString()) == null)
 				&& (request.getParameter(MisAtributos.fabricante.toString()) == null)
 				&& (request.getParameter(MisAtributos.fav.toString()) != null)
-				&& (request.getParameter("search") == null)) {
+				&& (request.getParameter(MisAtributos.search.toString()) == null)) {
 			try {
+				categoria = null;
+				fabricante = null;
+				busquedaPer = null;
+				request.setAttribute(MisAtributos.fav.toString(), true);
 				if ((Usuario) request.getSession().getAttribute(
 						MisAtributos.usuario.toString()) == null) {
 					productos = new ArrayList<Producto>();
 				} else {
-					productos = MisMetodos.obtenerProductosFavoritos(
-							request,
-							(Usuario) request.getSession().getAttribute(
-									MisAtributos.usuario.toString()));
+					Usuario usuario = (Usuario) request.getSession()
+							.getAttribute(MisAtributos.usuario.toString());
+					numPaginas = MisMetodos.numPaginasFavorito(request,
+							usuario, productosPorPagina);
+					productos = MisMetodos.obtenerProductosFavoritos(request,
+							usuario, start, productosPorPagina);
 				}
 			} catch (NoResultException e) {
+				System.out.println("excepcion!");
 				request.setAttribute(MisAtributos.productos.toString(),
 						productos);
 
 				request.getRequestDispatcher("index.jsp").forward(request,
 						response);
 			}
+			// PRODUCTOS DE LA BÚSQUEDA PERSONALIZADA
 		} else if ((request.getParameter(MisAtributos.categoria.toString()) == null)
 				&& (request.getParameter(MisAtributos.fabricante.toString()) == null)
 				&& (request.getParameter(MisAtributos.fav.toString()) == null)
-				&& (request.getParameter("search") != null)) {
-			productos = MisMetodos.obtenerProductosSearch(request,
-					request.getParameter("search"));
+				&& (request.getParameter(MisAtributos.search.toString()) != null)) {
+			categoria = null;
+			fabricante = null;
+			busquedaPer = request.getParameter(MisAtributos.search.toString());
+			String parameter = request.getParameter(MisAtributos.search.toString());
+			request.setAttribute(MisAtributos.fav.toString(), false);
+			productos = MisMetodos.obtenerProductosSearchPaginado(request,
+					parameter, start, productosPorPagina);
+			numPaginas = MisMetodos.numPaginasSearch(request,
+					productosPorPagina, parameter);
+			System.out.println("NUMPAGINASPER: " + numPaginas);
 		}
 
 		Collections.sort(productos);
@@ -90,6 +155,16 @@ public class ServletIndex extends HttpServlet {
 				ContextoListener.productosCabecera.get(0));
 		request.setAttribute(MisAtributos.productos.toString(), productos);
 		MisMetodos.asignarRequest(request, categorias, fabricantes);
+
+		// Metemos en la sesión la página actual para que pueda volver a la
+		// página que el usuario a la hora de pulsar en add carrito
+		request.setAttribute(MisAtributos.paginaSiguiente.toString(),
+				paginaActual + 1);
+		request.setAttribute(MisAtributos.paginaAnterior.toString(),
+				paginaActual - 1);
+		request.setAttribute(MisAtributos.paginaActual.toString(), paginaActual);
+		request.setAttribute(MisAtributos.numPaginas.toString(), numPaginas);
+		request.setAttribute(MisAtributos.registrado.toString(), false);
 
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 
@@ -101,50 +176,128 @@ public class ServletIndex extends HttpServlet {
 		List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
 		List<Fabricante> fabricantes = MisMetodos.obtenerFabricantes(request);
 		List<Producto> productos = null;
+
+		int productosPorPagina = 6;
+		int numPaginas = 0;
+		// Lo metemos dentro de un try catch ya que, (aún no sé porqué) la
+		// página se recarga varias veces, y a veces el párametro que se le pasa
+		// es null
+		// Además que puede darse el caso de que el usuario escriba Index en el
+		// navegador sin pasarle ningún parámetro
+		int paginaActual = 1;
+		try {
+			paginaActual = Integer.parseInt(request.getParameter("pag"));
+		} catch (NumberFormatException e) {
+
+		}
+		int start = productosPorPagina * (paginaActual - 1);
+
+		// TODOS LOS PRODUCTOS
 		if ((request.getParameter(MisAtributos.categoria.toString()) == null)
 				&& (request.getParameter(MisAtributos.fabricante.toString()) == null)
 				&& (request.getParameter(MisAtributos.fav.toString()) == null)
-				&& (request.getParameter("search") == null)) {
-			productos = MisMetodos.obtenerProductos(request);
+				&& (request.getParameter(MisAtributos.search.toString()) == null)) {
+			categoria = null;
+			fabricante = null;
+			busquedaPer = null;
+			numPaginas = MisMetodos.numPaginas(request, productosPorPagina);
+			productos = MisMetodos.paginacion(request, start,
+					productosPorPagina);
+			request.setAttribute(MisAtributos.fav.toString(), null);
+			System.out.println("NUM PAGINAS TODOS: " + numPaginas);
+			// productos = MisMetodos.obtenerProductos(request);
+			// PRODUCTOS DE UNA CATEGORÍA
 		} else if ((request.getParameter(MisAtributos.categoria.toString()) != null)
 				&& (request.getParameter(MisAtributos.fabricante.toString()) == null)
 				&& (request.getParameter(MisAtributos.fav.toString()) == null)
-				&& (request.getParameter("search") == null)) {
-			productos = MisMetodos.obtenerProductosCategoria(request,
-					request.getParameter(MisAtributos.categoria.toString()));
+				&& (request.getParameter(MisAtributos.search.toString()) == null)) {
+			fabricante = null;
+			categoria = request.getParameter(MisAtributos.categoria.toString());
+			busquedaPer = null;
+			numPaginas = MisMetodos.numPaginasCategoria(request,
+					productosPorPagina, categoria);
+			request.setAttribute(MisAtributos.fav.toString(), false);
+			productos = MisMetodos.obtenerProductosCategoriaPaginados(request,
+					request.getParameter(MisAtributos.categoria.toString()),
+					start, productosPorPagina);
+			// PRODUCTOS DE UN FABRICANTE
 		} else if ((request.getParameter(MisAtributos.categoria.toString()) == null)
 				&& (request.getParameter(MisAtributos.fabricante.toString()) != null)
 				&& (request.getParameter(MisAtributos.fav.toString()) == null)
-				&& (request.getParameter("search") == null)) {
+				&& (request.getParameter(MisAtributos.search.toString()) == null)) {
+			categoria = null;
+			fabricante = request.getParameter(MisAtributos.fabricante
+					.toString());
+			busquedaPer = null;
+			request.setAttribute(MisAtributos.fav.toString(), false);
+			String idFabricante = request.getParameter(MisAtributos.fabricante
+					.toString());
+			numPaginas = MisMetodos.numPaginasFabricante(request,
+					productosPorPagina, fabricante);
+			System.out.println("NUM PAGINAS: " + numPaginas);
 			productos = MisMetodos.obtenerProductosFabricante(request,
-					request.getParameter(MisAtributos.fabricante.toString()));
+					idFabricante, start, productosPorPagina);
+			// PRODUCTOS FAVORITOS DE UN USUARIO
 		} else if ((request.getParameter(MisAtributos.categoria.toString()) == null)
 				&& (request.getParameter(MisAtributos.fabricante.toString()) == null)
 				&& (request.getParameter(MisAtributos.fav.toString()) != null)
-				&& (request.getParameter("search") == null)) {
-			if ((Usuario) request.getSession().getAttribute(
-					MisAtributos.usuario.toString()) == null) {
-				productos = new ArrayList<Producto>();
-			} else {
-				productos = MisMetodos.obtenerProductosFavoritos(
-						request,
-						(Usuario) request.getSession().getAttribute(
-								MisAtributos.usuario.toString()));
+				&& (request.getParameter(MisAtributos.search.toString()) == null)) {
+			try {
+				categoria = null;
+				fabricante = null;
+				busquedaPer = null;
+				request.setAttribute(MisAtributos.fav.toString(), true);
+				if ((Usuario) request.getSession().getAttribute(
+						MisAtributos.usuario.toString()) == null) {
+					productos = new ArrayList<Producto>();
+				} else {
+					Usuario usuario = (Usuario) request.getSession()
+							.getAttribute(MisAtributos.usuario.toString());
+					numPaginas = MisMetodos.numPaginasFavorito(request,
+							usuario, productosPorPagina);
+					productos = MisMetodos.obtenerProductosFavoritos(request,
+							usuario, start, productosPorPagina);
+				}
+			} catch (NoResultException e) {
+				System.out.println("excepcion!");
+				request.setAttribute(MisAtributos.productos.toString(),
+						productos);
+
+				request.getRequestDispatcher("index.jsp").forward(request,
+						response);
 			}
+			// PRODUCTOS DE LA BÚSQUEDA PERSONALIZADA
 		} else if ((request.getParameter(MisAtributos.categoria.toString()) == null)
 				&& (request.getParameter(MisAtributos.fabricante.toString()) == null)
 				&& (request.getParameter(MisAtributos.fav.toString()) == null)
-				&& (request.getParameter("search") != null)) {
-			productos = MisMetodos.obtenerProductosSearch(request,
-					request.getParameter("search"));
+				&& (request.getParameter(MisAtributos.search.toString()) != null)) {
+			categoria = null;
+			fabricante = null;
+			busquedaPer = request.getParameter(MisAtributos.search.toString());
+			String parameter = request.getParameter(MisAtributos.search.toString());
+			request.setAttribute(MisAtributos.fav.toString(), false);
+			productos = MisMetodos.obtenerProductosSearchPaginado(request,
+					parameter, start, productosPorPagina);
+			numPaginas = MisMetodos.numPaginasSearch(request,
+					productosPorPagina, parameter);
+			System.out.println("NUMPAGINASPER: " + numPaginas);
 		}
 
 		Collections.sort(productos);
-
 		request.setAttribute(MisAtributos.producto.toString(),
 				ContextoListener.productosCabecera.get(0));
 		request.setAttribute(MisAtributos.productos.toString(), productos);
 		MisMetodos.asignarRequest(request, categorias, fabricantes);
+
+		// Metemos en la sesión la página actual para que pueda volver a la
+		// página que el usuario a la hora de pulsar en add carrito
+		request.setAttribute(MisAtributos.paginaSiguiente.toString(),
+				paginaActual + 1);
+		request.setAttribute(MisAtributos.paginaAnterior.toString(),
+				paginaActual - 1);
+		request.setAttribute(MisAtributos.paginaActual.toString(), paginaActual);
+		request.setAttribute(MisAtributos.numPaginas.toString(), numPaginas);
+		request.setAttribute(MisAtributos.registrado.toString(), false);
 
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 
