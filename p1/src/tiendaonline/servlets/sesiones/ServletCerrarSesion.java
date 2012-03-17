@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import tiendaonline.ServletIndex;
+
 public class ServletCerrarSesion extends HttpServlet {
 
 	private static final long serialVersionUID = -9035537034488771085L;
@@ -16,7 +18,12 @@ public class ServletCerrarSesion extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sesion = request.getSession();
 		sesion.invalidate();
-		
+
+		// Lo ponemos a 0 para comprobar a la hora de la compra si existe un
+		// envio seleccionado y para que no haya ningœn problema en cualquier
+		// otra compra
+		ServletIndex.idEnvioCompra = 0L;
+
 		response.sendRedirect("Index");
 	}
 

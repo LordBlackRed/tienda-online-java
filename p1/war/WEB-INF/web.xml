@@ -316,6 +316,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>Pago</servlet-name>
 		<url-pattern>/Pago</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>ConfirmarCompra</servlet-name>
+		<servlet-class>tiendaonline.servlets.carrito.ServletConfirmarCompra</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConfirmarCompra</servlet-name>
+		<url-pattern>/ConfirmarCompra</url-pattern>
+	</servlet-mapping>
 	<filter>
 		<filter-name>filtroSes</filter-name>
 		<filter-class>tiendaonline.filtros.FiltroSes</filter-class>
@@ -327,6 +335,35 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 		<dispatcher>ERROR</dispatcher>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>FiltroAdmin</filter-name>
+		<filter-class>tiendaonline.filtros.FiltroAdmin</filter-class>
+		<init-param>
+			<param-name>urlLogin</param-name>
+			<param-value>/Index</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>FiltroAdmin</filter-name>
+		<url-pattern>/Administrar</url-pattern>
+		<url-pattern>/Facturacion</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>FiltroUsuario</filter-name>
+		<filter-class>tiendaonline.filtros.FiltroUsuario</filter-class>
+		<init-param>
+			<param-name>urlLogin</param-name>
+			<param-value>/Index</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>FiltroUsuario</filter-name>
+		<url-pattern>/Carrito</url-pattern>
+		<url-pattern>/MiCuenta</url-pattern>
 	</filter-mapping>
 
 	<listener>

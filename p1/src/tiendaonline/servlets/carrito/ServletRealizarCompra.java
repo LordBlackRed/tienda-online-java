@@ -28,7 +28,7 @@ public class ServletRealizarCompra extends HttpServlet {
 
 	private static final long serialVersionUID = 464588348788960164L;
 
-	protected void doGet(HttpServletRequest request,
+	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
 		
@@ -54,58 +54,59 @@ public class ServletRealizarCompra extends HttpServlet {
 					.getAttribute(MisAtributos.usuario.toString());
 			ServletIndex.carritoSesion = (List<Producto>) request.getSession()
 					.getAttribute(MisAtributos.carrito.toString());
-			//
-			//
-			//
-			// List<Producto> carrito = ServletIndex.carritoSesion;
-			// List<Long> idProductos =
-			// MisMetodos.obtenerIdProductosCarrito(request);
-			//
-			// Long numero = MisMetodos.obtenerIdFactura(request);
-			//
-			// Usuario usuario = ServletIndex.usuarioSesion;
-			// Factura factura = new Factura();
-			//
-			// factura.setUsuario(usuario);
-			// factura.setFecha(new Date());
-			// factura.setIdProductos(idProductos);
-			// factura.setNumero(numero);
-			// //factura.setPrecio(Double.parseDouble(request.getParameter("mc_gross")));
-			//
-			// for (Producto producto : carrito) {
-			//
-			// LineaFactura lineaFactura = new LineaFactura();
-			//
-			// lineaFactura.setCantidad(producto.getCantidad());
-			// lineaFactura.setIdFactura(factura.getNumero());
-			// lineaFactura.setPrecio(producto.getPrecio());
-			// lineaFactura.setIdProducto(producto.getId().getId());
-			//
-			// EntityManagerFactory entityManagerFactory =
-			// (EntityManagerFactory) request
-			// .getSession().getServletContext().getAttribute("emf");
-			// EntityManager entityManager = entityManagerFactory
-			// .createEntityManager();
-			// EntityTransaction transaction = entityManager.getTransaction();
-			//
-			// transaction.begin();
-			// entityManager.persist(lineaFactura);
-			// transaction.commit();
-			// entityManager.close();
-			//
-			// }
-			//
-			// EntityManagerFactory entityManagerFactory =
-			// (EntityManagerFactory) request
-			// .getSession().getServletContext().getAttribute("emf");
-			// EntityManager entityManager = entityManagerFactory
-			// .createEntityManager();
-			// EntityTransaction transaction = entityManager.getTransaction();
-			//
-			// transaction.begin();
-			// entityManager.persist(factura);
-			// transaction.commit();
-			// entityManager.close();
+			
+			
+			
+//			 List<Producto> carrito = ServletIndex.carritoSesion;
+//			 List<Long> idProductos =
+//			 MisMetodos.obtenerIdProductosCarrito(request);
+//			
+//			 Long numero = MisMetodos.obtenerIdFactura(request);
+//			
+//			 Usuario usuario = ServletIndex.usuarioSesion;
+//			 Factura factura = new Factura();
+//			
+//			 factura.setUsuario(usuario);
+//			 factura.setFecha(new Date());
+//			 factura.setIdProductos(idProductos);
+//			 factura.setNumero(numero);
+//			 factura.setIdEnvio(ServletIndex.idEnvioCompra);
+//			 //factura.setPrecio(Double.parseDouble(request.getParameter("mc_gross")));
+//			
+//			 for (Producto producto : carrito) {
+//			
+//			 LineaFactura lineaFactura = new LineaFactura();
+//			
+//			 lineaFactura.setCantidad(producto.getCantidad());
+//			 lineaFactura.setIdFactura(factura.getNumero());
+//			 lineaFactura.setPrecio(producto.getPrecio());
+//			 lineaFactura.setIdProducto(producto.getId().getId());
+//			
+//			 EntityManagerFactory entityManagerFactory =
+//			 (EntityManagerFactory) request
+//			 .getSession().getServletContext().getAttribute("emf");
+//			 EntityManager entityManager = entityManagerFactory
+//			 .createEntityManager();
+//			 EntityTransaction transaction = entityManager.getTransaction();
+//			
+//			 transaction.begin();
+//			 entityManager.persist(lineaFactura);
+//			 transaction.commit();
+//			 entityManager.close();
+//			
+//			 }
+//			
+//			 EntityManagerFactory entityManagerFactory =
+//			 (EntityManagerFactory) request
+//			 .getSession().getServletContext().getAttribute("emf");
+//			 EntityManager entityManager = entityManagerFactory
+//			 .createEntityManager();
+//			 EntityTransaction transaction = entityManager.getTransaction();
+//			
+//			 transaction.begin();
+//			 entityManager.persist(factura);
+//			 transaction.commit();
+//			 entityManager.close();
 
 			request.getRequestDispatcher("realizar-compra.jsp").forward(
 					request, response);

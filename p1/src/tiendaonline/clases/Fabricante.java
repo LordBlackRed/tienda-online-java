@@ -16,10 +16,8 @@ public class Fabricante implements Serializable{
 	private static final long serialVersionUID = 5387915157937011455L;
 	private String nombre;
 	private Long id;
-	private List<Categoria> categorias;
 	
 	public Fabricante(){
-		this.categorias = new ArrayList<Categoria>();
 	}
 
 	public String getNombre() {
@@ -40,20 +38,10 @@ public class Fabricante implements Serializable{
 		this.id = id;
 	}
 
-	@OneToMany(mappedBy = "fabricante")
-	public List<Categoria> getCategorias() {
-		return categorias;
-	}
-
-	public void setCategorias(List<Categoria> categorias) {
-		this.categorias = categorias;
-	}
-
 	public Fabricante(String nombre, Long id, List<Categoria> categorias) {
 		super();
 		this.nombre = nombre;
 		this.id = id;
-		this.categorias = categorias;
 	}
 
 	@Override

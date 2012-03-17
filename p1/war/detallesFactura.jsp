@@ -15,7 +15,8 @@
 
 			<div class="center_content">
 
-				<div class="center_title_bar">Factura Nº ${requestScope.idFactura}</div>
+				<div class="center_title_bar">Factura Nº
+					${requestScope.idFactura}</div>
 				<table class="lista">
 					<tr>
 						<th width="1%">Producto</th>
@@ -24,9 +25,9 @@
 					</tr>
 					<c:forEach items="${requestScope.lineasFactura}" var="lineaFactura">
 						<tr id="pro-3">
-							<td>${lineaFactura.idProducto}</td>
+							<td><a href="Detalles?id=${lineaFactura.idProducto}">${lineaFactura.idProducto}</a></td>
 							<td>${lineaFactura.cantidad}</td>
-							<td>${lineaFactura.precio}</td>
+							<td>${lineaFactura.precio}&#8364;</td>
 						</tr>
 					</c:forEach>
 				</table>

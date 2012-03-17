@@ -88,7 +88,7 @@
 
 			<c:choose>
 				<c:when test="${noOfRows % 2 == 0}">
-					<li class="odd"><a href="Index?id=${fabricante.id}">${fabricante.nombre}</a></li>
+					<li class="odd"><a href="Index?fabricante=${fabricante.id}">${fabricante.nombre}</a></li>
 				</c:when>
 				<c:otherwise>
 					<li class="even"><a href="Index?fabricante=${fabricante.id}">${fabricante.nombre}</a></li>

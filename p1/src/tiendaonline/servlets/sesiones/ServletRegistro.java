@@ -3,6 +3,7 @@ package tiendaonline.servlets.sesiones;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -20,6 +21,7 @@ import tiendaonline.clases.Factura;
 import tiendaonline.clases.Producto;
 import tiendaonline.clases.Usuario;
 import tiendaonline.enumerados.MisAtributos;
+import tiendaonline.listeners.ContextoListener;
 import tiendaonline.metodos.MisMetodos;
 
 public class ServletRegistro extends HttpServlet {
@@ -55,20 +57,30 @@ public class ServletRegistro extends HttpServlet {
 			transaction.begin();
 			entityManager.persist(usuario);
 			transaction.commit();
+			List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
+			List<Fabricante> fabricantes = MisMetodos
+					.obtenerFabricantes(request);
+			List<Producto> productos = MisMetodos.obtenerProductos(request);
 
-			// Se introduce el usuario en la sesi—n
-			MisMetodos.introducirUsuarioSesion(request, usuarioString, pass,
-					admin);
+			Collections.sort(productos);
 
-			response.sendRedirect("Index");
+			MisMetodos.asignarRequest(request, categorias, fabricantes);
+
+			request.setAttribute(MisAtributos.productos.toString(), productos);
+			request.setAttribute(MisAtributos.registrado.toString(), true);
+			System.out.println("llegamos!");
+			request.getRequestDispatcher("index.jsp")
+					.forward(request, response);
 		} else {
 			request.setAttribute(MisAtributos.error.toString(), true);
 			List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
-			List<Fabricante> fabricantes = MisMetodos.obtenerFabricantes(request);
+			List<Fabricante> fabricantes = MisMetodos
+					.obtenerFabricantes(request);
 
 			MisMetodos.asignarRequest(request, categorias, fabricantes);
 			request.getRequestDispatcher("registrarse.jsp").forward(request,
-					response);		}
+					response);
+		}
 	}
 
 }

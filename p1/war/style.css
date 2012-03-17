@@ -502,6 +502,31 @@ button.join {
 	font-weight: bold;
 	background: url(images/bar_bg.gif) no-repeat center;
 }
+#center_pagination {
+	width: 520px;
+	height: 33px;
+	float: left;
+	padding: 0 0 0 40px;
+	margin: 0 0 0 12px;
+	_margin: 0 0 0 6px;
+	line-height: 33px;
+	font-size: 12px;
+	color: #847676;
+	font-weight: bold;
+	background: url(images/paginationBar.gif) no-repeat center;
+	text-align: center;
+}
+#center_pagination a{
+	font-size: 16px;
+	text-decoration: none;
+}
+#center_pagination a:hover{
+	font-size: 20px;
+}
+#center_pagination a:active{
+	color: #23abd2;
+}
+
 
 /*----------------------right content--------------*/
 .right_content {
@@ -950,8 +975,49 @@ a.contact {
 	font-weight: bold;
 	margin-top: 15px;
 }
+/** Stylized realizar compra **/
+#stylizedRealizarCompra {
+	margin-top: 40px;
+	height: 180px;
+}
+#stylizedRealizarCompra label {
+	display: block;
+	font-weight: bold;
+	text-align: center;
+	width: 142px;
+	float: left;
+	margin-top: 5px;
+}
+#stylizedRealizarCompra p {
+	font-size: 11px;
+	color: black;
+	font-weight: bold;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+	float: left;
+	margin-top: 50px;
+	margin-left: 30px;
+}
+#stylizedRealizarCompra input {
+	float: left;
+	font-size: 12px;
+	padding: 1px 1px;
+	border: solid 1px #a4c6c6;
+	width: 120px;
+	margin: 0px 0px 0px px;
+	margin-top: 5px;
+}
 
-
+#stylizedRealizarCompra button {
+	clear: both;
+	margin-left: 320px;
+	width: 207px;
+	height: 47px;
+	background: url("images/realizarCompra.gif");
+	margin-top: 150px;
+	border: none;
+	cursor: pointer;
+}
 .form_categoria {
 	float: left;
 	width: 250px;
@@ -1121,8 +1187,8 @@ span.redireccionar {
 	font-size: 14px;
 }
 #carrito img{
-	margin-left: 150px;
-	margin-top: 150px; 
+	margin-left: 350px;
+	margin-top: 80px; 
 }
 #carrito label{
 	font-weight: bold;
@@ -1131,10 +1197,31 @@ span.redireccionar {
 #carrito .actualizar{
 	margin-left: 300px;
 }
+
 /** PRIVACIDAD **/
 .privacidad{
 	margin-top: 40px;
 	margin-left: 20px;
 	margin-right: 20px;
 	font-size: 12px;
+}
+#form_envio label{
+	float: left;
+	margin-left: 100px;
+	display: block;
+	width: 120px;
+}
+#form_envio input{
+	float: left;
+	margin-left: 100px;
+}
+#form_envio button{
+	float: left;
+	margin-left: 250px;
+}
+.realizarCompra{
+	margin-left: 300px;
+	border:none;
+	width: 207;
+	height: 47px;
 }

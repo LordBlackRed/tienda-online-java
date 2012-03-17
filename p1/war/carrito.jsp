@@ -151,9 +151,9 @@
 						</div>
 						<br></br>
 
-						<a href="RealizarCompra?precio=${totalFactura}"
+						<a href="ConfirmarCompra?precio=${totalFactura}"
 							onclick=" return validar(formCarrito);"><img
-							src="images/realizarCompra.gif" /> </a>
+							src="images/next.png" /> </a>
 					</c:if>
 				</div>
 			</div>

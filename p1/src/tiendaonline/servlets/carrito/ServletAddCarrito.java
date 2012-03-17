@@ -31,7 +31,6 @@ public class ServletAddCarrito extends HttpServlet {
 				.createEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
 		
-		
 		List<Producto> productos = MisMetodos.obtenerProductos(request);
 		Producto productoCarro = null;
 		//Buscamos 1¼ el producto que se ha a–adido al carrito
@@ -65,10 +64,11 @@ public class ServletAddCarrito extends HttpServlet {
 			System.out.println(productoCarro);
 			productoCarro.setCantidad(cantidad);
 		}
+		//obtenemos la p‡gina en la que estaba trabajando el usuario para regresar a la misma
+		String pagina = request.getParameter("pag");
 		
 		carrito.add(productoCarro);
-		System.out.println("-----");
-		response.sendRedirect("Index");
+		response.sendRedirect("Index?pag="+pagina);
 		
 	}
 	

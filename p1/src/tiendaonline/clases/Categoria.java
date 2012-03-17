@@ -22,22 +22,11 @@ public class Categoria implements Serializable{
 	private static final long serialVersionUID = 4298918625832569326L;
 	private Key id;
 	private String titulo;
-	private Fabricante fabricante;
 
 	public Categoria(String titulo,
 			Fabricante fabricante) {
 		super();
 		this.titulo = titulo;
-		this.fabricante = fabricante;
-	}
-
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-	public Fabricante getFabricante() {
-		return fabricante;
-	}
-
-	public void setFabricante(Fabricante fabricante) {
-		this.fabricante = fabricante;
 	}
 
 	public Categoria() {
