@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,13 @@ import tiendaonline.clases.Usuario;
 import tiendaonline.enumerados.MisAtributos;
 import tiendaonline.metodos.MisMetodos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletLogin extends HttpServlet {
+
+	private static final long serialVersionUID = 279769906444387986L;
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -31,6 +36,7 @@ public class ServletLogin extends HttpServlet {
 		EntityManager entityManager = entityManagerFactory
 				.createEntityManager();
 
+		@SuppressWarnings("unchecked")
 		List<Usuario> usuarios = (List<Usuario>) entityManager.createQuery(
 				"select usuario from Usuario usuario").getResultList();
 
@@ -42,9 +48,7 @@ public class ServletLogin extends HttpServlet {
 				login = true;
 			}
 		}
-		System.out.println("va a loguearse");
 		if (login) {
-			System.out.println("¿Logueado¿");
 			boolean admin = false;
 			if (nick.equals("admin") && pass.equals("admin")) {
 				admin = true;

@@ -10,6 +10,10 @@ import javax.servlet.http.HttpSessionListener;
 import tiendaonline.clases.Producto;
 import tiendaonline.enumerados.MisAtributos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class SessionListener implements HttpSessionListener{
 
 	@Override

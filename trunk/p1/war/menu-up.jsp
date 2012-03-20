@@ -5,11 +5,12 @@
 	<ul class="menu">
 		<li><a href="Index" class="nav1"> Inicio </a></li>
 		<li class="divider"></li>
-		<c:if test="${!empty sessionScope.usuario && sessionScope.usuario.admin == false}">
-		<li><a href="Index?fav=t" class="nav3">Favoritos</a></li>
-		<li class="divider"></li>
-		<li><a href="MiCuenta" class="nav4">Mi Cuenta</a></li>
-		<li class="divider"></li>
+		<c:if
+			test="${!empty sessionScope.usuario && sessionScope.usuario.admin == false}">
+			<li><a href="Index?fav=t" class="nav3">Favoritos</a></li>
+			<li class="divider"></li>
+			<li><a href="MiCuenta" class="nav4">Mi Cuenta</a></li>
+			<li class="divider"></li>
 		</c:if>
 		<li><a href="Registrarse" class="nav4">Registrarse</a></li>
 		<li class="divider"></li>

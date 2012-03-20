@@ -10,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 @Entity
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 3895972343640291772L;

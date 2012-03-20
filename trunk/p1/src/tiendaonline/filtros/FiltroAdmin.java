@@ -1,15 +1,10 @@
 package tiendaonline.filtros;
 
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -20,6 +15,10 @@ import javax.servlet.http.HttpSession;
 import tiendaonline.clases.Usuario;
 import tiendaonline.enumerados.MisAtributos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class FiltroAdmin implements Filter {
 
 	private FilterConfig config;
@@ -27,7 +26,7 @@ public class FiltroAdmin implements Filter {
 
 	@Override
 	public void destroy() {
-		config = null;
+		setConfig(null);
 	}
 
 	@Override
@@ -56,15 +55,22 @@ public class FiltroAdmin implements Filter {
 
 	@Override
 	public void init(FilterConfig config) throws ServletException {
-		this.config = config;
+		this.setConfig(config);
 
 		// Tambien se pueden cargar los parametros
 		// Configura url desconexi—n
 		this.urlLogin = config.getInitParameter("urlLogin");
-		System.out.println("urlLogin: " + urlLogin);
 		if (urlLogin == null || urlLogin.trim().length() == 0) {
 			// Error al cargar la url de login
 			throw new ServletException("No se ha configurado URL de login");
 		}
+	}
+
+	public FilterConfig getConfig() {
+		return config;
+	}
+
+	public void setConfig(FilterConfig config) {
+		this.config = config;
 	}
 }

@@ -13,8 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tiendaonline.clases.Categoria;
-import tiendaonline.clases.Producto;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletEliminarCategoria extends HttpServlet {
 
 	private static final long serialVersionUID = 2176165060521312964L;
@@ -31,6 +34,7 @@ public class ServletEliminarCategoria extends HttpServlet {
 		
 		String jpql = "select categoria from Categoria categoria";
 		Query query =  entityManager.createQuery(jpql);
+		@SuppressWarnings("unchecked")
 		List<Categoria> categorias = (List<Categoria>)query.getResultList();
 		
 		for (Categoria categoria: categorias){

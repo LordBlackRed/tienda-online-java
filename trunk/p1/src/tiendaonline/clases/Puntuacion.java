@@ -2,20 +2,20 @@ package tiendaonline.clases;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 @Entity
 public class Puntuacion implements Comparable<Puntuacion>, Serializable {
 
-
+	private static final long serialVersionUID = 4298918625832569321L;
 	private Long id;
 	private Long idUsuario;
 	private Long idProducto;
@@ -86,7 +86,6 @@ public class Puntuacion implements Comparable<Puntuacion>, Serializable {
 
 	@Override
 	public int compareTo(Puntuacion p) {
-		// TODO Auto-generated method stub
 		if (this.fecha.before(p.getFecha())) {
 			return 1;
 		} else if (this.fecha.after(p.getFecha())) {

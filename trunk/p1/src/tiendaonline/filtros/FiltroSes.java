@@ -15,9 +15,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import tiendaonline.clases.Usuario;
-import tiendaonline.enumerados.MisAtributos;
-
 public class FiltroSes implements Filter {
 
 	@Override
@@ -25,6 +22,7 @@ public class FiltroSes implements Filter {
 
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void doFilter(ServletRequest arg0, ServletResponse arg1,
 			FilterChain arg2) throws IOException, ServletException {
@@ -32,7 +30,6 @@ public class FiltroSes implements Filter {
 		String host = req.getHeader("Host");
 		String userAgent = req.getHeader("User-Agent");
 		String id = host + "-" + userAgent;
-	//	System.out.println(id);
 		HttpSession session = req.getSession();
 		ServletContext servletContext = session.getServletContext();
 //		Usuario usuario = (Usuario) servletContext.getAttribute(MisAtributos.usuario.toString());
@@ -56,18 +53,14 @@ public class FiltroSes implements Filter {
 				String keySession = (String) names.nextElement();
 				Object valueSession = session.getAttribute(keySession);
 				m.put(keySession, valueSession);
-			//	System.out.println(valueSession);
 			}
 		} catch (IllegalStateException e) {
-		//	System.out.println(usuarios.size());
 			usuarios.remove(id);
-			//System.out.println(usuarios.size());
 		}
 
 		// Enumeration headerNames = req.getHeaderNames();
 		// while(headerNames.hasMoreElements()){
 		// String header = (String) headerNames.nextElement();
-		// System.out.println("header: "+header+":"+req.getHeader(header));
 		// }
 	}
 

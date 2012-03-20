@@ -19,8 +19,9 @@
 	</div>
 
 	<div class="right_footer">
-		<a href="Index">Inicio</a> <a href="Privacidad">Política de Privacidad</a> <a
-			href="Contacto">Contacta</a> <a href="Pago">Formas de Pago</a>
+		<a href="Index">Inicio</a> <a href="Privacidad">Política de
+			Privacidad</a> <a href="Contacto">Contacta</a> <a href="Pago">Formas
+			de Pago</a>
 	</div>
 
 </div>

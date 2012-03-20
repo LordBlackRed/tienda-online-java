@@ -2,6 +2,8 @@
 <%@page import="tiendaonline.listeners.ContextoListener"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
+<script src="javascript/scripts.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 	var photos = new Array();
 	var which = 0;
@@ -36,70 +38,12 @@
 						.getUrlImagen()%>";
 	
 <%}%>
-	function ajaxFunction() {
-		var xmlHttp;
 
-		try {
-
-			xmlHttp = new XMLHttpRequest();
-			return xmlHttp;
-		} catch (e) {
-
-			try {
-				xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
-				return xmlHttp;
-			} catch (e) {
-
-				try {
-					xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-					return xmlHttp;
-				} catch (e) {
-					alert("Tu navegador no soporta AJAX!");
-					return false;
-				}
-			}
-		}
-	}
-
-	function backward() {
-		if (which > 0) {
-			window.status = ''
-			which--;
-			document.images.photoslider.src = photos[which];
-		}
-	}
-
-	function foto(num) {
-		document.images.photoslider.src = photos[num];
-		Enviar(texto[num], 'oferta_text');
-		Enviar(nombreProductos[num], 'oferta_title');
-	}
-	function Enviar(texto, capa) {
-		var ajax;
-		ajax = ajaxFunction();
-		ajax.open("POST", true);
-		ajax.setRequestHeader("Content-Type",
-				"application/x-www-form-urlencoded");
-		ajax.onreadystatechange = function() {
-			if (ajax.readyState == 1) {
-				document.getElementById(capa).innerHTML = " Aguarde por favor...";
-			}
-			if (ajax.readyState == 4) {
-				document.getElementById(capa).innerHTML = texto;
-			}
-		}
-
-		ajax.send(null);
-	}
 </script>
-
-
 
 <div class="top_bar">
 	<div class="top_search">
-		<div class="search_text">
-			Buscar Producto
-		</div>
+		<div class="search_text">Buscar Producto</div>
 		<form action="Index" method="post">
 			<input type="text" class="search_input" name="search" /> <input
 				type="image" src="images/search.gif" class="search_bt" />
@@ -110,8 +54,8 @@
 <div id="header">
 
 	<div id="logo">
-		<a href="Index"><img src="images/logo.png" alt="" title="Electronix"
-			border="0" width="237" height="140" /></a>
+		<a href="Index"><img src="images/logo.png" alt=""
+			title="Electronix" border="0" width="237" height="140" /></a>
 	</div>
 
 	<div class="oferte_content">
@@ -128,7 +72,7 @@
 				<div class="oferta_details">
 					<c:choose>
 						<c:when test="${sessionScope.usuario.admin == true}">
-							<form action="AddProductoCabecera" method="post">
+							<form action="AddProductoCabecera" method="post" name="formCabecera">
 								<p>
 									<label for="producto">Producto #1: </label> <select
 										name="producto1">
@@ -179,7 +123,7 @@
 
 									</select>
 								</p>
-								<button type="submit" name="enviar">Enviar</button>
+								<button type="submit" name="enviar" onclick=" return validarCabecera(formCabecera)">Enviar</button>
 							</form>
 						</c:when>
 						<c:otherwise>

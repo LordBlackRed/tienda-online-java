@@ -14,7 +14,13 @@ import tiendaonline.clases.Producto;
 import tiendaonline.enumerados.MisAtributos;
 import tiendaonline.metodos.MisMetodos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletAdministrar extends HttpServlet{
+
+	private static final long serialVersionUID = -7881263373072069429L;
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {

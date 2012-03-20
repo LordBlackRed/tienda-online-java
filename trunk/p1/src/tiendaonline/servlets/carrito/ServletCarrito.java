@@ -11,10 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import tiendaonline.clases.Categoria;
 import tiendaonline.clases.Envio;
 import tiendaonline.clases.Fabricante;
-import tiendaonline.clases.Producto;
 import tiendaonline.enumerados.MisAtributos;
 import tiendaonline.metodos.MisMetodos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletCarrito extends HttpServlet{
 
 	private static final long serialVersionUID = -432112664639003517L;

@@ -7,6 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 @Entity
 public class Envio implements Serializable{
 

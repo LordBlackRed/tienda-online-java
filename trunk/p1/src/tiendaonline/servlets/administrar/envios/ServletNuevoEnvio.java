@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import tiendaonline.clases.Envio;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletNuevoEnvio extends HttpServlet{
 
 	private static final long serialVersionUID = 2160736457431637303L;

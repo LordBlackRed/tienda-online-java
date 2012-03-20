@@ -1,10 +1,6 @@
 package tiendaonline.servlets.perfil;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,6 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import tiendaonline.clases.Usuario;
 import tiendaonline.enumerados.MisAtributos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletActualizarUsuario extends HttpServlet {
 
 	private static final long serialVersionUID = -7029758949000076883L;

@@ -15,12 +15,17 @@ import tiendaonline.clases.Producto;
 import tiendaonline.enumerados.MisAtributos;
 import tiendaonline.metodos.MisMetodos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletActualizarCarrito extends HttpServlet {
 
 	private static final long serialVersionUID = 3988959730218533300L;
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		@SuppressWarnings("unchecked")
 		List<Producto> carrito = (List<Producto>) request.getSession()
 				.getAttribute(MisAtributos.carrito.toString());
 

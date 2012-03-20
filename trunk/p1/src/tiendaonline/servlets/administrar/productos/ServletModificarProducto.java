@@ -6,17 +6,18 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tiendaonline.clases.Producto;
-import tiendaonline.enumerados.MisAtributos;
-import tiendaonline.listeners.ContextoListener;
 import tiendaonline.metodos.MisMetodos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletModificarProducto extends HttpServlet {
 
 	private static final long serialVersionUID = 8347127449428910820L;

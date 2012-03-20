@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import tiendaonline.clases.Categoria;
 import tiendaonline.clases.Fabricante;
-import tiendaonline.clases.Usuario;
-import tiendaonline.enumerados.MisAtributos;
-import tiendaonline.listeners.ContextoListener;
 import tiendaonline.metodos.MisMetodos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletMiCuenta extends HttpServlet{
 
 	private static final long serialVersionUID = -8433570479677679165L;
