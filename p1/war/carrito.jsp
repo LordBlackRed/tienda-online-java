@@ -9,70 +9,13 @@
 <!--[if IE 6]>
 <link rel="stylesheet" type="text/css" href="iecss.css" />
 <![endif]-->
-<script type="text/javascript" src="js/boxOver.js"></script>
+<script src="javascript/scripts.js" type="text/javascript"></script>
 <script>
-	function validar(formulario) {
-		if (formulario.empresaEnvio.value == "Elige una Opcion") {
-			alert("Debe seleccionar el tipo de envio");
-			return false;
-		} else {
-			return true;
-		}
-	}
+var error = ${requestScope.error};
+if (error == true) {
+	alert("¡No tenemos Stock suficiente! Por favor, revisa la disponibilidad de los productos");
+}
 </script>
-
-<script type="text/javascript">
-	function ajaxFunction() {
-		var xmlHttp;
-
-		try {
-
-			xmlHttp = new XMLHttpRequest();
-			return xmlHttp;
-		} catch (e) {
-
-			try {
-				xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
-				return xmlHttp;
-			} catch (e) {
-
-				try {
-					xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-					return xmlHttp;
-				} catch (e) {
-					alert("Tu navegador no soporta AJAX!");
-					return false;
-				}
-			}
-		}
-	}
-
-	function actualizarTotal(formulario) {
-		var total = formulario.totalSinEnvio.value;
-		if (formulario.empresaEnvio.value == "Elige una Opcion") {
-			var ajax;
-			ajax = ajaxFunction();
-			ajax.open("POST", true);
-			ajax.setRequestHeader("Content-Type",
-					"application/x-www-form-urlencoded");
-			ajax.onreadystatechange = function() {
-				if (ajax.readyState == 1) {
-					document.getElementById("totalFactura").innerHTML = " Aguarde por favor...";
-				}
-				if (ajax.readyState == 4) {
-					document.getElementById("totalFactura").innerHTML = "<label>Total: </label>"
-							+ total + "&#8364;";
-					document.getElementById("empresaEnvio").innerHTML = "<label>Envio: </label>"
-							+ 0 + "&#8364;";
-				}
-			}
-
-			ajax.send(null);
-
-		}
-	}
-</script>
-
 </head>
 
 <body>
@@ -105,7 +48,7 @@
 									<c:set var="totalFactura"
 										value="${totalFactura + (producto.precio * producto.cantidad)}" />
 									<tr>
-										<td>${producto.id.id}</td>
+										<td><a href="Detalles?id=${producto.id.id}">${producto.id.id}</a></td>
 										<td>${producto.nombre}</td>
 										<td>${producto.precio}</td>
 
@@ -152,7 +95,7 @@
 						<br></br>
 
 						<a href="ConfirmarCompra?precio=${totalFactura}"
-							onclick=" return validar(formCarrito);"><img
+							onclick=" return validarCarrito(formCarrito, '${sessionScope.empresaEnvio.precio}');"><img
 							src="images/next.png" /> </a>
 					</c:if>
 				</div>

@@ -15,6 +15,10 @@ import tiendaonline.clases.Puntuacion;
 import tiendaonline.enumerados.MisAtributos;
 import tiendaonline.metodos.MisMetodos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletVerPuntuaciones extends HttpServlet {
 
 	private static final long serialVersionUID = 3641461419535790848L;

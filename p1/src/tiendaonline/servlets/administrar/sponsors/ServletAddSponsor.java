@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import tiendaonline.listeners.ContextoListener;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletAddSponsor extends HttpServlet{
 
 	private static final long serialVersionUID = -6291856045925134103L;

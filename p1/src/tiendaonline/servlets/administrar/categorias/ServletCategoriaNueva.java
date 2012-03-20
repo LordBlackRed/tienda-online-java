@@ -12,8 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import tiendaonline.clases.Categoria;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletCategoriaNueva extends HttpServlet{
 	
+	private static final long serialVersionUID = 8509397496751021039L;
+
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		

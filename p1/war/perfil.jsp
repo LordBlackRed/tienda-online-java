@@ -33,17 +33,6 @@
 		weekStartDay:1*/
 		});
 	};
-
-	
-	
-	function convertirAFecha(string) {
-		  var date = new Date()
-		  mes = parseInt(string.substring(3, 5));
-		  date.setMonth(mes - 1); //en javascript los meses van de 0 a 11
-		  date.setDate(string.substring(0, 2));
-		  date.setYear(string.substring(6, 10));
-		  return date;
-		}
 </script>
 </head>
 <body>
@@ -82,8 +71,9 @@
 							value="${sessionScope.usuario.fechaNacimiento}" /> <label
 							for="telFijo">Tel&#233;fono Fijo </label> <input type="text"
 							name="telFijo" value="${sessionScope.usuario.telefonoFijo}" /> <label
-							for="telMovil">Tel&#233;fono M&#243;vil </label><input type="text"
-							name="telMovil" value="${sessionScope.usuario.telefonoMovil}" />
+							for="telMovil">Tel&#233;fono M&#243;vil </label><input
+							type="text" name="telMovil"
+							value="${sessionScope.usuario.telefonoMovil}" />
 						<div class="spacer"></div>
 						<button type="submit" value="enviar"
 							onclick="return validarDatosUsuario(formPerfil);">Enviar</button>

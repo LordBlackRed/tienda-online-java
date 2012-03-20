@@ -9,9 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tiendaonline.clases.Categoria;
-import tiendaonline.clases.Producto;
 import tiendaonline.metodos.MisMetodos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletIdentificarse extends HttpServlet{
 
 	private static final long serialVersionUID = 1541990379202953661L;

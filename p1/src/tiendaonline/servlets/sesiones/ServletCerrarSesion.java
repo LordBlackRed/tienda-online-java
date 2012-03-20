@@ -10,6 +10,10 @@ import javax.servlet.http.HttpSession;
 
 import tiendaonline.ServletIndex;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletCerrarSesion extends HttpServlet {
 
 	private static final long serialVersionUID = -9035537034488771085L;

@@ -9,52 +9,6 @@
 <link rel="stylesheet" type="text/css" href="iecss.css" />
 <![endif]-->
 <script type="text/javascript" src="javascript/scripts.js"></script>
-<script>
-	function validar(formulario) {
-		var precio = isNaN(formulario.precio.value);
-		var cantidad = isNaN(formulario.cantidad.value);
-		var categoria = formulario.categoria.value;
-		var fabricanteProducto = formulario.fabricanteProducto.value;
-		var nombre = trim(formulario.nombre.value);
-		
-		if (fabricanteProducto == "defecto" || categoria == "defecto" || nombre =="") {
-			alert("Todos los campos obligatorios no han sido rellenados");
-			return false;
-		} else if (precio || cantidad) {
-			alert("Formato introducido incorrecto");
-			return false;
-		} else {
-			return true;
-		}
-	}
-	function validarCampoVacio(campo){
-		var cadena = trim(campo.value);
-		if(cadena==""){
-			alert("Todos los campos obligatorios no han sido rellenados");
-			return false;
-		}else{
-			return true;
-		}
-	}
-	
-	
-	
-	function validarEnvio(formulario){
-		var gastosEnvio = isNaN(formulario.precioEnvio.value);
-		var empresa = trim(formulario.empresa.value);
-		
-		if(gastosEnvio){
-			alert("Formato introducido incorrecto");
-			return false;
-		}else if(empresa == "" || formulario.precioEnvio.value==""){
-			alert("Todos los campos obligatorios no han sido rellenados");
-			return false;
-		}else{
-			return true;
-		}
-	}
-</script>
-
 </head>
 <body>
 
@@ -99,26 +53,30 @@
 						</select>
 
 						<button type="submit" value="enviar"
-							onclick="return validar(formProductoNuevo);">Enviar</button>
+							onclick="return validarProductoNuevo(formProductoNuevo);">Enviar</button>
 					</form>
 				</div>
 				<div class="center_title_bar">Añadir Categoría o Fabricante</div>
 				<div id="estilos_categoria">
 					<div class="form_categoria">
 
-						<form action="CategoriaNueva" method="post" name="formCategoriaNueva">
+						<form action="CategoriaNueva" method="post"
+							name="formCategoriaNueva">
 							<label for="titulo">Categoría: </label><input type="text"
 								name="titulo" />
-							<button type="submit" value="enviar" onclick="return validarCampoVacio(formCategoriaNueva.titulo);">Enviar</button>
+							<button type="submit" value="enviar"
+								onclick="return validarCampoVacio(formCategoriaNueva.titulo);">Enviar</button>
 						</form>
 					</div>
 
 					<div class="form_fabricante">
 
-						<form action="FabricanteNuevo" method="post" name="formFabricanteNuevo">
+						<form action="FabricanteNuevo" method="post"
+							name="formFabricanteNuevo">
 							<label for="nombreFabricante">Fabricante: </label><input
 								type="text" name="nombreFabricante" />
-							<button type="submit" value="enviar" onclick="return validarCampoVacio(formFabricanteNuevo.nombreFabricante);">Enviar</button>
+							<button type="submit" value="enviar"
+								onclick="return validarCampoVacio(formFabricanteNuevo.nombreFabricante);">Enviar</button>
 						</form>
 					</div>
 				</div>
@@ -158,7 +116,8 @@
 							<label for="empresa">Nombre Empresa: </label><input type="text"
 								name="empresa" id="empresa" /> <label for="precioEnvio">Gastos
 								de Envío: </label><input tyoe="text" name="precioEnvio" id="precioEnvio" />
-							<button type="submit" value="enviarNuevoEnvio" onclick="return validarEnvio(formNuevoEnvio);">Enviar</button>
+							<button type="submit" value="enviarNuevoEnvio"
+								onclick="return validarEnvio(formNuevoEnvio);">Enviar</button>
 						</form>
 					</div>
 				</div>

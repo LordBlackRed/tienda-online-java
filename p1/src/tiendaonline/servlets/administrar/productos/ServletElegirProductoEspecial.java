@@ -3,7 +3,6 @@ package tiendaonline.servlets.administrar.productos;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +13,10 @@ import tiendaonline.enumerados.MisAtributos;
 import tiendaonline.listeners.ContextoListener;
 import tiendaonline.metodos.MisMetodos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletElegirProductoEspecial extends HttpServlet {
 
 	private static final long serialVersionUID = 8347127449428910820L;

@@ -1,5 +1,19 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<jsp:include page="head.jsp" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
+<title>Puntuaciones</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="lightbox.css" />
+<!--[if IE 6]>
+<link rel="stylesheet" type="text/css" href="iecss.css" />
+<![endif]-->
+<script src="javascript/prototype.js" type="text/javascript"></script>
+<script src="javascript/scriptaculous.js?load=effects,builder"
+	type="text/javascript"></script>
+<script src="javascript/lightbox.js" type="text/javascript"></script>
+</head>
 <body>
 
 	<div id="main_container">
@@ -13,7 +27,6 @@
 			<jsp:include page="left-content.jsp" />
 
 			<div class="center_content">
-
 
 				<div class="center_title_bar">Puntuacion</div>
 

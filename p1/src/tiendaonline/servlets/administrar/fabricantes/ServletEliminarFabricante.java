@@ -12,9 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tiendaonline.clases.Categoria;
 import tiendaonline.clases.Fabricante;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletEliminarFabricante extends HttpServlet{
 
 	private static final long serialVersionUID = 1286532133741704819L;
@@ -32,6 +35,7 @@ public class ServletEliminarFabricante extends HttpServlet{
 		
 		String jpql = "select fabricante from Fabricante fabricante";
 		Query query =  entityManager.createQuery(jpql);
+		@SuppressWarnings("unchecked")
 		List<Fabricante> fabricantes = (List<Fabricante>)query.getResultList();
 		
 		for (Fabricante fabricante: fabricantes){

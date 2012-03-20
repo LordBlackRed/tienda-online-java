@@ -8,9 +8,7 @@
 
 <div class="crumb_navigation">
 	Actual: <span class="current"> ${fn:substring(string,start,end)}</span>
-
 </div>
-
 
 <div class="left_content">
 	<div class="title_box">Categor&#237;as</div>
@@ -39,13 +37,15 @@
 				<div class="product_title">Elige un Producto</div>
 
 				<div class="product_img">
-					<form action="ElegirProductoEspecial" method="post" name="formElegirProductoEspecial">
+					<form action="ElegirProductoEspecial" method="post"
+						name="formElegirProductoEspecial">
 						<select name="productoEspecial">
 							<option value="defecto">Elige una Opción</option>
 							<c:forEach items="${requestScope.productos}" var="producto">
 								<option value="${producto.id.id}">${producto.nombre}</option>
 							</c:forEach>
-						</select> <input type="submit" value="enviar" onclick="return validarSelect(formElegirProductoEspecial.productoEspecial);" />
+						</select> <input type="submit" value="enviar"
+							onclick="return validarSelect(formElegirProductoEspecial.productoEspecial);" />
 					</form>
 				</div>
 

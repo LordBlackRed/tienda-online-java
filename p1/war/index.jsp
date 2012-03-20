@@ -37,19 +37,20 @@
 			<div class="center_content">
 
 
-				<div class="center_title_bar">Últimos Productos <c:if test="${requestScope.fav==true}">Favoritos</c:if>  </div>
+				<div class="center_title_bar">
+					Últimos Productos
+					<c:if test="${requestScope.fav==true}">Favoritos</c:if>
+				</div>
 
 				<c:forEach items="${requestScope.productos}" var="producto">
 
 					<div class="prod_box">
 						<div class="top_prod_box"></div>
 						<div class="center_prod_box">
-							<div class="product_title">
-								<a href="details.html">${producto.nombre}</a>
-							</div>
+							<div class="product_title">${producto.nombre}</div>
 							<div class="product_img">
-								<a href="details.html"><img src="${producto.urlImagen}"
-									width="120" height="150" alt="" title="" border="0" /></a>
+								<img src="${producto.urlImagen}" width="125" height="150" alt=""
+									title="" border="0" />
 							</div>
 							<div class="prod_price">
 								<span class="price">${producto.precio}</span>
@@ -60,15 +61,18 @@
 							<c:choose>
 								<c:when test="${sessionScope.usuario.nick != 'admin'}">
 
-									<a href="AddCarrito?id=${producto.id.id}&pag=${requestScope.paginaActual}"
+									<a
+										href="AddCarrito?id=${producto.id.id}&pag=${requestScope.paginaActual}"
 										title="header=[Add to cart] body=[&nbsp;] fade=[on]"><img
 										src="images/cart.gif" alt="" title="" border="0"
 										class="left_bt" /></a>
-									<a href="AddPuntuacion?id=${producto.id.id}&megusta=t&pag=${requestScope.paginaActual}"
+									<a
+										href="AddPuntuacion?id=${producto.id.id}&megusta=t&pag=${requestScope.paginaActual}"
 										title="header=[Specials] body=[&nbsp;] fade=[on]"><img
 										src="images/me_gusta.png" alt="" title="" border="0"
 										class="left_bt" /></a>
-									<a href="AddPuntuacion?id=${producto.id.id}&megusta=f&pag=${requestScope.paginaActual}"
+									<a
+										href="AddPuntuacion?id=${producto.id.id}&megusta=f&pag=${requestScope.paginaActual}"
 										title="header=[Specials] body=[&nbsp;] fade=[on]"><img
 										src="images/no_me_gusta.png" alt="" title="" border="0"
 										class="left_bt" /></a>
@@ -80,15 +84,14 @@
 
 								</c:when>
 
-								<c:otherwise >
-									<a href="EliminarProducto?id=${producto.id.id}&pag=${requestScope.paginaActual}"
+								<c:otherwise>
+									<a
+										href="EliminarProducto?id=${producto.id.id}&pag=${requestScope.paginaActual}"
 										title="header=[Add to cart] body=[&nbsp;] fade=[on]"><img
 										src="images/icono_eliminar.gif" alt="Eliminar Producto"
 										title="" border="0" class="left_bt" /></a>
-									<a href="#" title="header=[Specials] body=[&nbsp;] fade=[on]"><img
-										src="images/favs.gif" alt="" title="" border="0"
-										class="left_bt" /></a>
-									<a href="#" title="header=[Gifts] body=[&nbsp;] fade=[on]"><img
+									<a href="VerPuntuaciones?id=${producto.id.id}"
+										title="header=[Gifts] body=[&nbsp;] fade=[on]"><img
 										src="images/favorites.gif" alt="" title="" border="0"
 										class="left_bt" /></a>
 									<a href="Detalles?id=${producto.id.id}" class="prod_details">Más</a>
@@ -98,8 +101,8 @@
 						</div>
 					</div>
 				</c:forEach>
-				
-				<c:if test="${requestScope.numPaginas !=1}">
+
+				<c:if test="${requestScope.numPaginas !=1 && requestScope.numPaginas !=0}">
 					<div id="center_pagination">
 						<c:choose>
 							<c:when test="${requestScope.fav==true}">

@@ -1,9 +1,7 @@
 package tiendaonline.servlets.administrar.productos;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,14 +12,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
-
 import tiendaonline.clases.Producto;
-import tiendaonline.clases.Usuario;
 import tiendaonline.metodos.MisMetodos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletEliminarProducto extends HttpServlet {
+
+	private static final long serialVersionUID = 4921162632448875547L;
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -36,7 +36,8 @@ public class ServletEliminarProducto extends HttpServlet {
 
 		String jpql = "select producto from Producto producto";
 		Query query = entityManager.createQuery(jpql);
-		List<Producto> productos = (List<Producto>) query.getResultList();
+		@SuppressWarnings("unchecked")
+		List<Producto> productos = ((List<Producto>) query.getResultList());
 
 		for (Producto producto : productos) {
 			if (producto.getId().getId() == Long.parseLong(idProducto)) {

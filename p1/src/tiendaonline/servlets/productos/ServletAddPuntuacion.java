@@ -1,9 +1,7 @@
 package tiendaonline.servlets.productos;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -20,6 +18,10 @@ import tiendaonline.clases.Usuario;
 import tiendaonline.enumerados.MisAtributos;
 import tiendaonline.metodos.MisMetodos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletAddPuntuacion extends HttpServlet {
 
 	private static final long serialVersionUID = 4812630311801914205L;
@@ -42,8 +44,8 @@ public class ServletAddPuntuacion extends HttpServlet {
 			String gusta = request.getParameter("megusta");
 
 			List<Producto> productos = MisMetodos.obtenerProductos(request);
-			// Producto productoVoto = MisMetodos.obtenerProducto(productos,
-			// idProducto.toString());
+
+			@SuppressWarnings("unused")
 			Producto producto = null;
 
 			for (Producto p : productos) {

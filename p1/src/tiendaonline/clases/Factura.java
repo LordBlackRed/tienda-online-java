@@ -11,10 +11,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import com.google.appengine.api.datastore.Key;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 @Entity
 public class Factura implements Comparable<Factura>, Serializable{
 

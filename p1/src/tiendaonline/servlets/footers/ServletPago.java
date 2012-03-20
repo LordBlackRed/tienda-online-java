@@ -12,6 +12,10 @@ import tiendaonline.clases.Categoria;
 import tiendaonline.clases.Fabricante;
 import tiendaonline.metodos.MisMetodos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletPago extends HttpServlet {
 
 	private static final long serialVersionUID = -5228618310363085689L;

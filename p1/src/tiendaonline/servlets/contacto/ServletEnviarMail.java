@@ -17,6 +17,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletEnviarMail extends HttpServlet{
 
 	private static final long serialVersionUID = 6384481626177977808L;

@@ -16,8 +16,6 @@ import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 
-import com.google.appengine.api.datastore.Transaction;
-
 import tiendaonline.ServletIndex;
 import tiendaonline.clases.Categoria;
 import tiendaonline.clases.Envio;
@@ -30,6 +28,10 @@ import tiendaonline.clases.Usuario;
 import tiendaonline.enumerados.MisAtributos;
 import tiendaonline.listeners.ContextoListener;
 
+/**
+ * @author Rafael de los Santos Guirado
+ * 
+ */
 public class MisMetodos {
 
 	public static List<Categoria> obtenerCategorias(HttpServletRequest request) {
@@ -37,14 +39,11 @@ public class MisMetodos {
 				.getSession().getServletContext().getAttribute("emf");
 		EntityManager entityManager = entityManagerFactory
 				.createEntityManager();
-		EntityTransaction transaction = entityManager.getTransaction();
-		transaction.begin();
 
 		String jpqlCategoria = "select categoria from Categoria categoria";
+		@SuppressWarnings("unchecked")
 		List<Categoria> categorias = entityManager.createQuery(jpqlCategoria)
 				.getResultList();
-		transaction.commit();
-		entityManager.close();
 
 		return categorias;
 	}
@@ -54,14 +53,16 @@ public class MisMetodos {
 				.getSession().getServletContext().getAttribute("emf");
 		EntityManager entityManager = entityManagerFactory
 				.createEntityManager();
-		EntityTransaction transaction = entityManager.getTransaction();
-		transaction.begin();
 
 		String jpql = "select producto from Producto producto";
+		@SuppressWarnings("unchecked")
 		List<Producto> productos = entityManager.createQuery(jpql)
 				.getResultList();
 
-		transaction.commit();
+		for (@SuppressWarnings("unused")
+		Producto producto : productos) {
+
+		}
 		entityManager.close();
 
 		return productos;
@@ -77,6 +78,7 @@ public class MisMetodos {
 		transaction.begin();
 
 		String jpql = "select puntuacion from Puntuacion puntuacion";
+		@SuppressWarnings("unchecked")
 		List<Puntuacion> puntuaciones = entityManager.createQuery(jpql)
 				.getResultList();
 
@@ -91,15 +93,11 @@ public class MisMetodos {
 				.getSession().getServletContext().getAttribute("emf");
 		EntityManager entityManager = entityManagerFactory
 				.createEntityManager();
-		EntityTransaction transaction = entityManager.getTransaction();
-		transaction.begin();
 
 		String jpql = "select fabricante from Fabricante fabricante";
+		@SuppressWarnings("unchecked")
 		List<Fabricante> fabricantes = entityManager.createQuery(jpql)
 				.getResultList();
-
-		transaction.commit();
-		entityManager.close();
 
 		return fabricantes;
 	}
@@ -124,7 +122,6 @@ public class MisMetodos {
 		Query query = entityManager.createQuery(jpql);
 		query.setParameter("n", nick);
 
-		System.out.println("NICK: " + nick);
 		Usuario usuario = null;
 		try {
 			usuario = (Usuario) query.getSingleResult();
@@ -171,39 +168,6 @@ public class MisMetodos {
 		return usuario;
 	}
 
-	// public static int obtenerPuntuacion(HttpServletRequest request,
-	// Long idProducto) {
-	//
-	// EntityManagerFactory entityManagerFactory = (EntityManagerFactory)
-	// request
-	// .getSession().getServletContext().getAttribute("emf");
-	// EntityManager entityManager = entityManagerFactory
-	// .createEntityManager();
-	// EntityTransaction transaction = entityManager.getTransaction();
-	// transaction.begin();
-	//
-	// String jpql =
-	// "select puntuacion from Puntuacion puntuacion where puntuacion.idProducto=:idProd";
-	// Query query = entityManager.createQuery(jpql);
-	// query.setParameter("idProd", idProducto);
-	//
-	// int puntuacion = 0;
-	//
-	// List<Puntuacion> puntuaciones= (List<Puntuacion>) query.getResultList();
-	//
-	// Collections.sort(puntuaciones);
-	// try{
-	// puntuacion = puntuaciones.get(0).getPuntuacionTotal();
-	// }catch (IndexOutOfBoundsException ex){
-	// puntuacion = 0;
-	// }
-	// System.out.println("PUNTUACION****" + puntuacion);
-	// transaction.commit();
-	// entityManager.close();
-	//
-	// return puntuacion;
-	// }
-
 	public static Long obtenerIdProducto(HttpServletRequest request,
 			String nombre) {
 
@@ -217,11 +181,11 @@ public class MisMetodos {
 		String jpql = "select producto from Producto producto";
 		Query query = entityManager.createQuery(jpql);
 
-		List<Producto> productos = (List<Producto>) query.getResultList();
+		@SuppressWarnings("unchecked")
+		List<Producto> productos = ((List<Producto>) query.getResultList());
 
 		Long idProducto = 0L;
 		for (Producto p : productos) {
-			System.out.println("nombre producto: " + p.getNombre());
 			if (p.getNombre().equals(nombre)) {
 				idProducto = p.getId().getId();
 				break;
@@ -249,6 +213,7 @@ public class MisMetodos {
 		query = query.setMaxResults(productosPorPagina);
 		query.setParameter("cat", tituloCategoria);
 
+		@SuppressWarnings("unchecked")
 		List<Producto> productosCategoria = query.getResultList();
 
 		return productosCategoria;
@@ -266,6 +231,7 @@ public class MisMetodos {
 		String jpql = "select producto from Producto producto";
 		Query query = entityManager.createQuery(jpql);
 
+		@SuppressWarnings("unchecked")
 		List<Producto> productos = query.getResultList();
 
 		List<Producto> productosCategoria = new ArrayList<Producto>();
@@ -304,6 +270,7 @@ public class MisMetodos {
 		String jpql = "select envio from Envio envio";
 		Query query = entityManager.createQuery(jpql);
 
+		@SuppressWarnings("unchecked")
 		List<Envio> empresasEnvio = query.getResultList();
 
 		return empresasEnvio;
@@ -328,7 +295,6 @@ public class MisMetodos {
 		List<Factura> facturas = obtenerFacturas(request);
 
 		long numeroFactura = 1L;
-		System.out.println("tamaño lista: " + facturas.size());
 		if (facturas.size() > 0) {
 			numeroFactura = facturas.get(facturas.size() - 1).getNumero()
 					.longValue();
@@ -345,6 +311,25 @@ public class MisMetodos {
 
 		String jpql = "select factura from Factura factura";
 		Query query = entityManager.createQuery(jpql);
+		@SuppressWarnings("unchecked")
+		List<Factura> facturas = query.getResultList();
+
+		return facturas;
+	}
+
+	public static List<Factura> obtenerFacturasPaginadas(
+			HttpServletRequest request, int start, int facturasPorPagina) {
+
+		EntityManagerFactory entityManagerFactory = (EntityManagerFactory) request
+				.getSession().getServletContext().getAttribute("emf");
+		EntityManager entityManager = entityManagerFactory
+				.createEntityManager();
+
+		String jpql = "select factura from Factura factura";
+		Query query = entityManager.createQuery(jpql);
+		query = query.setFirstResult(start);
+		query = query.setMaxResults(facturasPorPagina);
+		@SuppressWarnings("unchecked")
 		List<Factura> facturas = query.getResultList();
 
 		return facturas;
@@ -358,7 +343,6 @@ public class MisMetodos {
 		Usuario usuario = obtenerUsuario(nick, request);
 
 		if (usuario == null) {
-			System.out.println("EL USUARIO ES NULO!!!");
 			usuario = new Usuario();
 			usuario.setAdmin(admin);
 			usuario.setPass(pass);
@@ -386,8 +370,14 @@ public class MisMetodos {
 		Usuario user = (Usuario) query.getSingleResult();
 
 		List<Factura> facturas = user.getFacturas();
-		for (Factura f : facturas) {
-			System.out.println("facturaUsuario: " + f);
+		// Recorremos el bucle, aunque parezca vacío, si no se pone es como si
+		// facturas estuviera vacío
+		// Misterios del GAE
+		// Si no cerráramos el EM no haría falta crear el bucle, pero es mejor
+		// cerrarlo
+		for (@SuppressWarnings("unused")
+		Factura factura : facturas) {
+
 		}
 		entityManager.close();
 
@@ -428,6 +418,7 @@ public class MisMetodos {
 		Query query = entityManager.createQuery(jpql);
 		query.setParameter("idF", idFactura);
 
+		@SuppressWarnings("unchecked")
 		List<LineaFactura> lineasFacturas = query.getResultList();
 
 		return lineasFacturas;
@@ -447,6 +438,7 @@ public class MisMetodos {
 		query = query.setMaxResults(productosPorPagina);
 		query.setParameter("id", Long.parseLong(idFabricante));
 
+		@SuppressWarnings("unchecked")
 		List<Producto> productosFabricante = query.getResultList();
 
 		return productosFabricante;
@@ -457,13 +449,11 @@ public class MisMetodos {
 			int productosPorPagina) throws NoResultException {
 
 		Set<Long> prodFavoritos = usuario.getProdFavoritos();
-		System.out.println("nick: " + usuario.getNick());
 		List<Producto> productos = new ArrayList<Producto>();
 		Iterator<Long> it = prodFavoritos.iterator();
 		List<Producto> productosFavoritos = new ArrayList<Producto>();
 		while (it.hasNext()) {
 			Long id = it.next();
-			System.out.println("idProductoFavorito" + id);
 			EntityManagerFactory entityManagerFactory = (EntityManagerFactory) request
 					.getSession().getServletContext().getAttribute("emf");
 			EntityManager entityManager = entityManagerFactory
@@ -481,7 +471,6 @@ public class MisMetodos {
 				tx.begin();
 				entityManager.merge(usuario);
 				tx.commit();
-				System.out.println("excepcion!!!!" + id);
 				throw new NoResultException(
 						"El producto favorito ha sido eliminado de la Base de Datos");
 			}
@@ -491,19 +480,21 @@ public class MisMetodos {
 		 * Si es admin se salta el proceso para que no dé una excepción ya que
 		 * los admin no tienen favoritos Ésto sólo sirve si el usuario admin
 		 * entra en los favoritos a través de la url (debería de conocerla) ya
-		 * que, desde la interfaz no existe ningún link que la lleve a ella
+		 * que, desde la interfaz no existe ningún link que la lleve a ella Y si
+		 * el tamaño es 0 tampoco se hace, esto se controla por si el usuario no
+		 * tiene favoritos
 		 */
-		if (!usuario.getNick().equals("admin")) {
-			if (start == 0) {
-				for (int i = start; i < productosPorPagina; i++) {
-					productosFavoritos.add(productos.get(i));
-				}
-			} else {
-				for (int i = start; i <= productosPorPagina; i++) {
-					productosFavoritos.add(productos.get(i));
-				}
 
-			}
+		if (!usuario.getNick().equals("admin") && productos.size() != 0) {
+				for (int i = start; i < productos.size(); i++) {
+					//Secuencia que hace la paginación de los productos favoritos
+					if (i == productosPorPagina + start) {
+						break;
+					} else {
+						productosFavoritos.add(productos.get(i));
+					}
+				}
+			
 		}
 		return productosFavoritos;
 	}
@@ -546,7 +537,6 @@ public class MisMetodos {
 						x++;
 					}
 				}
-				System.out.println("1 " + cadena2);
 				for (int i = 0; i < cadena2.length(); i++) {
 					a2 = cadena2.codePointAt(i);
 					if ((a2 > 47 && a2 < 58) || (a2 > 64 && a2 < 91)
@@ -597,6 +587,7 @@ public class MisMetodos {
 
 		String jpql = "select usuario from Usuario usuario";
 		Query query = entityManager.createQuery(jpql);
+		@SuppressWarnings("unchecked")
 		List<Usuario> usuarios = query.getResultList();
 
 		for (Usuario usuario : usuarios) {
@@ -614,6 +605,7 @@ public class MisMetodos {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public static List<Producto> obtenerProductosSearchPaginado(
 			HttpServletRequest request, String parameter, int start,
 			int productosPorPagina) {
@@ -642,6 +634,7 @@ public class MisMetodos {
 		return productos;
 	}
 
+	@SuppressWarnings("unchecked")
 	public static List<Producto> obtenerProductosSearch(
 			HttpServletRequest request, String parameter) {
 
@@ -675,6 +668,7 @@ public class MisMetodos {
 				.createEntityManager();
 		String jpql = "select producto FROM Producto producto";
 		Query query = entityManager.createQuery(jpql);
+		@SuppressWarnings("unchecked")
 		List<Producto> productos = query.getResultList();
 
 		Collections.sort(productos);
@@ -763,8 +757,15 @@ public class MisMetodos {
 		query = query.setFirstResult(start);
 		query = query.setMaxResults(productosPorPagina);
 
+		@SuppressWarnings("unchecked")
 		List<Producto> productos = query.getResultList();
 
+		for(@SuppressWarnings("unused") Producto p: productos){
+			
+		}
+		
+		em.close();
+		
 		return productos;
 	}
 
@@ -787,8 +788,6 @@ public class MisMetodos {
 		String val = numero + "";
 		BigDecimal big = new BigDecimal(val);
 		big = big.setScale(0, RoundingMode.UP);
-
-		System.out.println("Número : " + big);
 
 		int paginas = big.intValue();
 
@@ -853,7 +852,6 @@ public class MisMetodos {
 			}
 		}
 		int count = productosFabricante.size();
-		System.out.println("COUNT: " + count);
 		double numero = (double) count / (double) productosPorPagina;
 
 		String val = numero + "";
@@ -871,7 +869,6 @@ public class MisMetodos {
 		List<Producto> productosSearch = obtenerProductosSearch(request,
 				parameter);
 		int count = productosSearch.size();
-		System.out.println("COUNT: " + count);
 		double numero = (double) count / (double) productosPorPagina;
 
 		String val = numero + "";
@@ -882,4 +879,74 @@ public class MisMetodos {
 
 		return paginas;
 	}
+
+	public static int obtenerCantidadProducto(HttpServletRequest request,
+			long id) {
+
+		List<Producto> productos = obtenerProductos(request);
+		int cantidadProducto = 0;
+
+		for (Producto producto : productos) {
+			if (producto.getId().getId() == id) {
+				cantidadProducto = producto.getCantidad();
+				break;
+			}
+		}
+
+		return cantidadProducto;
+	}
+
+	public static boolean comprobarStockProducto(HttpServletRequest request,
+			long id, int cantidad) {
+
+		boolean correcto = true;
+
+		int stock = obtenerCantidadProducto(request, id);
+
+		if (stock < cantidad) {
+			correcto = false;
+		}
+
+		return correcto;
+	}
+
+	public static Long obtenerIdEnvio(HttpServletRequest request, Long idFactura) {
+
+		List<Factura> facturas = obtenerFacturas(request);
+
+		Long idEmpresaEnvio = 0L;
+
+		for (Factura factura : facturas) {
+			if (factura.getNumero().longValue() == idFactura.longValue()) {
+				idEmpresaEnvio = factura.getIdEnvio();
+			}
+		}
+		return idEmpresaEnvio;
+	}
+
+	public static int numPaginasFactura(HttpServletRequest request,
+			int facturasPorPagina) {
+
+		EntityManagerFactory entityManagerFactory = (EntityManagerFactory) request
+				.getSession().getServletContext().getAttribute("emf");
+		EntityManager entityManager = entityManagerFactory
+				.createEntityManager();
+
+		Query q = entityManager
+				.createQuery("select count(f) from Factura as f");
+
+		int count = ((Integer) q.getSingleResult()).intValue();
+
+		entityManager.close();
+		double numero = (double) count / (double) facturasPorPagina;
+
+		String val = numero + "";
+		BigDecimal big = new BigDecimal(val);
+		big = big.setScale(0, RoundingMode.UP);
+
+		int paginas = big.intValue();
+
+		return paginas;
+	}
+
 }

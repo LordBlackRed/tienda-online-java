@@ -1,25 +1,20 @@
 package tiendaonline.listeners;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import tiendaonline.ServletIndex;
-import tiendaonline.clases.Factura;
 import tiendaonline.clases.Producto;
-import tiendaonline.clases.Usuario;
-import tiendaonline.enumerados.MisAtributos;
-import tiendaonline.metodos.MisMetodos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ContextoListener implements ServletContextListener {
 
 	@Override
@@ -31,6 +26,7 @@ public class ContextoListener implements ServletContextListener {
 	public static Producto productoEspecial;
 	public static List<String> sponsor;
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
 		arg0.getServletContext().setAttribute("usuarios", new HashMap());

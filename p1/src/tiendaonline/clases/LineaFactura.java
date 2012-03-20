@@ -2,16 +2,17 @@ package tiendaonline.clases;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 import com.google.appengine.api.datastore.Key;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 @Entity
 public class LineaFactura implements Serializable{
 

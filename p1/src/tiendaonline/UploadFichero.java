@@ -6,13 +6,11 @@ package tiendaonline;
  */
 
 import java.io.*;
-import java.net.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 
 import org.apache.commons.fileupload.*;
-import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
@@ -22,6 +20,7 @@ import java.util.*;
  * @author  Roberto Canales
  * @version
  */
+
 public class UploadFichero extends HttpServlet {
     
 	private static final long serialVersionUID = -3194552376109044339L;
@@ -38,8 +37,8 @@ public class UploadFichero extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
 
-        System.out.println("Comenzamos procesamiento ficheros");
-
+        //Procesamiento de ficheros
+        
         procesaFicheros(request,out);
         out.println("<a href='nuevo-producto.jsp'>Volver</a>");
         out.println("</body>");
@@ -54,7 +53,8 @@ public class UploadFichero extends HttpServlet {
         System.out.println("El error es " + cadena);
     }
 
-    public boolean procesaFicheros(HttpServletRequest request, PrintWriter out ) {
+    @SuppressWarnings("rawtypes")
+	public boolean procesaFicheros(HttpServletRequest request, PrintWriter out ) {
         try {
         	 // construimos el objeto que es capaz de parsear la perici—n
         	FileItemFactory factory = new DiskFileItemFactory();

@@ -14,6 +14,10 @@ import tiendaonline.clases.Suscrito;
 import tiendaonline.enumerados.MisAtributos;
 import tiendaonline.metodos.MisMetodos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletSuscribir extends HttpServlet {
 
 	private static final long serialVersionUID = 3842326830074738722L;

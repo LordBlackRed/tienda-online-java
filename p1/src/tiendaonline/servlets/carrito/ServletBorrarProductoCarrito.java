@@ -11,13 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 import tiendaonline.clases.Producto;
 import tiendaonline.enumerados.MisAtributos;
 
+/**
+ * @author Rafael de los Santos Guirado
+ *
+ */
 public class ServletBorrarProductoCarrito extends HttpServlet {
+
+	private static final long serialVersionUID = 6613091076560148709L;
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		String idProducto = request.getParameter("id");
 		
+		@SuppressWarnings("unchecked")
 		List<Producto> carrito = (List<Producto>) request.getSession().getAttribute(MisAtributos.carrito.toString());
 		
 		for (Producto producto: carrito){

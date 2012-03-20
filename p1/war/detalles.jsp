@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
 
-<title>Electronix Store</title>
+<title>Detalles Producto</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
 <link rel="stylesheet" type="text/css" href="lightbox.css" />
 <!--[if IE 6]>
@@ -17,7 +17,13 @@
 <script src="javascript/scriptaculous.js?load=effects,builder"
 	type="text/javascript"></script>
 <script src="javascript/lightbox.js" type="text/javascript"></script>
-
+<script>
+	var productoEliminado = ${requestScope.productoEliminado};
+	if (productoEliminado) {
+		alert("El producto ha sido eliminado de la Base de Datos");
+		 location.href='Index'; 
+	}
+</script>
 </head>
 <body>
 
