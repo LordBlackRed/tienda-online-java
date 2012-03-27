@@ -1,12 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@page import="tiendaonline.enumerados.MisAtributos"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
-<title>Facturación</title>
+<title>Facturacion</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
 <!--[if IE 6]>
 <link rel="stylesheet" type="text/css" href="iecss.css" />
@@ -46,12 +45,48 @@
 											<a href="Facturacion?dni=${factura.usuario.dni}">${factura.usuario.dni}</a>
 										</c:when>
 										<c:otherwise>
-											<a href="Facturacion?dni=${requestScope.facturaUsuarioDni}">${requestScope.facturaUsuarioDni}</a>
+											<a
+												href="Facturacion?dni=${requestScope.facturaUsuarioDni.dni}">${requestScope.facturaUsuarioDni.dni}</a>
 										</c:otherwise>
 									</c:choose></td>
 								<td>${factura.precio}&#8364;</td>
 							</tr>
 						</c:forEach>
+					</table>
+				</c:if>
+
+				<c:if test="${requestScope.isFacturaUsuarioDni == true}">
+					<table class="lista2">
+						<tr>
+							<td><label>Nombre:</label></td>
+							<td>${requestScope.facturaUsuarioDni.nombre}</td>
+							<td><label>Apellidos:</label></td>
+							<td>${requestScope.facturaUsuarioDni.apellidos}</td>
+						</tr>
+						<tr>
+							<td><label>DNI:</label></td>
+							<td>${requestScope.facturaUsuarioDni.dni}</td>
+							<td><label>Direcci&#243;n:</label></td>
+							<td>${requestScope.facturaUsuarioDni.direccion}</td>
+						</tr>
+						<tr>
+							<td><label>Localidad:</label></td>
+							<td>${requestScope.facturaUsuarioDni.localidad}</td>
+							<td><label>Provincia:</label></td>
+							<td>${requestScope.facturaUsuarioDni.provincia}</td>
+						</tr>
+						<tr>
+							<td><label>CP:</label></td>
+							<td>${requestScope.facturaUsuarioDni.cp}</td>
+							<td><label>Fecha de Nacimiento:</label></td>
+							<td>${requestScope.facturaUsuarioDni.fechaNacimiento}</td>
+						</tr>
+						<tr>
+							<td><label>Tel&#233;fono M&#243;vil:</label></td>
+							<td>${requestScope.facturaUsuarioDni.telefonoMovil}</td>
+							<td><label>Tel&#233;fono Fijo:</label></td>
+							<td>${requestScope.facturaUsuarioDni.telefonoFijo}</td>
+						</tr>
 					</table>
 				</c:if>
 

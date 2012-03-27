@@ -35,27 +35,29 @@ if (error == true) {
 				<div id="carrito">
 					<c:if test="${fn:length(sessionScope.carrito)!=0}">
 						<form action="ActualizarCarrito" method="post" name="formCarrito">
-							<table border="1">
+							<table class="lista">
+							<tr>
 								<th>Ref</th>
 								<th>Nombre</th>
 								<th>Precio</th>
 								<th>Cantidad</th>
 								<th>Total</th>
+								</tr>
 								<c:set var="totalFactura" value="0" />
 
 								<c:forEach items="${sessionScope.carrito}" var="producto">
 									<c:set var="contador" value="${contador+1}" />
 									<c:set var="totalFactura"
 										value="${totalFactura + (producto.precio * producto.cantidad)}" />
-									<tr>
+									<tr id="pro-3">
 										<td><a href="Detalles?id=${producto.id.id}">${producto.id.id}</a></td>
-										<td>${producto.nombre}</td>
-										<td>${producto.precio}</td>
+										<td width="165">${producto.nombre}</td>
+										<td>${producto.precio}&#8364;</td>
 
 										<td><input type="text" name="cantidad${contador}"
 											value="${producto.cantidad}" /></td>
-										<td>${producto.precio * producto.cantidad}</td>
-										<td><a href="BorrarProductoCarrito?id=${producto.id.id}">Borrar</a></td>
+										<td>${producto.precio * producto.cantidad}&#8364;</td>
+										<td width="20"><div class="borrarProductoCarrito"><a href="BorrarProductoCarrito?id=${producto.id.id}"></a></div></td>
 									</tr>
 
 								</c:forEach>

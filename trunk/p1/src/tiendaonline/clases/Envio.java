@@ -9,14 +9,11 @@ import javax.persistence.Id;
 
 /**
  * @author Rafael de los Santos Guirado
- *
+ * 
  */
 @Entity
-public class Envio implements Serializable{
+public class Envio implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -9207941553571369065L;
 	private Long id;
 	private String empresa;

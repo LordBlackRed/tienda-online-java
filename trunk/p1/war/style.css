@@ -131,7 +131,7 @@ a.lang {
 
 .oferta_details button {
 	position: absolute;
-	margin-left: 260px;
+	margin-left: 290px;
 	margin-top: -72px;
 }
 
@@ -320,7 +320,28 @@ a.nav6:link,a.nav6:visited {
 	color: #676d77;
 }
 
-a.nav1:hover,a.nav2:hover,a.nav3:hover,a.nav4:hover,a.nav5:hover,a.nav6:hover
+a.nav7:link,a.nav7:visited {
+	display: block;
+	float: left;
+	padding: 0px 8px 0px 22px;
+	margin: 0 14px 0 14px;
+	height: 50px;
+	text-decoration: none;
+	background: url(images/suscritos.jpg) no-repeat left;
+	color: #676d77;
+}
+a.nav8:link,a.nav8:visited {
+	display: block;
+	float: left;
+	padding: 0px 8px 0px 22px;
+	margin: 0 14px 0 14px;
+	height: 50px;
+	text-decoration: none;
+	background: url(images/billete.png) no-repeat left;
+	color: #676d77;
+}
+
+a.nav1:hover,a.nav2:hover,a.nav3:hover,a.nav4:hover,a.nav5:hover,a.nav6:hover,a.nav7:hover,a.nav8:hover
 	{
 	color: #333333;
 }
@@ -615,7 +636,7 @@ span.border_cart {
 .center_prod_box {
 	width: 173px;
 	height: auto;
-	background: url(images/product_box_center.gif) repeat-y;
+	background: url(images/fondoPro.gif);
 	float: left;
 	text-align: center;
 	padding: 0px;
@@ -1119,11 +1140,23 @@ span.redireccionar {
 	text-align: center;
 }
 
+.lista2 {
+	width: 90%;
+	border: 0px;
+	margin: 15px 30px;
+	margin-top: 45px;
+	text-align: center;
+}
+
 .lista a:hover {
 	color: red;
 }
 
 .lista tr {
+	height: 20px;
+}
+
+.lista2 tr {
 	height: 20px;
 }
 
@@ -1135,6 +1168,16 @@ span.redireccionar {
 	padding: 2px;
 	font-size: 13px;
 	vertical-align: top;
+}
+
+.lista2 th,.lista2 td,.lista2 td a {
+	padding: 2px;
+	font-size: 13px;
+	vertical-align: top;
+}
+
+.lista2 td label {
+	font-weight: bold;
 }
 
 .lista td a {
@@ -1200,8 +1243,12 @@ span.redireccionar {
 
 #carrito {
 	margin-top: 70px;
-	margin-left: 100px;
-	font-size: 14px;
+	margin-left: 50px;
+	font-size: 13px;
+}
+
+#carrito table {
+	margin-left: 0px;
 }
 
 #carrito img {
@@ -1216,6 +1263,10 @@ span.redireccionar {
 
 #carrito .actualizar {
 	margin-left: 300px;
+}
+
+#carrito td {
+	text-align: center;
 }
 
 /** PRIVACIDAD **/
@@ -1248,4 +1299,8 @@ span.redireccionar {
 	border: none;
 	width: 207;
 	height: 47px;
+}
+
+.borrarProductoCarrito {
+	background: url("images/icono_eliminar.gif");
 }

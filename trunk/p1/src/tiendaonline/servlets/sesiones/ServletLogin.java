@@ -20,7 +20,7 @@ import tiendaonline.metodos.MisMetodos;
 
 /**
  * @author Rafael de los Santos Guirado
- *
+ * 
  */
 public class ServletLogin extends HttpServlet {
 
@@ -60,18 +60,37 @@ public class ServletLogin extends HttpServlet {
 
 			response.sendRedirect("Index");
 		} else {
+
+			int productosPorPagina = 6;
+			int numPaginas = 1;
+			int paginaActual = 1;
+			try {
+				paginaActual = Integer.parseInt(request.getParameter("pag"));
+			} catch (NumberFormatException e) {
+
+			}
+			int start = productosPorPagina * (paginaActual - 1);
+
 			// No ha podido loguearse, usuario o contrase–a incorrectos
 			request.setAttribute(MisAtributos.error.toString(), true);
 			List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
 			List<Fabricante> fabricantes = MisMetodos
 					.obtenerFabricantes(request);
 
-			List<Producto> productos = MisMetodos.obtenerProductos(request);
+			List<Producto> productos = MisMetodos.paginacion(request, start,
+					productosPorPagina);
 
 			Collections.sort(productos);
 
 			MisMetodos.asignarRequest(request, categorias, fabricantes);
 			request.setAttribute(MisAtributos.productos.toString(), productos);
+			request.setAttribute(MisAtributos.paginaSiguiente.toString(),
+					paginaActual + 1);
+			request.setAttribute(MisAtributos.paginaAnterior.toString(),
+					paginaActual - 1);
+			request.setAttribute(MisAtributos.paginaActual.toString(),
+					paginaActual);
+			request.setAttribute(MisAtributos.numPaginas.toString(), numPaginas);
 
 			request.getRequestDispatcher("index.jsp")
 					.forward(request, response);

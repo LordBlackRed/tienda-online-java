@@ -29,7 +29,7 @@
 					<form action="ProductoNuevo" method="post" name="formProductoNuevo">
 
 						<label for="nombre">Nombre: </label> <input type="text"
-							name="nombre" /> <label for="precio">Precio: </label> <input
+							name="nombre" maxlength="25" /> <label for="precio">Precio: </label> <input
 							type="text" name="precio" /> <label for="cantidad">Cantidad:
 						</label> <input type="text" name="cantidad" /> <label for="url">URL:
 						</label> <input type="text" name="url" /> <label for="descripcion">Descripción:

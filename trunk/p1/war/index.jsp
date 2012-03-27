@@ -45,39 +45,37 @@
 				<c:forEach items="${requestScope.productos}" var="producto">
 
 					<div class="prod_box">
-						<div class="top_prod_box"></div>
 						<div class="center_prod_box">
 							<div class="product_title">${producto.nombre}</div>
 							<div class="product_img">
-								<img src="${producto.urlImagen}" width="125" height="150" alt=""
+								<img src="${producto.urlImagen}" width="115" height="145" alt=""
 									title="" border="0" />
 							</div>
 							<div class="prod_price">
-								<span class="price">${producto.precio}</span>
+								<span class="price">${producto.precio}&#8364;</span>
 							</div>
 						</div>
-						<div class="bottom_prod_box"></div>
 						<div class="prod_details_tab">
 							<c:choose>
 								<c:when test="${sessionScope.usuario.nick != 'admin'}">
 
 									<a
 										href="AddCarrito?id=${producto.id.id}&pag=${requestScope.paginaActual}"
-										title="header=[Add to cart] body=[&nbsp;] fade=[on]"><img
+										title="Añadir al Carro"><img
 										src="images/cart.gif" alt="" title="" border="0"
 										class="left_bt" /></a>
 									<a
 										href="AddPuntuacion?id=${producto.id.id}&megusta=t&pag=${requestScope.paginaActual}"
-										title="header=[Specials] body=[&nbsp;] fade=[on]"><img
+										title="Votar Positivo"><img
 										src="images/me_gusta.png" alt="" title="" border="0"
 										class="left_bt" /></a>
 									<a
 										href="AddPuntuacion?id=${producto.id.id}&megusta=f&pag=${requestScope.paginaActual}"
-										title="header=[Specials] body=[&nbsp;] fade=[on]"><img
+										title="Votar Negativo"><img
 										src="images/no_me_gusta.png" alt="" title="" border="0"
 										class="left_bt" /></a>
 									<a href="VerPuntuaciones?id=${producto.id.id}"
-										title="header=[Gifts] body=[&nbsp;] fade=[on]"><img
+										title="Ver Puntuaciones"><img
 										src="images/favorites.gif" alt="" title="" border="0"
 										class="left_bt" /></a>
 									<a href="Detalles?id=${producto.id.id}" class="prod_details">Más</a>
@@ -87,11 +85,11 @@
 								<c:otherwise>
 									<a
 										href="EliminarProducto?id=${producto.id.id}&pag=${requestScope.paginaActual}"
-										title="header=[Add to cart] body=[&nbsp;] fade=[on]"><img
+										title="Eliminar Producto"><img
 										src="images/icono_eliminar.gif" alt="Eliminar Producto"
 										title="" border="0" class="left_bt" /></a>
 									<a href="VerPuntuaciones?id=${producto.id.id}"
-										title="header=[Gifts] body=[&nbsp;] fade=[on]"><img
+										title="Ver Puntuaciones"><img
 										src="images/favorites.gif" alt="" title="" border="0"
 										class="left_bt" /></a>
 									<a href="Detalles?id=${producto.id.id}" class="prod_details">Más</a>
