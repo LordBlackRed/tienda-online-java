@@ -46,7 +46,7 @@ public class ServletFacturacion extends HttpServlet {
 			request.setAttribute(MisAtributos.isFacturaUsuarioDni.toString(),
 					true);
 			request.setAttribute(MisAtributos.facturaUsuarioDni.toString(),
-					usuario.getDni());
+					usuario);
 		} else {
 			request.setAttribute(MisAtributos.isFacturaUsuarioDni.toString(),
 					false);
@@ -58,7 +58,7 @@ public class ServletFacturacion extends HttpServlet {
 
 		List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
 		List<Fabricante> fabricantes = MisMetodos.obtenerFabricantes(request);
-		List<Producto> productos = MisMetodos.obtenerProductos(request);
+		List<Producto> productosCabecera = MisMetodos.obtenerProductos(request);
 
 		MisMetodos.asignarRequest(request, categorias, fabricantes);
 
@@ -70,7 +70,7 @@ public class ServletFacturacion extends HttpServlet {
 		request.setAttribute(MisAtributos.numFacturas.toString(),
 				facturas.size());
 		request.setAttribute(MisAtributos.facturas.toString(), facturas);
-		request.setAttribute(MisAtributos.productos.toString(), productos);
+		request.setAttribute(MisAtributos.productosCabecera.toString(), productosCabecera);
 		request.setAttribute(MisAtributos.numPaginas.toString(), numPaginas);
 
 		request.getRequestDispatcher("facturacion.jsp").forward(request,

@@ -38,8 +38,10 @@ public class ServletIndex extends HttpServlet {
 		List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
 		List<Fabricante> fabricantes = MisMetodos.obtenerFabricantes(request);
 		List<Producto> productos = null;
+		
+		List<Producto> productosCabecera = MisMetodos.obtenerProductos(request);
 
-		int productosPorPagina = 6;
+		int productosPorPagina = 9;
 		int numPaginas = 1;
 		// Lo metemos dentro de un try catch ya que, (aún no sé porqué) la
 		// página se recarga varias veces, y a veces el párametro que se le pasa
@@ -180,7 +182,8 @@ public class ServletIndex extends HttpServlet {
 				paginaActual - 1);
 		request.setAttribute(MisAtributos.paginaActual.toString(), paginaActual);
 		request.setAttribute(MisAtributos.numPaginas.toString(), numPaginas);
-
+		request.setAttribute(MisAtributos.productosCabecera.toString(), productosCabecera);
+	
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 
 	}
@@ -199,8 +202,9 @@ public class ServletIndex extends HttpServlet {
 		List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
 		List<Fabricante> fabricantes = MisMetodos.obtenerFabricantes(request);
 		List<Producto> productos = null;
-
-		int productosPorPagina = 6;
+		List<Producto> productosCabecera = MisMetodos.obtenerProductos(request);
+		
+		int productosPorPagina = 9;
 		int numPaginas = 0;
 		// Lo metemos dentro de un try catch ya que, (aún no sé porqué) la
 		// página se recarga varias veces, y a veces el párametro que se le pasa
@@ -318,6 +322,7 @@ public class ServletIndex extends HttpServlet {
 		request.setAttribute(MisAtributos.paginaActual.toString(), paginaActual);
 		request.setAttribute(MisAtributos.numPaginas.toString(), numPaginas);
 		request.setAttribute(MisAtributos.registrado.toString(), false);
+		request.setAttribute(MisAtributos.productosCabecera.toString(), productosCabecera);
 
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 

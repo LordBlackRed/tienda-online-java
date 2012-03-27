@@ -324,6 +324,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>ConfirmarCompra</servlet-name>
 		<url-pattern>/ConfirmarCompra</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>VerSuscritos</servlet-name>
+		<servlet-class>tiendaonline.servlets.suscribir.ServletVerSuscritos</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>VerSuscritos</servlet-name>
+		<url-pattern>/VerSuscritos</url-pattern>
+	</servlet-mapping>
 	<filter>
 		<filter-name>filtroSes</filter-name>
 		<filter-class>tiendaonline.filtros.FiltroSes</filter-class>
@@ -350,6 +358,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<filter-name>FiltroAdmin</filter-name>
 		<url-pattern>/Administrar</url-pattern>
 		<url-pattern>/Facturacion</url-pattern>
+		<url-pattern>/VerSuscritos</url-pattern>
 	</filter-mapping>
 	<filter>
 		<filter-name>FiltroUsuario</filter-name>

@@ -11,11 +11,11 @@
 
 						<p>
 							<label for="nombre"><strong>Usuario:</strong></label> <input
-								type="text" name="nombre" id="nombre" /> <label for="pass"><strong>Contraseña:</strong></label>
+								type="text" name="nombre" id="nombre" /> <label for="pass"><strong>Password:</strong></label>
 							<input type="password" name="pass" id="pass" size="17" />
 						</p>
 						<p>
-							<input type="submit" value="enviar" />
+							<input type="submit" value="Enviar" />
 						</p>
 					</form>
 				</div>
@@ -35,7 +35,7 @@
 	</p>
 
 	<div class="shopping_cart">
-		<div class="cart_title">Shopping cart</div>
+		<div class="cart_title">Carrito</div>
 
 		<div class="cart_details">
 
@@ -104,7 +104,7 @@
 				<form action="AddSponsor" method="post">
 					<label for="urlRight">Inserta su Dirección web</label><input
 						type="text" name="urlRight" id="urlRight" /> <input type="submit"
-						value="enviar" />
+						value="Enviar" />
 				</form>
 			</c:when>
 			<c:otherwise>

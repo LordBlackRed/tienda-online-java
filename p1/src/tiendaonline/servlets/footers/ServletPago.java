@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import tiendaonline.clases.Categoria;
 import tiendaonline.clases.Fabricante;
+import tiendaonline.clases.Producto;
+import tiendaonline.enumerados.MisAtributos;
 import tiendaonline.metodos.MisMetodos;
 
 /**
@@ -25,11 +27,13 @@ public class ServletPago extends HttpServlet {
 
 		List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
 		List<Fabricante> fabricantes = MisMetodos.obtenerFabricantes(request);
+		List<Producto> productosCabecera = MisMetodos.obtenerProductos(request);
 
 		MisMetodos.asignarRequest(request, categorias, fabricantes);
 		
-		request.getRequestDispatcher("pago.jsp")
-		.forward(request, response);
+		request.setAttribute(MisAtributos.productosCabecera.toString(), productosCabecera);
+
+		request.getRequestDispatcher("pago.jsp").forward(request, response);
 	}
 
 }

@@ -41,10 +41,10 @@
 						name="formElegirProductoEspecial">
 						<select name="productoEspecial">
 							<option value="defecto">Elige una Opción</option>
-							<c:forEach items="${requestScope.productos}" var="producto">
+							<c:forEach items="${requestScope.productosCabecera}" var="producto">
 								<option value="${producto.id.id}">${producto.nombre}</option>
 							</c:forEach>
-						</select> <input type="submit" value="enviar"
+						</select> <input type="submit" value="Enviar"
 							onclick="return validarSelect(formElegirProductoEspecial.productoEspecial);" />
 					</form>
 				</div>
@@ -81,7 +81,7 @@
 				<form action="AddSponsor" method="post">
 					<label for="urlLeft">Inserta su Dirección web</label><input
 						type="text" name="urlLeft" id="urlLeft" /> <input type="submit"
-						value="enviar" />
+						value="Enviar" />
 				</form>
 			</c:when>
 			<c:otherwise>

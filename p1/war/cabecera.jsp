@@ -1,9 +1,5 @@
-<%@page import="tiendaonline.ServletIndex"%>
 <%@page import="tiendaonline.listeners.ContextoListener"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-
-<script src="javascript/scripts.js" type="text/javascript"></script>
-
 <script type="text/javascript">
 	var photos = new Array();
 	var which = 0;
@@ -36,11 +32,73 @@
 						.getUrlImagen()%>";
 	photos[5] = "<%=ContextoListener.productosCabecera.get(4)
 						.getUrlImagen()%>";
-	
 <%}%>
-
+	
 </script>
 
+<script>
+function foto(num) {
+	document.images.photoslider.src = photos[num];
+	enviar(texto[num], 'oferta_text');
+	enviar(nombreProductos[num], 'oferta_title');
+}
+
+function validarCabecera(formulario) {
+
+	if (formulario.producto1.value == "predeterminado"
+			|| formulario.producto2.value == "predeterminado"
+			|| formulario.producto3.value == "predeterminado"
+			|| formulario.producto4.value == "predeterminado"
+			|| formulario.producto5.value == "predeterminado") {
+		alert("Debe elegir 5 productos");
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function enviar(texto, capa) {
+	var ajax;
+	ajax = ajaxFunction();
+	ajax.open("POST", true);
+	ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	ajax.onreadystatechange = function() {
+		if (ajax.readyState == 1) {
+			document.getElementById(capa).innerHTML = " Aguarde por favor...";
+		}
+		if (ajax.readyState == 4) {
+			document.getElementById(capa).innerHTML = texto;
+		}
+	}
+
+	ajax.send(null);
+}
+
+function ajaxFunction() {
+	var xmlHttp;
+
+	try {
+
+		xmlHttp = new XMLHttpRequest();
+		return xmlHttp;
+	} catch (e) {
+
+		try {
+			xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+			return xmlHttp;
+		} catch (e) {
+
+			try {
+				xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+				return xmlHttp;
+			} catch (e) {
+				alert("Tu navegador no soporta AJAX!");
+				return false;
+			}
+		}
+	}
+}
+</script>
 <div class="top_bar">
 	<div class="top_search">
 		<div class="search_text">Buscar Producto</div>
@@ -72,12 +130,13 @@
 				<div class="oferta_details">
 					<c:choose>
 						<c:when test="${sessionScope.usuario.admin == true}">
-							<form action="AddProductoCabecera" method="post" name="formCabecera">
+							<form action="AddProductoCabecera" method="post"
+								name="formCabecera">
 								<p>
 									<label for="producto">Producto #1: </label> <select
 										name="producto1">
 										<option value="predeterminado">Seleccione una opción</option>
-										<c:forEach items="${requestScope.productos}" var="producto">
+										<c:forEach items="${requestScope.productosCabecera}" var="producto">
 											<option value="${producto.id.id}">${producto.nombre}</option>
 										</c:forEach>
 
@@ -87,7 +146,7 @@
 									<label for="producto">Producto #2: </label> <select
 										name="producto2">
 										<option value="predeterminado">Seleccione una opción</option>
-										<c:forEach items="${requestScope.productos}" var="producto">
+										<c:forEach items="${requestScope.productosCabecera}" var="producto">
 											<option value="${producto.id.id}">${producto.nombre}</option>
 										</c:forEach>
 
@@ -97,7 +156,7 @@
 									<label for="producto">Producto #3: </label> <select
 										name="producto3">
 										<option value="predeterminado">Seleccione una opción</option>
-										<c:forEach items="${requestScope.productos}" var="producto">
+										<c:forEach items="${requestScope.productosCabecera}" var="producto">
 											<option value="${producto.id.id}">${producto.nombre}</option>
 										</c:forEach>
 
@@ -107,7 +166,7 @@
 									<label for="producto">Producto #4: </label> <select
 										name="producto4">
 										<option value="predeterminado">Seleccione una opción</option>
-										<c:forEach items="${requestScope.productos}" var="producto">
+										<c:forEach items="${requestScope.productosCabecera}" var="producto">
 											<option value="${producto.id.id}">${producto.nombre}</option>
 										</c:forEach>
 
@@ -117,13 +176,14 @@
 									<label for="producto">Producto #5: </label> <select
 										name="producto5">
 										<option value="predeterminado">Seleccione una opción</option>
-										<c:forEach items="${requestScope.productos}" var="producto">
+										<c:forEach items="${requestScope.productosCabecera}" var="producto">
 											<option value="${producto.id.id}">${producto.nombre}</option>
 										</c:forEach>
 
 									</select>
 								</p>
-								<button type="submit" name="enviar" onclick=" return validarCabecera(formCabecera)">Enviar</button>
+								<button type="submit" name="enviar"
+									onclick=" return validarCabecera(formCabecera)">Enviar</button>
 							</form>
 						</c:when>
 						<c:otherwise>

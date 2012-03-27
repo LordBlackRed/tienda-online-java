@@ -24,6 +24,7 @@ import tiendaonline.clases.Factura;
 import tiendaonline.clases.LineaFactura;
 import tiendaonline.clases.Producto;
 import tiendaonline.clases.Puntuacion;
+import tiendaonline.clases.Suscrito;
 import tiendaonline.clases.Usuario;
 import tiendaonline.enumerados.MisAtributos;
 import tiendaonline.listeners.ContextoListener;
@@ -486,15 +487,15 @@ public class MisMetodos {
 		 */
 
 		if (!usuario.getNick().equals("admin") && productos.size() != 0) {
-				for (int i = start; i < productos.size(); i++) {
-					//Secuencia que hace la paginaci—n de los productos favoritos
-					if (i == productosPorPagina + start) {
-						break;
-					} else {
-						productosFavoritos.add(productos.get(i));
-					}
+			for (int i = start; i < productos.size(); i++) {
+				// Secuencia que hace la paginaci—n de los productos favoritos
+				if (i == productosPorPagina + start) {
+					break;
+				} else {
+					productosFavoritos.add(productos.get(i));
 				}
-			
+			}
+
 		}
 		return productosFavoritos;
 	}
@@ -760,12 +761,13 @@ public class MisMetodos {
 		@SuppressWarnings("unchecked")
 		List<Producto> productos = query.getResultList();
 
-		for(@SuppressWarnings("unused") Producto p: productos){
-			
+		for (@SuppressWarnings("unused")
+		Producto p : productos) {
+
 		}
-		
+
 		em.close();
-		
+
 		return productos;
 	}
 
@@ -947,6 +949,44 @@ public class MisMetodos {
 		int paginas = big.intValue();
 
 		return paginas;
+	}
+
+	public static List<Suscrito> obetenerSuscritos(HttpServletRequest request) {
+
+		EntityManagerFactory entityManagerFactory = (EntityManagerFactory) request
+				.getSession().getServletContext().getAttribute("emf");
+		EntityManager entityManager = entityManagerFactory
+				.createEntityManager();
+
+		String jpql = "select suscrito from Suscrito suscrito";
+		Query query = entityManager.createQuery(jpql);
+		@SuppressWarnings("unchecked")
+		List<Suscrito> suscritos = query.getResultList();
+
+		for (@SuppressWarnings("unused")
+		Suscrito suscrito : suscritos) {
+		}
+
+		entityManager.close();
+		
+		return suscritos;
+	}
+
+	public static int obtenerNumeroSuscritos(HttpServletRequest request) {
+
+		EntityManagerFactory entityManagerFactory = (EntityManagerFactory) request
+				.getSession().getServletContext().getAttribute("emf");
+		EntityManager entityManager = entityManagerFactory
+				.createEntityManager();
+
+		Query q = entityManager
+				.createQuery("select count(s) from Suscrito as s");
+
+		int count = ((Integer) q.getSingleResult()).intValue();
+
+		entityManager.close();
+		
+		return count;
 	}
 
 }

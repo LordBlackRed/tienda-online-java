@@ -33,7 +33,7 @@ public class ServletDetalleFactura extends HttpServlet {
 				request, idFactura);
 		List<Categoria> categorias = MisMetodos.obtenerCategorias(request);
 		List<Fabricante> fabricantes = MisMetodos.obtenerFabricantes(request);
-		List<Producto> productos = MisMetodos.obtenerProductos(request);
+		List<Producto> productosCabecera = MisMetodos.obtenerProductos(request);
 
 		// Obtenemos el id del env’o para meter luego en el request el precio
 		// del env’o y mostrarlo en la factura
@@ -41,8 +41,12 @@ public class ServletDetalleFactura extends HttpServlet {
 		List<Envio> empresasEnvio = MisMetodos.obtenerEmpresasEnvio(request);
 		Envio empresaEnvio = MisMetodos.obtenerEmpresaEnvio(empresasEnvio,
 				idEnvio);
+		double precioEnvio = 0;
+		try {
+			precioEnvio = empresaEnvio.getPrecio();
+		} catch (NullPointerException e) {
 
-		double precioEnvio = empresaEnvio.getPrecio();
+		}
 		String nombreEmpresaEnvio = empresaEnvio.getEmpresa();
 
 		MisMetodos.asignarRequest(request, categorias, fabricantes);
@@ -53,7 +57,8 @@ public class ServletDetalleFactura extends HttpServlet {
 		request.setAttribute(MisAtributos.lineasFactura.toString(),
 				lineasFacturas);
 		request.setAttribute(MisAtributos.idFactura.toString(), idFactura);
-		request.setAttribute(MisAtributos.productos.toString(), productos);
+		request.setAttribute(MisAtributos.productosCabecera.toString(),
+				productosCabecera);
 
 		request.getRequestDispatcher("detallesFactura.jsp").forward(request,
 				response);

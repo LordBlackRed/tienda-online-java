@@ -18,15 +18,13 @@
 		<li class="divider"></li>
 		<li><a href="Contacto" class="nav6">Contacta</a></li>
 		<li class="divider"></li>
-
 		<c:if test="${sessionScope.usuario.admin == true}">
-
+			<li><a href="VerSuscritos" class="nav7">Suscritos</a></li>
+			<li class="divider"></li>
 			<li><a href="Administrar" class="nav2">Administrar</a></li>
 			<li class="divider"></li>
-			<li><a href="Facturacion" class="nav2">Facturación </a></li>
+			<li><a href="Facturacion" class="nav8">Facturación </a></li>
 		</c:if>
-
-
 	</ul>
 
 	<div class="right_menu_corner"></div>

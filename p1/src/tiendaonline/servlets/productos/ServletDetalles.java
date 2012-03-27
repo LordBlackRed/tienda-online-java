@@ -91,7 +91,7 @@ public class ServletDetalles extends HttpServlet {
 				request.setAttribute(MisAtributos.productosSimilares.toString(),
 						productosSimilares);
 				request.setAttribute(MisAtributos.producto.toString(), producto);
-				request.setAttribute(MisAtributos.productos.toString(), productos);
+				request.setAttribute(MisAtributos.productosCabecera.toString(), productos);
 				request.setAttribute(MisAtributos.productoEliminado.toString(), false);
 			} catch (NullPointerException e) {
 				request.setAttribute(MisAtributos.productoEliminado.toString(), true);

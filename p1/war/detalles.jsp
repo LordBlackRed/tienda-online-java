@@ -21,7 +21,7 @@
 	var productoEliminado = ${requestScope.productoEliminado};
 	if (productoEliminado) {
 		alert("El producto ha sido eliminado de la Base de Datos");
-		 location.href='Index'; 
+		location.href = 'Index';
 	}
 </script>
 </head>
@@ -74,7 +74,6 @@
 											&#8364;</span>
 									</div>
 
-
 									<a href="AddCarrito?id=${requestScope.producto.id.id}"
 										class="addtocart">A&#241;adir al Carro</a>
 									<c:if test="${requestScope.error==false}">
@@ -101,42 +100,36 @@
 							var="productoSimilar">
 
 							<div class="prod_box">
-								<div class="top_prod_box"></div>
 								<div class="center_prod_box">
-									<div class="product_title">
-										<a href="details.html">${productoSimilar.nombre}</a>
-									</div>
+									<div class="product_title">${productoSimilar.nombre}</div>
 									<div class="product_img">
-										<a href="details.html"><img
-											src="${productoSimilar.urlImagen}" alt="imagen" title=""
-											border="0" width="120" height="150" /></a>
+										<img src="${productoSimilar.urlImagen}" alt="imagen" title=""
+											border="0" width="115" height="145" />
 									</div>
 									<div class="prod_price">
 										<span class="price">${productoSimilar.precio}&#8364;</span>
 									</div>
 								</div>
-								<div class="bottom_prod_box"></div>
 								<div class="prod_details_tab">
 
 									<a href="AddCarrito?id=${productoSimilar.id.id}"
-										title="header=[Add to cart] body=[&nbsp;] fade=[on]"><img
+										title="Añadir al Carrito"><img
 										src="images/cart.gif" alt="" title="" border="0"
 										class="left_bt" /></a> <a
 										href="AddPuntuacion?id=${productoSimilar.id.id}&megusta=t"
-										title="header=[Specials] body=[&nbsp;] fade=[on]"><img
+										title="Puntuar Positivamente"><img
 										src="images/me_gusta.png" alt="" title="" border="0"
 										class="left_bt" /></a> <a
 										href="AddPuntuacion?id=${productoSimilar.id.id}&megusta=f"
-										title="header=[Specials] body=[&nbsp;] fade=[on]"><img
+										title="Puntuar Negativamente"><img
 										src="images/no_me_gusta.png" alt="" title="" border="0"
 										class="left_bt" /></a> <a
 										href="VerPuntuaciones?id=${productoSimilar.id.id}"
-										title="header=[Gifts] body=[&nbsp;] fade=[on]"><img
+										title="Ver Puntuaciones"><img
 										src="images/favorites.gif" alt="" title="" border="0"
 										class="left_bt" /></a> <a
 										href="Detalles?id=${productoSimilar.id.id}"
 										class="prod_details">M&#225;s</a>
-
 
 								</div>
 							</div>
@@ -149,7 +142,7 @@
 
 							<div class="center_title_bar">
 								<input type="text" name="nombreProducto"
-									value="${requestScope.producto.nombre}" />
+									value="${requestScope.producto.nombre}" maxlength="25" />
 							</div>
 
 							<div class="prod_box_big">
@@ -213,39 +206,30 @@
 								var="productoSimilar">
 
 								<div class="prod_box">
-									<div class="top_prod_box"></div>
 									<div class="center_prod_box">
-										<div class="product_title">
-											<a href="details.html">${productoSimilar.nombre}</a>
-										</div>
+										<div class="product_title">${productoSimilar.nombre}</div>
 										<div class="product_img">
-											<a href="details.html"><img
-												src="${productoSimilar.urlImagen}" alt="imagen" title=""
-												border="0" width="120" height="150" /></a>
+											<img src="${productoSimilar.urlImagen}" alt="imagen" title=""
+												border="0" width="115" height="145" />
 										</div>
-										<div class="prod_price">
-											<span class="price">${productoSimilar.precio}&#8364;</span>
+											<div class="prod_price">
+												<span class="price">${productoSimilar.precio}&#8364;</span>
+											</div>
 										</div>
-									</div>
-									<div class="bottom_prod_box"></div>
 									<div class="prod_details_tab">
 
 										<a href="EliminarProducto?id=${productoSimilar.id.id}"
-											title="header=[Add to cart] body=[&nbsp;] fade=[on]"><img
+											title="Eliminar Producto"><img
 											src="images/icono_eliminar.gif" alt="Eliminar Producto"
-											title="" border="0" class="left_bt" /></a> <a href="#"
-											title="header=[Specials] body=[&nbsp;] fade=[on]"><img
-											src="images/favs.gif" alt="" title="" border="0"
-											class="left_bt" /></a> <a href="#"
-											title="header=[Gifts] body=[&nbsp;] fade=[on]"><img
-											src="images/favorites.gif" alt="" title="" border="0"
-											class="left_bt" /></a> <a
+											title="Eliminar Producto" border="0" class="left_bt" /></a> <a
+											href="VerPuntuaciones?id=${producto.id.id}"
+											title="Ver Puntuaciones"><img src="images/favorites.gif"
+											alt="" title="Ver Puntuaciones" border="0" class="left_bt" /></a> <a
 											href="Detalles?id=${productoSimilar.id.id}"
 											class="prod_details">M&#225;s</a>
 
 									</div>
 								</div>
-
 							</c:forEach>
 						</form>
 					</c:otherwise>
